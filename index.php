@@ -29,19 +29,76 @@
             <div class="col-4">
                 <div class="card">
                     <div class="card-header text-center">
-                        <h1>Serviços</h1>
+                        <h1>Registrar serviços</h1>
                     </div>
                     <div class="card-body text-center">
                         <h2><i class="bi bi-gear"></i></h2>
-                        <p class="">Registrar ou visualizar serviços</p>
+                        <p class="">Registrar um novo serviço</p>
                     </div>
                     <div class="card-footer">
-                        <a href="#"><button class="col-12 my-1 btn btn-primary">Registrar</button></a>
-                        <a href="#"><button class="col-12 my-1 btn btn-primary">Visualizar</button></a>
+                        <a href="#"><button class="col-12 my-1 btn btn-primary">Acessar</button></a>
                     </div>
                 </div>
             </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h1>Visualizar serviços</h1>
+                    </div>
+                    <div class="card-body text-center">
+                        <h2><i class="bi bi-gear"></i></h2>
+                        <p class="">Visualizar ou editar serviços</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#"><button class="col-12 my-1 btn btn-primary">Acessar</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h1>Cadastrar cliente</h1>
+                    </div>
+                    <div class="card-body text-center">
+                        <h2><i class="bi bi-gear"></i></h2>
+                        <p class="">Cadastrar um novo cliente</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="view/cadastrocliente.php"><button class="col-12 my-1 btn btn-primary">Acessar</button></a>
+                    </div>
+                </div>
         </div>
+    </div>
+    <div class="row justify-content-center mt-4">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h1>Visualizar clientes</h1>
+                </div>
+                <div class="card-body text-center">
+                    <h2><i class="bi bi-gear"></i></h2>
+                    <p class="">Visualizar ou editar clientes</p>
+                </div>
+                <div class="card-footer">
+                    <a href="#"><button class="col-12 my-1 btn btn-primary">Acessar</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h1>Visualizar renda</h1>
+                </div>
+                <div class="card-body text-center">
+                    <h2><i class="bi bi-gear"></i></h2>
+                    <p class="">Ver a renda de cada mês</p>
+                </div>
+                <div class="card-footer">
+                    <a href="#"><button class="col-12 my-1 btn btn-primary">Acessar</button></a>
+                </div>
+            </div>
+        </div>
+        
     </div>
 </body>
 </html>
