@@ -29,14 +29,14 @@
             <div class="col-4">
                 <div class="card">
                     <div class="card-header text-center">
-                        <h1>Registrar serviços</h1>
+                        <h1>Registrar peça</h1>
                     </div>
                     <div class="card-body text-center">
                         <h2><i class="bi bi-gear"></i></h2>
-                        <p class="">Registrar um novo serviço</p>
+                        <p class="">Registrar nova peça padrão</p>
                     </div>
                     <div class="card-footer">
-                        <a href="#"><button class="col-12 my-1 btn btn-primary">Acessar</button></a>
+                        <a href="view/cadastropeca.php"><button class="col-12 my-1 btn btn-primary">Acessar</button></a>
                     </div>
                 </div>
             </div>

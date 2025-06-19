@@ -25,14 +25,14 @@
             <div class="card-header">
               <h1 class="display-2">Cadastrar novo cliente</h1>
             </div>
-            <form action="#" method="post" class="card-body">
+            <form action="../controller/ClienteController.php" method="post" class="card-body">
               <div class="form-group">
                 <label for="nome" class="form-label">Nome:</label>
                 <input type="text" id="nome" name="nome" class="form-control" />
               </div>
               <div class="form-group">
-                <button type="submit" class="col-12 btn btn-primary">
-                  Enviar
+                <button type="submit" class="col-12 btn btn-primary" name="cadastrar">
+                  Cadastrar
                 </button>
               </div>
             </form>
