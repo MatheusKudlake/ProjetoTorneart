@@ -62,7 +62,6 @@
                             echo "<option value=\"{$c->getNome()}\">{$c->getNome()}</option>";
                         }
                     ?>
-                    <option value="">teste1</option>
                 </select>
               </div>
               <div class="form-group">

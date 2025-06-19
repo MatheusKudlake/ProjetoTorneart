@@ -27,9 +27,6 @@ class ClienteDAO
             foreach($result as $row){
                 $lista[] = $this->converterParaObj($row);
             }
-            //while($row = $result->fetch(PDO::FETCH_ASSOC)){
-            //    $lista[] = $this->converterParaObj($row);
-            //}
             return $lista;
         } catch (PDOException $erro) {
             echo "Erro ao listar clientes: $erro";
