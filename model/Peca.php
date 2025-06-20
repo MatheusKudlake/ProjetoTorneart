@@ -4,13 +4,13 @@ class Peca
 	private $id;
 	private $nome;
 	private $preco;
-	private Cliente $cliente;
+	private $idCliente;
 
-	public function __construct($nome=null, $preco=null, $cliente=null)
+	public function __construct($nome=null, $preco=null, $idCliente=null)
 	{
 		$this->nome = $nome;
 		$this->preco = $preco;
-		$this->cliente = $cliente;
+		$this->idCliente = $idCliente;
 	}
 
 	public function getId()
@@ -43,13 +43,13 @@ class Peca
 		$this->preco = $value;
 	}
 
-	public function getCliente()
+	public function getIdCliente()
 	{
-		return $this->cliente;
+		return $this->idCliente;
 	}
 
-	public function setCliente(Cliente $value)
+	public function setIdCliente($value)
 	{
-		$this->cliente = $value;
+		$this->idCliente = $value;
 	}
 }

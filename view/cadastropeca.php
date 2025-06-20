@@ -38,7 +38,7 @@
                   type="text"
                   class="form-control"
                   id="desc"
-                  name="descricao"
+                  name="nome"
                 />
               </div>
               <div class="form-group">
@@ -52,7 +52,7 @@
               </div>
               <div class="form-group">
                 <label for="cliente" class="form-label">Cliente:</label>
-                <select name="cliente" id="cliente" class="form-select">
+                <select name="idcliente" id="idcliente" class="form-select">
                     <option value="" selected></option>
                     <?php 
                         include_once '../dao/ClienteDAO.php';

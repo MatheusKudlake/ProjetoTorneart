@@ -1,4 +1,5 @@
 <?php
+require_once 'ConnectionFactory.php';
 
 class pecaDAO
 {
@@ -10,7 +11,8 @@ class pecaDAO
             $stmt = $conn->prepare($sql);
             $stmt->bindValue(":nome", $peca->getNome());
             $stmt->bindValue(":preco", $peca->getPreco());
-            $stmt->bindValue(":idcliente", $peca->getCliente()->getId());
+            $stmt->bindValue(":idcliente", $peca->getIdCliente());
+            $stmt->execute();
         } catch (PDOException $erro) {
             echo "Erro ao inserir peça: $erro";
         }
