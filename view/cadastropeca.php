@@ -59,7 +59,7 @@
                         $clienteDAO = new ClienteDAO();
                         $clientes = $clienteDAO->listar();
                         foreach($clientes as $c){
-                            echo "<option value=\"{$c->getNome()}\">{$c->getNome()}</option>";
+                            echo "<option value=\"{$c->getId()}\">{$c->getNome()}</option>";
                         }
                     ?>
                 </select>

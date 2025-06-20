@@ -4,9 +4,9 @@ class Peca
 	private $id;
 	private $nome;
 	private $preco;
-	private $cliente;
+	private Cliente $cliente;
 
-	public function __construct($nome, $preco, $cliente)
+	public function __construct($nome=null, $preco=null, $cliente=null)
 	{
 		$this->nome = $nome;
 		$this->preco = $preco;
@@ -48,7 +48,7 @@ class Peca
 		return $this->cliente;
 	}
 
-	public function setCliente($value)
+	public function setCliente(Cliente $value)
 	{
 		$this->cliente = $value;
 	}
