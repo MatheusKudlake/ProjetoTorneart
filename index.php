@@ -36,7 +36,7 @@
                         <p class="">Registrar nova peça padrão</p>
                     </div>
                     <div class="card-footer">
-                        <a href="view/cadastropeca.php"><button class="col-12 my-1 btn btn-primary">Acessar</button></a>
+                        <a href="view/cadastropeca.php" class="col-12 my-1 btn btn-primary">Acessar</a>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                         <p class="">Visualizar ou editar serviços</p>
                     </div>
                     <div class="card-footer">
-                        <a href="#"><button class="col-12 my-1 btn btn-primary">Acessar</button></a>
+                        <a href="#" class="col-12 my-1 btn btn-primary">Acessar</a>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                         <p class="">Cadastrar um novo cliente</p>
                     </div>
                     <div class="card-footer">
-                        <a href="view/cadastrocliente.php"><button class="col-12 my-1 btn btn-primary">Acessar</button></a>
+                        <a href="view/cadastrocliente.php" class="col-12 my-1 btn btn-primary">Acessar</a>
                     </div>
                 </div>
         </div>
@@ -80,7 +80,7 @@
                     <p class="">Visualizar ou editar clientes</p>
                 </div>
                 <div class="card-footer">
-                    <a href="#"><button class="col-12 my-1 btn btn-primary">Acessar</button></a>
+                    <a href="view/listaclientes.php" class="col-12 my-1 btn btn-primary">Acessar</a>
                 </div>
             </div>
         </div>
@@ -94,7 +94,7 @@
                     <p class="">Ver a renda de cada mês</p>
                 </div>
                 <div class="card-footer">
-                    <a href="#"><button class="col-12 my-1 btn btn-primary">Acessar</button></a>
+                    <a href="#" class="col-12 my-1 btn btn-primary">Acessar</a>
                 </div>
             </div>
         </div>
