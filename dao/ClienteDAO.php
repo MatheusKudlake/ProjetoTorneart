@@ -17,7 +17,7 @@ class ClienteDAO
         }
     }
 
-    public function listar()
+    public function get()
     {
         try {
             $sql = "SELECT * FROM clientes";

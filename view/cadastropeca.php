@@ -57,7 +57,7 @@
                     <?php 
                         include_once '../dao/ClienteDAO.php';
                         $clienteDAO = new ClienteDAO();
-                        $clientes = $clienteDAO->listar();
+                        $clientes = $clienteDAO->get();
                         foreach($clientes as $c){
                             echo "<option value=\"{$c->getId()}\">{$c->getNome()}</option>";
                         }
