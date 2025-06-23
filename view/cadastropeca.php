@@ -55,7 +55,7 @@
                 <select name="idcliente" id="idcliente" class="form-select">
                     <option value="" selected></option>
                     <?php 
-                        include_once '../dao/ClienteDAO.php';
+                        include '../dao/ClienteDAO.php';
                         $clienteDAO = new ClienteDAO();
                         $clientes = $clienteDAO->get();
                         foreach($clientes as $c){
@@ -65,7 +65,7 @@
                 </select>
               </div>
               <div class="form-group">
-                <button type="submit" class="btn btn-primary col-12">Cadastrar</button>
+                <button type="submit" class="btn btn-primary col-12" name="cadastrar">Cadastrar</button>
               </div>
             </form>
             <div class="card-footer text-center">

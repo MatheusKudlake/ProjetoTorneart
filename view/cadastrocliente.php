@@ -1,9 +1,3 @@
-<?php
-require_once '../controller/ClienteController.php';
-if (isset($_POST['cadastrar'])) {
-  ClienteController::cadastrar();
-}
-?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -33,7 +27,7 @@ if (isset($_POST['cadastrar'])) {
           <div class="card-header">
             <h1 class="display-2">Cadastrar novo cliente</h1>
           </div>
-          <form action="#" method="post" class="card-body">
+          <form action="../controller/ClienteController.php" method="post" class="card-body">
             <div class="form-group">
               <label for="nome" class="form-label">Nome:</label>
               <input type="text" id="nome" name="nome" class="form-control" />

@@ -36,7 +36,7 @@
                         <p class="">Registrar nova peça padrão</p>
                     </div>
                     <div class="card-footer">
-                        <a href="view/cadastropeca.php" class="col-12 my-1 btn btn-primary">Acessar</a>
+                        <a href="controller/PecaController.php" class="col-12 my-1 btn btn-primary">Acessar</a>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                         <p class="">Cadastrar um novo cliente</p>
                     </div>
                     <div class="card-footer">
-                        <a href="view/cadastrocliente.php" class="col-12 my-1 btn btn-primary">Acessar</a>
+                        <a href="controller/ClienteController.php" class="col-12 my-1 btn btn-primary">Acessar</a>
                     </div>
                 </div>
         </div>
