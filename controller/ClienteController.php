@@ -6,6 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     require '../view/cadastrocliente.php';
 }
 
+
 if (isset($_POST["cadastrar"])) {
     $clienteDAO = new ClienteDAO();
     $cliente = new Cliente();

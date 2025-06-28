@@ -1,7 +1,3 @@
-<?php
-require_once '../controller/ClienteController.php';
-$listaclientes = ClienteController::listar();
-?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -37,6 +33,7 @@ $listaclientes = ClienteController::listar();
                         </thead>
                         <tbody>
                             <?php
+                            
                             foreach ($listaclientes as $cliente) {
                                 echo '<tr>
                                         <td scope="row">
@@ -54,6 +51,9 @@ $listaclientes = ClienteController::listar();
                             ?>
                         </tbody>
                     </table>
+                </div>
+                <div class="card-footer">
+                    <a href="../index.php">Voltar para a página inicial</a>
                 </div>
             </div>
         </div>
