@@ -40,7 +40,7 @@
                         <p class="">Cadastrar nova peça padrão</p>
                     </div>
                     <div class="card-footer">
-                        <a href="peca/cadastro" class="col-12 my-1 btn btn-primary">Acessar</a>
+                        <a href="cadastrar-peca" class="col-12 my-1 btn btn-primary">Acessar</a>
                     </div>
                 </div>
             </div>

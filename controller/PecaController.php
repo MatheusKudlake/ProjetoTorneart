@@ -1,28 +1,24 @@
 <?php
-require_once 'model/Peca.php';
-require_once 'dao/PecaDAO.php';
-
-/*if ($_SERVER["REQUEST_METHOD"] === "GET") {
-    require '../view/cadastropeca.php';
-}
-
-if (isset($_POST["cadastrar"])) {
-    $pecaDAO = new pecaDAO();
-    $peca = new Peca();
-    $peca->setNome($_POST["nome"]);
-    $peca->setPreco($_POST["preco"]);
-    $peca->setIdCliente($_POST["idcliente"]);
-    $pecaDAO->inserir($peca);
-    header('Location: ../view/cadastropeca.php');
-}*/
-
 class PecaController
 {
-    public function cadastro()
+    public function formCadastro()
     {
         include 'dao/ClienteDAO.php';
         $clienteDAO = new ClienteDAO();
         $clientes = $clienteDAO->get();
         require 'view/cadastropeca.php';
+    }
+
+    public function cadastro($post)
+    {
+        require 'model/Peca.php';
+        require 'dao/PecaDAO.php';
+        $pecaDAO = new pecaDAO();
+        $peca = new Peca();
+        $peca->setNome($post["nome"]);
+        $peca->setPreco($post["preco"]);
+        $peca->setIdCliente($post["idcliente"]);
+        $pecaDAO->inserir($peca);
+        header('Location: cadastrar-peca');
     }
 }

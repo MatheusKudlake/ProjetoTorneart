@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="../assets/bootstrap-5.3.6-dist/css/bootstrap.min.css"
+      href="assets/bootstrap-5.3.6-dist/css/bootstrap.min.css"
     />
 
     <title>Cadastrar nova peça</title>
@@ -28,7 +28,7 @@
               <h1 class="display-2">Cadastrar nova peça</h1>
             </div>
             <form
-              action="../controller/PecaController.php"
+              action="peca"
               method="post"
               class="card-body"
             >
@@ -62,7 +62,7 @@
                 </select>
               </div>
               <div class="form-group">
-                <button type="submit" class="btn btn-primary col-12" name="cadastrar">Cadastrar</button>
+                <button type="submit" class="btn btn-primary col-12">Cadastrar</button>
               </div>
             </form>
             <div class="card-footer text-center">
