@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link
     rel="stylesheet"
-    href="../assets/bootstrap-5.3.6-dist/css/bootstrap.min.css" />
+    href="assets/bootstrap-5.3.6-dist/css/bootstrap.min.css" />
   <title>Cadastro de cliente</title>
 </head>
 <style>
@@ -27,7 +27,7 @@
           <div class="card-header">
             <h1 class="display-2">Cadastrar novo cliente</h1>
           </div>
-          <form action="../controller/ClienteController.php" method="post" class="card-body">
+          <form action="cliente" method="post" class="card-body">
             <div class="form-group">
               <label for="nome" class="form-label">Nome:</label>
               <input type="text" id="nome" name="nome" class="form-control" />

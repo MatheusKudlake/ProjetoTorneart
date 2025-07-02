@@ -54,7 +54,7 @@
                         <p class="">Cadastrar um novo cliente</p>
                     </div>
                     <div class="card-footer">
-                        <a href="controller/ClienteController.php" class="col-12 my-1 btn btn-primary">Acessar</a>
+                        <a href="cadastrar-cliente" class="col-12 my-1 btn btn-primary">Acessar</a>
                     </div>
                 </div>
             </div>
