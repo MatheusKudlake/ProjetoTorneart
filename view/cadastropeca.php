@@ -55,9 +55,6 @@
                 <select name="idcliente" id="idcliente" class="form-select">
                     <option value="" selected></option>
                     <?php 
-                        include '../dao/ClienteDAO.php';
-                        $clienteDAO = new ClienteDAO();
-                        $clientes = $clienteDAO->get();
                         foreach($clientes as $c){
                             echo "<option value=\"{$c->getId()}\">{$c->getNome()}</option>";
                         }
