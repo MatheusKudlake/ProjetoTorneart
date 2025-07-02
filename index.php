@@ -1,109 +1,21 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<?php
+$path = str_replace('/ProjetoTorneart/', '/', $_SERVER["REQUEST_URI"]);
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/bootstrap-5.3.6-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <title>Página Inicial</title>
-</head>
-<style>
-    body {
-        background-color: grey;
-    }
+require_once 'router.php';
+$router = new Router();
 
-    i {
-        font-size: 300%;
-    }
+$router->get('/', function () {
+    require 'view/home.php';
+});
 
-    p {
-        font-size: 150%;
-    }
-</style>
+$router->get('/peca/cadastro', function () {
+    require 'controller/PecaController.php';
+    $pecaController = new PecaController();
+    $pecaController->cadastro();
+});
 
-<body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="card col-12 text-center my-5">
-                <h1 class="display-1">TORNEART</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-header text-center">
-                        <h1>Cadastrar peça</h1>
-                    </div>
-                    <div class="card-body text-center">
-                        <h2><i class="bi bi-gear"></i></h2>
-                        <p class="">Cadastrar nova peça padrão</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="controller/PecaController.php" class="col-12 my-1 btn btn-primary">Acessar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-header text-center">
-                        <h1>Cadastrar cliente</h1>
-                    </div>
-                    <div class="card-body text-center">
-                        <h2><i class="bi bi-gear"></i></h2>
-                        <p class="">Cadastrar um novo cliente</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="controller/ClienteController.php" class="col-12 my-1 btn btn-primary">Acessar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-header text-center">
-                        <h1>Visualizar serviços</h1>
-                    </div>
-                    <div class="card-body text-center">
-                        <h2><i class="bi bi-gear"></i></h2>
-                        <p class="">Visualizar ou editar serviços</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="col-12 my-1 btn btn-primary">Acessar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center mt-4">
-                <div class="col-4">
-                    <div class="card">
-                        <div class="card-header text-center">
-                            <h1>Visualizar clientes</h1>
-                        </div>
-                        <div class="card-body text-center">
-                            <h2><i class="bi bi-gear"></i></h2>
-                            <p class="">Visualizar ou editar clientes</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="view/listaclientes.php" class="col-12 my-1 btn btn-primary">Acessar</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card">
-                        <div class="card-header text-center">
-                            <h1>Visualizar renda</h1>
-                        </div>
-                        <div class="card-body text-center">
-                            <h2><i class="bi bi-gear"></i></h2>
-                            <p class="">Ver a renda de cada mês</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="col-12 my-1 btn btn-primary">Acessar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+$router->post('/teste', function () {
+    echo 'Requisição POST!';
+});
 
-        </div>
-</body>
-
-</html>
+$router->dispatch($path, $_SERVER["REQUEST_METHOD"]);
