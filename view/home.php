@@ -61,11 +61,11 @@
             <div class="col-4">
                 <div class="card">
                     <div class="card-header text-center">
-                        <h1>Visualizar serviços</h1>
+                        <h1>Visualizar peças</h1>
                     </div>
                     <div class="card-body text-center">
                         <h2><i class="bi bi-gear"></i></h2>
-                        <p class="">Visualizar ou editar serviços</p>
+                        <p class="">Visualizar ou editar peças padrão</p>
                     </div>
                     <div class="card-footer">
                         <a href="#" class="col-12 my-1 btn btn-primary">Acessar</a>
@@ -83,7 +83,7 @@
                             <p class="">Visualizar ou editar clientes</p>
                         </div>
                         <div class="card-footer">
-                            <a href="view/listaclientes.php" class="col-12 my-1 btn btn-primary">Acessar</a>
+                            <a href="cliente" class="col-12 my-1 btn btn-primary">Acessar</a>
                         </div>
                     </div>
                 </div>

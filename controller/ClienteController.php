@@ -23,4 +23,10 @@ class ClienteController
         $clienteDAO->inserir($cliente);
         return true;
     }
+
+    public function listarClientes(){
+        $clienteDAO = new ClienteDAO();
+        $listaClientes = $clienteDAO->get();
+        require 'view/listaclientes.php';
+    }
 }

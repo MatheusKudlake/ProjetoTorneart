@@ -22,6 +22,11 @@ $router->get('/cadastrar-cliente', function(){
     require 'view/cadastrocliente.php';
 });
 
+$router->get('/cliente', function(){
+    $clienteController = new ClienteController();
+    $clienteController->listarClientes();
+});
+
 $router->post('/cliente', function(){
     $clienteController = new ClienteController();
     $cliente = new Cliente();
@@ -29,6 +34,11 @@ $router->post('/cliente', function(){
     $clienteController->cadastro($cliente);
     header('Location: cadastrar-cliente');
     exit;
+});
+
+$router->get('/cliente/{id}/pecas', function($id){
+    $pecaController = new PecaController();
+    $pecaController->listarPecasCliente($id);
 });
 
 $router->post('/peca', function () {

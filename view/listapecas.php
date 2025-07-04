@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-        rel="stylesheet"
-        href="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css" />
-    <title>Lista de Clientes</title>
+    <link rel="stylesheet" href="/ProjetoTorneart   /assets/bootstrap-5.3.6-dist/css/bootstrap.min.css">
+    <title>Peças</title>
 </head>
 <style>
-    body {
+    body{
         background-color: grey;
     }
 </style>
-
 <body>
     <div class="container">
         <div class="row justify-content-center">
             <div class="card col-10 rounded shadow mt-5">
                 <div class="card-header">
-                    <h1 class="display-2">Lista de Clientes</h1>
+                    <h1 class="display-2">Peças - <?php echo $cliente->getNome() ?></h1>
                 </div>
                 <div class="card-body">
                     <table class="table">
@@ -28,31 +24,32 @@
                             <tr>
                                 <td scope="col">ID</td>
                                 <td scope="col">Nome</td>
+                                <td scope="col">Preço</td>
                                 <td scope="col">Ações</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($listaClientes as $cliente): ?>
+                            <?php foreach($listaPecas as $peca): ?>
                                 <tr>
-                                    <td scope="row"> <?= $cliente->getId() ?></td>
-                                    <td> <?= $cliente->getNome() ?></td>
+                                    <td scope="row"> <?= $peca->getId() ?> </td>
+                                    <td> <?= $peca->getNome() ?></td>
+                                    <td> <?= $peca->getPreco() ?></td>
                                     <td>
-                                        <a href="cliente/<?= $cliente->getId() ?>" class="btn btn-primary">Editar</a>
-                                        <a href="#" class="btn btn-danger">Excluir</a>
-                                        <a href="cliente/<?= $cliente->getId() ?>/pecas" class="btn btn-success">Ver peças</a>
+                                        <a href="#" name="editar" class="btn btn-primary">Editar</a>
+                                        <a href="#" name="excluir" class="btn btn-danger">Excluir</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
-                <button class="btn btn-primary" onclick="modal.show()">Adicionar cliente</button>
                 <div class="card-footer text-center">
-                    <a href="../index.php">Voltar para a página inicial</a>
+                    <a href="" onclick="history.back()">Voltar para a lista de clientes</a>
+                    <br>
+                    <a href="/ProjetoTorneart/">Voltar para a página inicial</a>
                 </div>
             </div>
         </div>
     </div>
 </body>
-
 </html>

@@ -23,17 +23,41 @@ class ClienteDAO
             $sql = "SELECT * FROM clientes";
             $conn = ConnectionFactory::getConnection();
             $result = $conn->query($sql);
-            $lista = [];
-            foreach($result as $row){
-                $lista[] = $this->converterParaObj($row);
+            if ($result) {
+                $lista = [];
+                foreach ($result as $row) {
+                    $lista[] = $this->converterParaObj($row);
+                }
+                return $lista;
+            }else{
+                return false;
             }
-            return $lista;
         } catch (PDOException $erro) {
             echo "Erro ao listar clientes: $erro";
         }
     }
 
-    private function converterParaObj($row){
+    public function getPorId($id){
+        try{
+            $sql = "SELECT * FROM clientes WHERE id=:id";
+            $conn = ConnectionFactory::getConnection();
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $result = $stmt->execute();
+            $cliente = null;
+            if($result){
+                $cliente = $this->converterParaObj($stmt->fetch(PDO::FETCH_ASSOC));
+                return $cliente;
+            }else{
+                return false;
+            }
+        }catch(PDOException $erro){
+            echo "Erro ao buscar cliente: $erro";
+        }
+    }
+
+    private function converterParaObj($row)
+    {
         $cliente = new Cliente();
         $cliente->setId($row["id"]);
         $cliente->setNome($row["nome"]);
