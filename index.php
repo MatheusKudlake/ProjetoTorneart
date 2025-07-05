@@ -41,14 +41,14 @@ $router->get('/cliente/{id}/pecas', function($id){
     $pecaController->listarPecasCliente($id);
 });
 
-$router->post('/peca', function () {
+$router->post('/cliente/{id}/pecas', function () {
     $pecaController = new PecaController();
     $peca = new Peca();
     $peca->setNome($_POST["nome"]);
     $peca->setPreco($_POST["preco"]);
     $peca->setIdCliente($_POST["idcliente"]);
     $pecaController->cadastro($peca);
-    header('Location: cadastrar-peca');
+    header('Location: /ProjetoTorneart/cliente/'. $_POST["idcliente"] .'/pecas');
     exit;
 });
 

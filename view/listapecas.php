@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,53 @@
     <title>Peças</title>
 </head>
 <style>
-    body{
+    body {
         background-color: grey;
     }
+
+    .form-group {
+        margin-bottom: 2%;
+    }
 </style>
+<div id="modalForm" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Cadastrar Nova Peça</h3>
+                <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form
+                    action="/ProjetoTorneart/cliente/<?= $cliente->getId() ?>/pecas"
+                    method="post"
+                    class="card-body">
+                    <div class="form-group">
+                        <label for="desc" class="form-label">Descrição:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="desc"
+                            name="nome" />
+                    </div>
+                    <div class="form-group">
+                        <label for="preco" class="form-label">Preço:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="preco"
+                            name="preco" />
+                    </div>
+                    <input type="hidden" name="idcliente" value="<?= $cliente->getId() ?>">
+                    <button type="submit" class="btn btn-primary col-12">Cadastrar</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <body>
     <div class="container">
         <div class="row justify-content-center">
@@ -29,7 +73,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($listaPecas as $peca): ?>
+                            <?php foreach ($listaPecas as $peca): ?>
                                 <tr>
                                     <td scope="row"> <?= $peca->getId() ?> </td>
                                     <td> <?= $peca->getNome() ?></td>
@@ -42,7 +86,7 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table>
-                    <button class="btn btn-primary">Adicionar peça</button>
+                    <button class="btn btn-primary col-12" onclick="abrirModal()">Adicionar peça</button>
                 </div>
                 <div class="card-footer text-center">
                     <a href="" onclick="history.back()">Voltar para a lista de clientes</a>
@@ -53,4 +97,12 @@
         </div>
     </div>
 </body>
+<script src="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/js/bootstrap.min.js"></script>
+<script>
+    function abrirModal() {
+        const modal = new bootstrap.Modal(document.getElementById("modalForm"));
+        modal.show();
+    }
+</script>
+
 </html>

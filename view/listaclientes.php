@@ -39,7 +39,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger">Cancelar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>
@@ -76,7 +76,7 @@
                         </tbody>
                     </table>
                 </div>
-                <button type="button" class="btn btn-primary" onclick="abrirModal()">Adicionar cliente</button>
+                <button type="button" class="btn btn-primary col-12" onclick="abrirModal()">Adicionar cliente</button>
                 <div class="card-footer text-center">
                     <a href="" onclick="history.back()">Voltar para a página inicial</a>
                 </div>
