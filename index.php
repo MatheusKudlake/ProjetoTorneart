@@ -32,7 +32,7 @@ $router->post('/cliente', function(){
     $cliente = new Cliente();
     $cliente->setNome($_POST["nome"]);
     $clienteController->cadastro($cliente);
-    header('Location: cadastrar-cliente');
+    header('Location: cliente');
     exit;
 });
 

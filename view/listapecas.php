@@ -42,6 +42,7 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    <button class="btn btn-primary">Adicionar peça</button>
                 </div>
                 <div class="card-footer text-center">
                     <a href="" onclick="history.back()">Voltar para a lista de clientes</a>

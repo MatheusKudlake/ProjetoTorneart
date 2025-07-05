@@ -33,6 +33,20 @@
             <div class="col-4">
                 <div class="card">
                     <div class="card-header text-center">
+                        <h1>Clientes</h1>
+                    </div>
+                    <div class="card-body text-center">
+                        <h2><i class="bi bi-gear"></i></h2>
+                        <p class="">Visualizar ou editar clientes</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="cliente" class="col-12 my-1 btn btn-primary">Acessar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header text-center">
                         <h1>Cadastrar peça</h1>
                     </div>
                     <div class="card-body text-center">
@@ -47,62 +61,17 @@
             <div class="col-4">
                 <div class="card">
                     <div class="card-header text-center">
-                        <h1>Cadastrar cliente</h1>
+                        <h1>Visualizar renda</h1>
                     </div>
                     <div class="card-body text-center">
                         <h2><i class="bi bi-gear"></i></h2>
-                        <p class="">Cadastrar um novo cliente</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="cadastrar-cliente" class="col-12 my-1 btn btn-primary">Acessar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-header text-center">
-                        <h1>Visualizar peças</h1>
-                    </div>
-                    <div class="card-body text-center">
-                        <h2><i class="bi bi-gear"></i></h2>
-                        <p class="">Visualizar ou editar peças padrão</p>
+                        <p class="">Ver a renda de cada mês</p>
                     </div>
                     <div class="card-footer">
                         <a href="#" class="col-12 my-1 btn btn-primary">Acessar</a>
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center mt-4">
-                <div class="col-4">
-                    <div class="card">
-                        <div class="card-header text-center">
-                            <h1>Visualizar clientes</h1>
-                        </div>
-                        <div class="card-body text-center">
-                            <h2><i class="bi bi-gear"></i></h2>
-                            <p class="">Visualizar ou editar clientes</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="cliente" class="col-12 my-1 btn btn-primary">Acessar</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card">
-                        <div class="card-header text-center">
-                            <h1>Visualizar renda</h1>
-                        </div>
-                        <div class="card-body text-center">
-                            <h2><i class="bi bi-gear"></i></h2>
-                            <p class="">Ver a renda de cada mês</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="col-12 my-1 btn btn-primary">Acessar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
 </body>
 
