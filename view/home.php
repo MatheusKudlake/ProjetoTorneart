@@ -37,7 +37,7 @@
                     </div>
                     <div class="card-body text-center">
                         <h2><i class="bi bi-gear"></i></h2>
-                        <p class="">Visualizar ou editar clientes</p>
+                        <p class="">Visualizar, editar ou adicionar novos clientes</p>
                     </div>
                     <div class="card-footer">
                         <a href="cliente" class="col-12 my-1 btn btn-primary">Acessar</a>
@@ -47,11 +47,11 @@
             <div class="col-4">
                 <div class="card">
                     <div class="card-header text-center">
-                        <h1>Cadastrar peça</h1>
+                        <h1>Serviços</h1>
                     </div>
                     <div class="card-body text-center">
                         <h2><i class="bi bi-gear"></i></h2>
-                        <p class="">Cadastrar nova peça padrão</p>
+                        <p class="">Visualizar ou adicionar serviços</p>
                     </div>
                     <div class="card-footer">
                         <a href="cadastrar-peca" class="col-12 my-1 btn btn-primary">Acessar</a>
@@ -61,11 +61,11 @@
             <div class="col-4">
                 <div class="card">
                     <div class="card-header text-center">
-                        <h1>Visualizar renda</h1>
+                        <h1>Renda</h1>
                     </div>
                     <div class="card-body text-center">
                         <h2><i class="bi bi-gear"></i></h2>
-                        <p class="">Ver a renda de cada mês</p>
+                        <p class="">Visualizar a renda de cada mês</p>
                     </div>
                     <div class="card-footer">
                         <a href="#" class="col-12 my-1 btn btn-primary">Acessar</a>
