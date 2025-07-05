@@ -13,15 +13,6 @@ $router->get('/', function () {
     require 'view/home.php';
 });
 
-$router->get('/cadastrar-peca', function () {
-    $pecaController = new PecaController();
-    $pecaController->formCadastro();
-});
-
-$router->get('/cadastrar-cliente', function(){
-    require 'view/cadastrocliente.php';
-});
-
 $router->get('/cliente', function(){
     $clienteController = new ClienteController();
     $clienteController->listarClientes();
