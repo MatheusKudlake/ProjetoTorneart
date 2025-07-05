@@ -3,6 +3,14 @@
 $path_replace = str_replace('/ProjetoTorneart/', '/', $_SERVER["REQUEST_URI"]);
 $path = parse_url($path_replace, PHP_URL_PATH);
 
+$method;
+
+if(isset($_POST["method"])){
+    $method = $_POST["method"];
+}else{
+    $method = $_SERVER["REQUEST_METHOD"];
+}
+
 require_once 'router.php';
 $router = new Router();
 
@@ -29,6 +37,16 @@ $router->post('/cliente', function(){
     exit;
 });
 
+$router->put('/cliente', function(){
+    $clienteController = new ClienteController();
+    $novoCliente = new Cliente();
+    $novoCliente->setId($_POST["id"]);
+    $novoCliente->setNome($_POST["nome"]);
+    $clienteController->editarCliente($novoCliente);
+    header('Location: cliente');
+    exit;
+});
+
 $router->get('/cliente/{id}/pecas', function($id){
     $pecaController = new PecaController();
     $pecaController->listarPecasCliente($id);
@@ -45,4 +63,4 @@ $router->post('/cliente/{id}/pecas', function () {
     exit;
 });
 
-$router->dispatch($path, $_SERVER["REQUEST_METHOD"]);
+$router->dispatch($path, $method);

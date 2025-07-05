@@ -60,6 +60,8 @@
                             <label for="nome" class="form-label">Nome:</label>
                             <input type="text" id="nome" name="nome" class="form-control" value="<?= $clienteEditar->getNome() ?>" />
                         </div>
+                        <input type="hidden" name="id" value="<?= $clienteEditar->getId() ?>">
+                        <input type="hidden" name="method" value="PUT">
                         <div class="form-group">
                             <button type="submit" class="col-12 btn btn-primary">
                                 Editar

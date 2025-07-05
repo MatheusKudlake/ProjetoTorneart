@@ -16,6 +16,10 @@ class Router
         $this->post[$path] = $handler;
     }
 
+    public function put($path, $handler){
+        $this->put[$path] = $handler;
+    }
+
     public function dispatch($path, $method)
     {
         $routes = [];

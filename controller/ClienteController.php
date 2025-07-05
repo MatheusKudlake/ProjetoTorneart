@@ -32,4 +32,10 @@ class ClienteController
         echo "Cliente não encontrado!";
         return;
     }
+
+    public function editarCliente($novoCliente){
+        $clienteDAO = new ClienteDAO();
+        $clienteDAO->update($novoCliente);
+        return true;
+    }
 }

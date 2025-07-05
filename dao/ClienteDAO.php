@@ -29,7 +29,7 @@ class ClienteDAO
                     $lista[] = $this->converterParaObj($row);
                 }
                 return $lista;
-            }else{
+            } else {
                 return false;
             }
         } catch (PDOException $erro) {
@@ -37,22 +37,41 @@ class ClienteDAO
         }
     }
 
-    public function getPorId($id){
-        try{
+    public function getPorId($id)
+    {
+        try {
             $sql = "SELECT * FROM clientes WHERE id=:id";
             $conn = ConnectionFactory::getConnection();
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':id', $id);
             $result = $stmt->execute();
             $cliente = null;
-            if($result){
+            if ($result) {
                 $cliente = $this->converterParaObj($stmt->fetch(PDO::FETCH_ASSOC));
                 return $cliente;
-            }else{
+            } else {
                 return false;
             }
-        }catch(PDOException $erro){
+        } catch (PDOException $erro) {
             echo "Erro ao buscar cliente: $erro";
+        }
+    }
+
+    public function update($novoCliente)
+    {
+        try {
+            $sql = "UPDATE clientes SET nome=:nome WHERE id=:id;";
+            $conn = ConnectionFactory::getConnection();
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':nome', $novoCliente->getNome());
+            $stmt->bindValue(':id', $novoCliente->getId());
+            $result = $stmt->execute();
+            if ($result) {
+                return true;
+            }
+            return false;
+        } catch (PDOException $erro) {
+            echo "Erro ao editar cliente: $erro";
         }
     }
 
