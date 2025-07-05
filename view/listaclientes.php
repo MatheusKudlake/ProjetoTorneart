@@ -13,12 +13,13 @@
     body {
         background-color: grey;
     }
-    .form-group{
+
+    .form-group {
         margin-bottom: 2%;
     }
 </style>
 
-<div id="modalForm" class="modal fade">
+<div id="modalCadastro" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -32,7 +33,7 @@
                         <input type="text" id="nome" name="nome" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="col-12 btn btn-primary" name="cadastrar">
+                        <button type="submit" class="col-12 btn btn-primary">
                             Cadastrar
                         </button>
                     </div>
@@ -44,6 +45,35 @@
         </div>
     </div>
 </div>
+
+<?php if (isset($_GET["editar"])): ?>
+    <div id="modalEditar" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Editar peça</h3>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="cliente" method="post" class="card-body">
+                        <div class="form-group">
+                            <label for="nome" class="form-label">Nome:</label>
+                            <input type="text" id="nome" name="nome" class="form-control" value="<?= $clienteEditar->getNome() ?>" />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="col-12 btn btn-primary">
+                                Editar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
 
 <body>
     <div class="container">
@@ -67,7 +97,7 @@
                                     <td scope="row"> <?= $cliente->getId() ?></td>
                                     <td> <?= $cliente->getNome() ?></td>
                                     <td>
-                                        <a href="cliente/<?= $cliente->getId() ?>" class="btn btn-primary">Editar</a>
+                                        <a href="cliente?editar=<?= $cliente->getId() ?>" class="btn btn-primary">Editar</a>
                                         <a href="#" class="btn btn-danger">Excluir</a>
                                         <a href="cliente/<?= $cliente->getId() ?>/pecas" class="btn btn-success">Ver peças</a>
                                     </td>
@@ -76,7 +106,7 @@
                         </tbody>
                     </table>
                 </div>
-                <button type="button" class="btn btn-primary col-12" onclick="abrirModal()">Adicionar cliente</button>
+                <button type="button" class="btn btn-primary col-12" onclick='abrirModal("modalCadastro")'>Adicionar cliente</button>
                 <div class="card-footer text-center">
                     <a href="" onclick="history.back()">Voltar para a página inicial</a>
                 </div>
@@ -86,10 +116,14 @@
 </body>
 <script src="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/js/bootstrap.min.js"></script>
 <script>
-    function abrirModal() {
-        const modal = new bootstrap.Modal(document.getElementById("modalForm"));
+    function abrirModal(idModal) {
+        const modal = new bootstrap.Modal(document.getElementById(idModal));
         modal.show();
     }
+
+    <?php if (isset($_GET["editar"])): ?>
+        abrirModal("modalEditar");
+    <?php endif; ?>
 </script>
 
 </html>

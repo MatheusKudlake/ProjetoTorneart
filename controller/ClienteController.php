@@ -11,9 +11,25 @@ class ClienteController
         return true;
     }
 
-    public function listarClientes(){
+    public function listarClientes()
+    {
         $clienteDAO = new ClienteDAO();
         $listaClientes = $clienteDAO->get();
+        $clienteEditar = null;
+        if (isset($_GET["editar"])) {
+            $clienteEditar = $clienteDAO->getPorId($_GET["editar"]);
+        }
         require 'view/listaclientes.php';
+    }
+
+    public function buscarCliente($id)
+    {
+        $clienteDAO = new ClienteDAO();
+        $cliente = $clienteDAO->getPorId($id);
+        if ($cliente) {
+            return $cliente;
+        }
+        echo "Cliente não encontrado!";
+        return;
     }
 }
