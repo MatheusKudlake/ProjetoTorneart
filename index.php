@@ -1,5 +1,7 @@
 <?php
-$path = str_replace('/ProjetoTorneart/', '/', $_SERVER["REQUEST_URI"]);
+
+$path_replace = str_replace('/ProjetoTorneart/', '/', $_SERVER["REQUEST_URI"]);
+$path = parse_url($path_replace, PHP_URL_PATH);
 
 require_once 'router.php';
 $router = new Router();
