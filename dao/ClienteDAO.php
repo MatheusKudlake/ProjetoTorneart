@@ -75,6 +75,23 @@ class ClienteDAO
         }
     }
 
+    public function delete($id)
+    {
+        try {
+            $sql = "DELETE from clientes WHERE id=:id";
+            $conn = ConnectionFactory::getConnection();
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':id', $id);
+            $result = $stmt->execute();
+            if ($result) {
+                return true;
+            }
+            return false;
+        } catch (PDOException $erro) {
+            echo "Erro ao excluir cliente: $erro";
+        }
+    }
+
     private function converterParaObj($row)
     {
         $cliente = new Cliente();

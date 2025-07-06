@@ -7,8 +7,8 @@ class ClienteController
     public function cadastro($cliente)
     {
         $clienteDAO = new ClienteDAO();
-        $clienteDAO->inserir($cliente);
-        return true;
+        $result = $clienteDAO->inserir($cliente);
+        if($result) return true;
     }
 
     public function listarClientes()
@@ -35,7 +35,13 @@ class ClienteController
 
     public function editarCliente($novoCliente){
         $clienteDAO = new ClienteDAO();
-        $clienteDAO->update($novoCliente);
-        return true;
+        $result = $clienteDAO->update($novoCliente);
+        if($result) return true;
+    }
+
+    public function excluirCliente($idCliente){
+        $clienteDAO = new ClienteDAO();
+        $result = $clienteDAO->delete($idCliente);
+        if($result) return true;
     }
 }

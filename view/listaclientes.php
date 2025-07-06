@@ -17,6 +17,10 @@
     .form-group {
         margin-bottom: 2%;
     }
+
+    .form-delete{
+        display: inline;
+    }
 </style>
 
 <div id="modalCadastro" class="modal fade">
@@ -100,7 +104,11 @@
                                     <td> <?= $cliente->getNome() ?></td>
                                     <td>
                                         <a href="cliente?editar=<?= $cliente->getId() ?>" class="btn btn-primary">Editar</a>
-                                        <a href="#" class="btn btn-danger">Excluir</a>
+                                        <form action="cliente" method="post" class="form-delete">
+                                            <input type="hidden" name="idcliente", value="<?= $cliente->getId() ?>">
+                                            <input type="hidden" name="method" value="DELETE">
+                                            <button type="submit" class="btn btn-danger">Excluir</button>
+                                        </form>
                                         <a href="cliente/<?= $cliente->getId() ?>/pecas" class="btn btn-success">Ver peças</a>
                                     </td>
                                 </tr>

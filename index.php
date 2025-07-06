@@ -47,6 +47,13 @@ $router->put('/cliente', function(){
     exit;
 });
 
+$router->delete('/cliente', function(){
+    $clienteController = new ClienteController();
+    $clienteController->excluirCliente($_POST["idcliente"]);
+    header('Location: cliente');
+    exit;
+});
+
 $router->get('/cliente/{id}/pecas', function($id){
     $pecaController = new PecaController();
     $pecaController->listarPecasCliente($id);

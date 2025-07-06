@@ -20,6 +20,10 @@ class Router
         $this->put[$path] = $handler;
     }
 
+    public function delete($path, $handler){
+        $this->delete[$path] = $handler;
+    }
+
     public function dispatch($path, $method)
     {
         $routes = [];
