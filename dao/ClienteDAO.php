@@ -78,7 +78,7 @@ class ClienteDAO
     public function delete($id)
     {
         try {
-            $sql = "DELETE from clientes WHERE id=:id";
+            $sql = "DELETE FROM clientes WHERE id=:id";
             $conn = ConnectionFactory::getConnection();
             $stmt = $conn->prepare($sql);
             $stmt->bindValue(':id', $id);
