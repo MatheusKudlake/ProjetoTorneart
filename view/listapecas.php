@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/ProjetoTorneart   /assets/bootstrap-5.3.6-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css">
     <title>Peças</title>
 </head>
 <style>
@@ -12,98 +12,99 @@
         background-color: grey;
     }
 
-    .form-delete{
-        display:inline;
+    .form-delete {
+        display: inline;
     }
 
     .form-group {
         margin-bottom: 2%;
     }
 </style>
-<div id="modalCadastro" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Cadastrar Nova Peça</h3>
-                <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <form
-                    action="/ProjetoTorneart/cliente/<?= $cliente->getId() ?>/pecas"
-                    method="post"
-                    class="card-body">
-                    <div class="form-group">
-                        <label for="desc" class="form-label">Descrição:</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="desc"
-                            name="nome" />
-                    </div>
-                    <div class="form-group">
-                        <label for="preco" class="form-label">Preço:</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="preco"
-                            name="preco" />
-                    </div>
-                    <button type="submit" class="btn btn-primary col-12">Cadastrar</button>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-            </div>
-        </div>
-    </div>
-</div>
 
-<?php if(isset($_GET["editar"])): ?>
-<div id="modalEditar" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Editar Peça</h3>
-                <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <form
-                    action="/ProjetoTorneart/cliente/<?= $cliente->getId() ?>/pecas"
-                    method="post"
-                    class="card-body">
-                    <div class="form-group">
-                        <label for="desc" class="form-label">Descrição:</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="desc"
-                            name="nome"
-                            value="<?= $pecaEditar->getNome() ?>" />
-                    </div>
-                    <div class="form-group">
-                        <label for="preco" class="form-label">Preço:</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="preco"
-                            name="preco" 
-                            value="<?= $pecaEditar->getPreco() ?>"
-                            />
-                    </div>
-                    <input type="hidden" name="id" value="<?= $pecaEditar->getId() ?>">
-                    <input type="hidden" name="method" value="PUT">
-                    <button type="submit" class="btn btn-primary col-12">Editar</button>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<?php endif; ?>
 
 <body>
+    <div id="modalCadastro" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Cadastrar Nova Peça</h3>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form
+                        action="/ProjetoTorneart/cliente/<?= $cliente->getId() ?>/pecas"
+                        method="post"
+                        class="card-body">
+                        <div class="form-group">
+                            <label for="desc" class="form-label">Descrição:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="desc"
+                                name="nome" />
+                        </div>
+                        <div class="form-group">
+                            <label for="preco" class="form-label">Preço:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="preco"
+                                name="preco" />
+                        </div>
+                        <button type="submit" class="btn btn-primary col-12">Cadastrar</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php if (isset($_GET["editar"])): ?>
+        <div id="modalEditar" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Editar Peça</h3>
+                        <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form
+                            action="/ProjetoTorneart/cliente/<?= $cliente->getId() ?>/pecas"
+                            method="post"
+                            class="card-body">
+                            <div class="form-group">
+                                <label for="desc" class="form-label">Descrição:</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="desc"
+                                    name="nome"
+                                    value="<?= $pecaEditar->getNome() ?>" />
+                            </div>
+                            <div class="form-group">
+                                <label for="preco" class="form-label">Preço:</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="preco"
+                                    name="preco"
+                                    value="<?= $pecaEditar->getPreco() ?>" />
+                            </div>
+                            <input type="hidden" name="id" value="<?= $pecaEditar->getId() ?>">
+                            <input type="hidden" name="method" value="PUT">
+                            <button type="submit" class="btn btn-primary col-12">Editar</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+    
     <div class="container">
         <div class="row justify-content-center">
             <div class="card col-10 rounded shadow mt-5">
@@ -127,8 +128,8 @@
                                     <td> <?= $peca->getNome() ?></td>
                                     <td> <?= $peca->getPreco() ?></td>
                                     <td>
-                                        <a href="cliente" name="editar" class="btn btn-primary">Editar</a>
-                                        <form action="/ProjetoTorneart/cliente/<?= $cliente->getId() ?>/pecas" method="post" class="form-delete">
+                                        <a href="pecas?editar=<?= $peca->getId() ?>" name="editar" class="btn btn-primary">Editar</a>
+                                        <form action="pecas" method="post" class="form-delete">
                                             <input type="hidden" name="idpeca" value="<?= $peca->getId() ?>">
                                             <input type="hidden" name="method" value="DELETE">
                                             <button type="submit" class="btn btn-danger">Excluir</button>
@@ -155,6 +156,10 @@
         const modal = new bootstrap.Modal(document.getElementById(idModal));
         modal.show();
     }
+
+    <?php if (isset($_GET["editar"])): ?>
+        abrirModal("modalEditar");
+    <?php endif; ?>
 </script>
 
 </html>

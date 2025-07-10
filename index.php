@@ -70,6 +70,17 @@ $router->post('/cliente/{id}/pecas', function ($id) {
     exit;
 });
 
+$router->put('/cliente/{id}/pecas', function($id){
+    $pecaController = new PecaController();
+    $peca = new Peca();
+    $peca->setId($_POST["id"]);
+    $peca->setNome($_POST["nome"]);
+    $peca->setPreco($_POST["preco"]);
+    $pecaController->editarPeca($peca);
+    header('Location: /ProjetoTorneart/cliente/'. $id .'/pecas');
+    exit;
+});
+
 $router->delete('/cliente/{id}/pecas', function($id){
     $pecaController = new PecaController();
     $pecaController->excluirPeca($_POST["idpeca"]);

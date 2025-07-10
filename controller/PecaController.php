@@ -16,8 +16,25 @@ class PecaController
         $pecaDAO = new PecaDAO();
         $cliente = $clienteDAO->getPorId($idCliente);
         $listaPecas = $pecaDAO->listarPorCliente($cliente->getId());
+        $pecaEditar = null;
+        if(isset($_GET["editar"])){
+            $pecaEditar = $pecaDAO->getPorId($_GET["editar"]);
+        }
         require 'view/listapecas.php';
         return true;
+    }
+
+    public function buscarPeca($idPeca){
+        $pecaDAO = new PecaDAO();
+        $result = $pecaDAO->getPorId($idPeca);
+        if($result) return true;
+    }
+
+    public function editarPeca($pecaNova){
+        require_once 'dao/PecaDAO.php';
+        $pecaDAO = new PecaDAO();
+        $result = $pecaDAO->update($pecaNova);
+        if($result) return true;
     }
 
     public function excluirPeca($idPeca)

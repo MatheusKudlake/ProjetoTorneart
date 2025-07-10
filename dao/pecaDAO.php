@@ -41,6 +41,42 @@ class PecaDAO
         }
     }
 
+    public function getPorId($idPeca){
+        try{
+            $sql = "SELECT * FROM peca WHERE id=:id;";
+            $conn = ConnectionFactory::getConnection();
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':id', $idPeca);
+            $result = $stmt->execute();
+            if($result){
+                $peca = $this->converterParaObj($stmt->fetch(PDO::FETCH_ASSOC));
+                return $peca;
+            }
+            return false;
+        }catch(PDOException $erro){
+            echo "Erro ao buscar peça: $erro";
+        }
+    }
+
+    public function update($pecaNova)
+    {
+        try {
+            $sql = "UPDATE peca SET nome=:nome, preco=:preco WHERE id=:id;";
+            $conn = ConnectionFactory::getConnection();
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':nome', $pecaNova->getNome());
+            $stmt->bindValue(':preco', $pecaNova->getPreco());
+            $stmt->bindValue(':id', $pecaNova->getId());
+            $result = $stmt->execute();
+            if ($result) {
+                return true;
+            }
+            return false;
+        } catch (PDOException $erro) {
+            echo "Erro ao editar peça: $erro";
+        }
+    }
+
     public function delete($id)
     {
         try {
