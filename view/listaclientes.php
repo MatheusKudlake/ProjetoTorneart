@@ -31,7 +31,7 @@
                 <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form action="cliente" method="post" class="card-body">
+                <form action="cliente" method="post">
                     <div class="form-group">
                         <label for="nome" class="form-label">Nome:</label>
                         <input type="text" id="nome" name="nome" class="form-control" />
@@ -59,7 +59,7 @@
                     <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="cliente" method="post" class="card-body">
+                    <form action="cliente" method="post">
                         <div class="form-group">
                             <label for="nome" class="form-label">Nome:</label>
                             <input type="text" id="nome" name="nome" class="form-control" value="<?= $clienteEditar->getNome() ?>" />

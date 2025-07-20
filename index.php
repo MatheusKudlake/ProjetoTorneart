@@ -16,8 +16,12 @@ $router = new Router();
 
 require_once 'controller/PecaController.php';
 require_once 'controller/ClienteController.php';
+require_once 'controller/EntregaController.php';
+require_once 'controller/ServicoController.php';
 require_once 'model/Peca.php';
 require_once 'model/Cliente.php';
+require_once 'model/Entrega.php';
+require_once 'model/Servico.php';
 
 $router->get('/', function () {
     require 'view/home.php';
@@ -85,6 +89,34 @@ $router->delete('/cliente/{id}/pecas', function($id){
     $pecaController = new PecaController();
     $pecaController->excluirPeca($_POST["idpeca"]);
     header('Location: /ProjetoTorneart/cliente/'. $id .'/pecas');
+    exit;
+});
+
+$router->get('/cadastrar-entrega', function(){
+    $entregaController = new EntregaController();
+    $entregaController->formCadastro();
+});
+
+$router->post('/cadastrar-entrega', function(){
+    $entregaController = new EntregaController();
+
+    $entrega = new Entrega();
+    $entrega->setIdCliente($_POST["idcliente"]);
+    $entrega->setDataEntrega($_POST["dataentrega"]);
+
+    if(!empty($_POST["datapagamento"])){
+        $entrega->setPago(1);
+        $entrega->setDataPagamento($_POST["datapagamento"]);
+    }else{
+        $entrega->setPago(0);
+        $entrega->setDataPagamento(null);
+    }
+
+    $servicos = json_decode($_POST["servicosJson"], true);
+
+    $entregaController->cadastroComServicos($entrega, $servicos);
+
+    header('Location: cadastrar-entrega?cliente=' . $_POST["idcliente"]);
     exit;
 });
 

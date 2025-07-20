@@ -37,7 +37,7 @@
                     </div>
                     <div class="card-body text-center">
                         <h2><i class="bi bi-gear"></i></h2>
-                        <p class="">Visualizar, editar ou adicionar novos clientes</p>
+                        <p>Visualizar, editar ou adicionar novos clientes</p>
                     </div>
                     <div class="card-footer">
                         <a href="cliente" class="col-12 my-1 btn btn-primary">Acessar</a>
@@ -51,10 +51,10 @@
                     </div>
                     <div class="card-body text-center">
                         <h2><i class="bi bi-gear"></i></h2>
-                        <p class="">Visualizar ou adicionar serviços</p>
+                        <p>Visualizar ou adicionar serviços</p>
                     </div>
                     <div class="card-footer">
-                        <a href="cadastrar-peca" class="col-12 my-1 btn btn-primary">Acessar</a>
+                        <a href="/ProjetoTorneart/view/listaentregas.php" class="col-12 my-1 btn btn-primary">Acessar</a>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                     </div>
                     <div class="card-body text-center">
                         <h2><i class="bi bi-gear"></i></h2>
-                        <p class="">Visualizar a renda de cada mês</p>
+                        <p>Visualizar a renda de cada mês</p>
                     </div>
                     <div class="card-footer">
                         <a href="#" class="col-12 my-1 btn btn-primary">Acessar</a>

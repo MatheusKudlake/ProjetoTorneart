@@ -2,21 +2,11 @@
 class Servico
 {
 	private $id;
-	private $peca;
-	private $cliente;
+	private $idPeca;
+	private $preco;
 	private $quantidade;
-	private $prazo;
-	private $dataEntrega;
-	private $pago;
-	private $dataPagamento;
-
-	public function __construct($peca, $cliente, $quantidade, $prazo)
-	{
-		$this->peca = $peca;
-		$this->cliente = $cliente;
-		$this->quantidade = $quantidade;
-		$this->prazo = $prazo;
-	}
+	private $custo;
+	private $idEntrega;
 
 	public function getId()
 	{
@@ -28,14 +18,24 @@ class Servico
 		$this->id = $value;
 	}
 
-	public function getPeca()
+	public function getIdPeca()
 	{
-		return $this->peca;
+		return $this->idPeca;
 	}
 
-	public function setPeca($value)
+	public function setIdPeca($value)
 	{
-		$this->peca = $value;
+		$this->idPeca = $value;
+	}
+
+	public function getPreco()
+	{
+		return $this->preco;
+	}
+
+	public function setPreco($value)
+	{
+		$this->preco = $value;
 	}
 
 	public function getQuantidade()
@@ -48,53 +48,23 @@ class Servico
 		$this->quantidade = $value;
 	}
 
-	public function getPrazo()
+	public function getCusto()
 	{
-		return $this->prazo;
+		return $this->custo;
 	}
 
-	public function setPrazo($value)
+	public function setCusto($value)
 	{
-		$this->prazo = $value;
+		$this->custo = $value;
 	}
 
-	public function getDataEntrega()
+	public function getIdEntrega()
 	{
-		return $this->dataEntrega;
+		return $this->idEntrega;
 	}
 
-	public function setDataEntrega($value)
+	public function setIdEntrega($value)
 	{
-		$this->dataEntrega = $value;
-	}
-
-	public function getPago()
-	{
-		return $this->pago;
-	}
-
-	public function setPago($value)
-	{
-		$this->pago = $value;
-	}
-
-	public function getDataPagamento()
-	{
-		return $this->dataPagamento;
-	}
-
-	public function setDataPagamento($value)
-	{
-		$this->dataPagamento = $value;
-	}
-
-	public function getCliente()
-	{
-		return $this->cliente;
-	}
-
-	public function setCliente($value)
-	{
-		$this->cliente = $value;
+		$this->idEntrega = $value;
 	}
 }
