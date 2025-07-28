@@ -30,4 +30,15 @@ class EntregaController
         $entregaDAO->inserirComServicos($entrega, $servicos);
         return true;
     }
+
+    public function listarEntregas(){
+        require_once 'dao/EntregaDAO.php';
+        require_once 'dao/ClienteDAO.php';
+        $entregaDAO = new EntregaDAO();
+        $clienteDAO = new ClienteDAO();
+
+        $listaEntregas = $entregaDAO->get();
+        require 'view/listaentregas.php';
+        return true;
+    }
 }
