@@ -47,14 +47,14 @@
             <div class="col-4">
                 <div class="card">
                     <div class="card-header text-center">
-                        <h1>Serviços</h1>
+                        <h1>Entregas</h1>
                     </div>
                     <div class="card-body text-center">
                         <h2><i class="bi bi-gear"></i></h2>
-                        <p>Visualizar ou adicionar serviços</p>
+                        <p>Visualizar ou adicionar entregas</p>
                     </div>
                     <div class="card-footer">
-                        <a href="/ProjetoTorneart/view/listaentregas.php" class="col-12 my-1 btn btn-primary">Acessar</a>
+                        <a href="entregas" class="col-12 my-1 btn btn-primary">Acessar</a>
                     </div>
                 </div>
             </div>

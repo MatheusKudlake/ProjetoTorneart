@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(E_ALL); ini_set('display_errors', 1);
+
 $path_replace = str_replace('/ProjetoTorneart/', '/', $_SERVER["REQUEST_URI"]);
 $path = parse_url($path_replace, PHP_URL_PATH);
 
@@ -118,6 +120,11 @@ $router->post('/cadastrar-entrega', function(){
 
     header('Location: cadastrar-entrega?cliente=' . $_POST["idcliente"]);
     exit;
+});
+
+$router->get('/entregas', function(){
+    $entregaController = new EntregaController();
+    $entregaController->listarEntregas();
 });
 
 $router->dispatch($path, $method);

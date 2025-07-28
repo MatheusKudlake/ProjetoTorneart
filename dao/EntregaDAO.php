@@ -50,4 +50,32 @@ class EntregaDAO
             echo "Erro ao inserir entrega com serviços: $erro";
         }
     }
+
+    public function get(){
+        try{
+            $sql = "SELECT * FROM entregas;";
+            $conn = ConnectionFactory::getConnection();
+            $result = $conn->query($sql);
+            $listaEntregas = [];
+            if($result){
+                foreach($result as $row){
+                    $listaEntregas[] = $this->converterParaObj($row);
+                }
+            }
+            return $listaEntregas;
+        }catch(PDOException $erro){
+            echo "Erro ao listar entregas: $erro";
+        }
+    }
+
+    private function converterParaObj($row){
+        $entrega = new Entrega();
+        $entrega->setId($row["id"]);
+        $entrega->setIdCliente($row["idcliente"]);
+        $entrega->setDataEntrega($row["dataentrega"]);
+        $entrega->setPago($row["pago"]);
+        $entrega->setDataPagamento($row["datapagamento"]);
+
+        return $entrega;
+    }
 }

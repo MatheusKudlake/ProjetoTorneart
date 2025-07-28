@@ -25,10 +25,28 @@
                         <a href="/ProjetoTorneart/cadastrar-entrega" class="btn btn-primary col-11">Adicionar nova entrega</a>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-11 rounded" style="background-color:red">
-                            <div class="servico">
-                            </div>
-                        </div>
+                        <table class="table">
+                            <thead>
+                                <th scope="col">ID</th>
+                                <th scope="col">Cliente</th>
+                                <th scope="col">Data</th>
+                                <th scope="col">Pago?</th>
+                                <th scope="col">Data de pagamento</th>
+                            </thead>
+                            <tbody>
+                                <?php if (isset($listaEntregas)): ?>
+                                    <?php foreach ($listaEntregas as $entrega): ?>
+                                        <tr>
+                                            <td scope="row"><?= $entrega->getId() ?></td>
+                                            <td><?= $clienteDAO->getPorId($entrega->getId())->getNome() ?></td>
+                                            <td><?= $entrega->getDataEntrega() ?></td>
+                                            <td><?= $entrega->getPago() ? "Sim" : "Não" ?></td>
+                                            <td><?= $entrega->getPago() ? $entrega->getDataPagamento() : "" ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
