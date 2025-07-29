@@ -25,23 +25,25 @@
                         <a href="/ProjetoTorneart/cadastrar-entrega" class="btn btn-primary col-11">Adicionar nova entrega</a>
                     </div>
                     <div class="row justify-content-center">
-                        <table class="table">
+                        <table class="table mt-3">
                             <thead>
                                 <th scope="col">ID</th>
                                 <th scope="col">Cliente</th>
                                 <th scope="col">Data</th>
                                 <th scope="col">Pago?</th>
                                 <th scope="col">Data de pagamento</th>
+                                <th scope="col">Ações</th>
                             </thead>
                             <tbody>
                                 <?php if (isset($listaEntregas)): ?>
                                     <?php foreach ($listaEntregas as $entrega): ?>
                                         <tr>
                                             <td scope="row"><?= $entrega->getId() ?></td>
-                                            <td><?= $clienteDAO->getPorId($entrega->getId())->getNome() ?></td>
+                                            <td><?= $clienteDAO->getPorId($entrega->getIdCliente())->getNome() ?></td>
                                             <td><?= $entrega->getDataEntrega() ?></td>
                                             <td><?= $entrega->getPago() ? "Sim" : "Não" ?></td>
                                             <td><?= $entrega->getPago() ? $entrega->getDataPagamento() : "" ?></td>
+                                            <td></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
@@ -49,6 +51,10 @@
                         </table>
                     </div>
                 </div>
+                <div class="card-footer text-center">
+                    <a href="/ProjetoTorneart/">Voltar para a página inicial</a>
+                </div>
+
             </div>
         </div>
     </div>
