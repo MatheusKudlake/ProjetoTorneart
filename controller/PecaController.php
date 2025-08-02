@@ -3,7 +3,6 @@ class PecaController
 {
     public function cadastro($peca)
     {
-        require_once 'dao/PecaDAO.php';
         $pecaDAO = new PecaDAO();
         $pecaDAO->inserir($peca);
         return true;
@@ -11,7 +10,6 @@ class PecaController
 
     public function listarPecasCliente($idCliente)
     {
-        require_once 'dao/PecaDAO.php';
         $clienteDAO = new ClienteDAO();
         $pecaDAO = new PecaDAO();
         $cliente = $clienteDAO->getPorId($idCliente);
@@ -31,7 +29,6 @@ class PecaController
     }
 
     public function editarPeca($pecaNova){
-        require_once 'dao/PecaDAO.php';
         $pecaDAO = new PecaDAO();
         $result = $pecaDAO->update($pecaNova);
         if($result) return true;
@@ -39,7 +36,6 @@ class PecaController
 
     public function excluirPeca($idPeca)
     {
-        require_once 'dao/PecaDAO.php';
         $pecaDAO = new PecaDAO();
         $result = $pecaDAO->delete($idPeca);
         if ($result) return true;

@@ -1,5 +1,17 @@
 <?php
 
+spl_autoload_register(function($class){
+    $pastas = ['controller', 'dao', 'model'];
+
+    foreach($pastas as $pasta){
+        $caminho = __DIR__ . "/$pasta" . "/$class.php";
+        if(file_exists($caminho)){
+            require_once $caminho;
+            return;
+        }
+    }
+});
+
 $path_replace = str_replace('/ProjetoTorneart/', '/', $_SERVER["REQUEST_URI"]);
 $path = parse_url($path_replace, PHP_URL_PATH);
 
@@ -13,15 +25,6 @@ if(isset($_POST["method"])){
 
 require_once 'router.php';
 $router = new Router();
-
-require_once 'controller/PecaController.php';
-require_once 'controller/ClienteController.php';
-require_once 'controller/EntregaController.php';
-require_once 'controller/ServicoController.php';
-require_once 'model/Peca.php';
-require_once 'model/Cliente.php';
-require_once 'model/Entrega.php';
-require_once 'model/Servico.php';
 
 $router->get('/', function () {
     require 'view/home.php';
