@@ -78,6 +78,21 @@ class ServicoDAO
         }
     }
 
+    public function delete($id)
+    {
+        try {
+            $sql = "DELETE FROM servicos WHERE id=:id;";
+            $conn = ConnectionFactory::getConnection();
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':id', $id);
+            $result = $stmt->execute();
+            if ($result) return true;
+            return false;
+        } catch (PDOException $erro) {
+            echo "Erro ao excluir serviço: $erro";
+        }
+        }
+
     private function converterParaObj($row)
     {
         $servico = new Servico();

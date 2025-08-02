@@ -124,8 +124,8 @@ error_reporting(E_ALL);
                                     <td><?= $servico->getPreco() - $servico->getCusto() ?></td>
                                     <td>
                                         <a href="?editarServico=<?= $servico->getId() ?>" class="btn btn-primary">Editar</a>
-                                        <form action="servicos/<?= $servico->getId() ?>" method="post" class="form-delete">
-                                            <input type="hidden" name="idcliente" value="<?= $servico->getId() ?>">
+                                        <form action="/ProjetoTorneart/servicos/<?= $entrega->getId() ?>" method="post" class="form-delete">
+                                            <input type="hidden" name="id" value="<?= $servico->getId() ?>">
                                             <input type="hidden" name="method" value="DELETE">
                                             <button type="submit" class="btn btn-danger">Excluir</button>
                                         </form>

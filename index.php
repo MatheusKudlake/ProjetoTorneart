@@ -142,7 +142,15 @@ $router->put('/servicos/{id}', function($id){
 
     $servicoController->editarServico($servico);
 
-    header('Location: /ProjetoTorneart/entregas/'. $id);
+    header('Location: /ProjetoTorneart/entregas/' . $id);
+    exit;
+});
+
+$router->delete('/servicos/{id}', function($id){
+    $servicoController = new ServicoController();
+    $servicoController->excluirServico($_POST["id"]);
+
+    header('Location: /ProjetoTorneart/entregas/' . $id);
     exit;
 });
 
