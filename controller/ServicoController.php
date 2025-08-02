@@ -3,7 +3,6 @@ class ServicoController
 {
     public function cadastro($servico)
     {
-        require_once 'dao/ServicoDAO.php';
         $servicoDAO = new ServicoDAO();
         $servicoDAO->inserir($servico);
         return true;
@@ -11,9 +10,6 @@ class ServicoController
 
     public function listarServicos($idEntrega)
     {
-        require_once 'dao/ServicoDAO.php';
-        require_once 'dao/PecaDAO.php';
-        require_once 'dao/EntregaDAO.php';
         $servicoDAO = new ServicoDAO();
         $pecaDAO = new PecaDAO();
         $entregaDAO = new EntregaDAO();
@@ -36,7 +32,6 @@ class ServicoController
 
     public function editarServico($novoServico)
     {
-        require_once 'dao/ServicoDAO.php';
         $servicoDAO = new ServicoDAO();
         if ($servicoDAO->update($novoServico)) return true;
         return false;
@@ -44,7 +39,6 @@ class ServicoController
 
     public function excluirServico($id)
     {
-        require_once 'dao/ServicoDAO.php';
         $servicoDAO = new ServicoDAO();
         $result = $servicoDAO->delete($id);
         if ($result) return true;

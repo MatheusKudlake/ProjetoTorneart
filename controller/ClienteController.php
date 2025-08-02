@@ -1,6 +1,4 @@
 <?php
-require_once "model/Cliente.php";
-require_once "dao/ClienteDAO.php";
 
 class ClienteController
 {
