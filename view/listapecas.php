@@ -151,12 +151,8 @@
     </div>
 </body>
 <script src="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/js/bootstrap.min.js"></script>
+<script src="/ProjetoTorneart/assets/js/modal.js"></script>
 <script>
-    function abrirModal(idModal) {
-        const modal = new bootstrap.Modal(document.getElementById(idModal));
-        modal.show();
-    }
-
     <?php if (isset($_GET["editar"])): ?>
         abrirModal("modalEditar");
     <?php endif; ?>

@@ -43,7 +43,7 @@
                                             <td><?= $entrega->getDataEntrega() ?></td>
                                             <td><?= $entrega->getPago() ? "Sim" : "Não" ?></td>
                                             <td><?= $entrega->getPago() ? $entrega->getDataPagamento() : "" ?></td>
-                                            <td></td>
+                                            <td><a href="entregas/<?= $entrega->getId() ?>" class="btn btn-primary">Ver ou Editar</a></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php endif; ?>

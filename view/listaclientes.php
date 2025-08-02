@@ -105,7 +105,7 @@
                                     <td>
                                         <a href="cliente?editar=<?= $cliente->getId() ?>" class="btn btn-primary">Editar</a>
                                         <form action="cliente" method="post" class="form-delete">
-                                            <input type="hidden" name="idcliente", value="<?= $cliente->getId() ?>">
+                                            <input type="hidden" name="idcliente" value="<?= $cliente->getId() ?>">
                                             <input type="hidden" name="method" value="DELETE">
                                             <button type="submit" class="btn btn-danger">Excluir</button>
                                         </form>
@@ -125,12 +125,8 @@
     </div>
 </body>
 <script src="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/js/bootstrap.min.js"></script>
+<script src="/ProjetoTorneart/assets/js/modal.js"></script>
 <script>
-    function abrirModal(idModal) {
-        const modal = new bootstrap.Modal(document.getElementById(idModal));
-        modal.show();
-    }
-
     <?php if (isset($_GET["editar"])): ?>
         abrirModal("modalEditar");
     <?php endif; ?>

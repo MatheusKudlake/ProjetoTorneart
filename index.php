@@ -1,7 +1,5 @@
 <?php
 
-error_reporting(E_ALL); ini_set('display_errors', 1);
-
 $path_replace = str_replace('/ProjetoTorneart/', '/', $_SERVER["REQUEST_URI"]);
 $path = parse_url($path_replace, PHP_URL_PATH);
 
@@ -125,6 +123,27 @@ $router->post('/cadastrar-entrega', function(){
 $router->get('/entregas', function(){
     $entregaController = new EntregaController();
     $entregaController->listarEntregas();
+});
+
+$router->get('/entregas/{id}', function($id){
+    $servicoController = new ServicoController();
+    $servicoController->listarServicos($id);
+});
+
+$router->put('/servicos/{id}', function($id){
+    $servicoController = new ServicoController();
+    $servico = new Servico();
+    $servico->setId($_POST["id"]);
+    $servico->setIdPeca($_POST["idpeca"]);
+    $servico->setIdEntrega($_POST["identrega"]);
+    $servico->setQuantidade($_POST["quantidade"]);
+    $servico->setCusto($_POST["custo"]);
+    $servico->setPreco($_POST["preco"]);
+
+    $servicoController->editarServico($servico);
+
+    header('Location: /ProjetoTorneart/entregas/'. $id);
+    exit;
 });
 
 $router->dispatch($path, $method);
