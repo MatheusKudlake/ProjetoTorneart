@@ -16,14 +16,12 @@ class ServicoController
 
         $listaServicos = $servicoDAO->getPorEntrega($idEntrega);
 
-        $servicoEditar = '';
-        $listaPecas = '';
-        $entrega = '';
         $entrega = $entregaDAO->getPorId($idEntrega);
-
+        $listaPecas = $pecaDAO->listarPorCliente($entrega->getIdCliente());
+        
+        $servicoEditar = '';
         if (isset($_GET["editarServico"])) {
             $servicoEditar = $servicoDAO->getPorId($_GET["editarServico"]);
-            $listaPecas = $pecaDAO->listarPorCliente($entrega->getIdCliente());
         }
 
         require 'view/listaservicos.php';

@@ -133,6 +133,23 @@ $router->get('/entregas/{id}', function($id){
     $servicoController->listarServicos($id);
 });
 
+$router->post('/servicos/{id}', function($id){
+    $servico = new Servico();
+    $servicoController = new ServicoController();
+    
+    $servico->setId($_POST["id"]);
+    $servico->setIdPeca($_POST["idpeca"]);
+    $servico->setIdEntrega($_POST["identrega"]);
+    $servico->setQuantidade($_POST["quantidade"]);
+    $servico->setCusto($_POST["custo"]);
+    $servico->setPreco($_POST["preco"]);
+
+    $servicoController->cadastro($servico);
+
+    header('Location: /ProjetoTorneart/entregas/' . $id);
+    exit;
+});
+
 $router->put('/servicos/{id}', function($id){
     $servicoController = new ServicoController();
     $servico = new Servico();

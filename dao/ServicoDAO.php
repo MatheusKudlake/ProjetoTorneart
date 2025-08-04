@@ -4,13 +4,14 @@ class ServicoDAO
     public function inserir(Servico $servico)
     {
         try {
-            $sql = "INSERT INTO servicos (idpeca, identrega, quantidade, custo) VALUES (:idpeca, :identrega, :quantidade, :custo);";
+            $sql = "INSERT INTO servicos (idpeca, identrega, quantidade, custo, preco) VALUES (:idpeca, :identrega, :quantidade, :custo, :preco);";
             $conn = ConnectionFactory::getConnection();
             $stmt = $conn->prepare($sql);
             $stmt->bindValue(':idpeca', $servico->getIdPeca());
             $stmt->bindValue(':identrega', $servico->getIdEntrega());
             $stmt->bindValue(':quantidade', $servico->getQuantidade());
             $stmt->bindValue(':custo', $servico->getCusto());
+            $stmt->bindValue(':preco', $servico->getPreco());
             $stmt->execute();
         } catch (PDOException $erro) {
             echo "Erro ao inserir serviço: $erro";
