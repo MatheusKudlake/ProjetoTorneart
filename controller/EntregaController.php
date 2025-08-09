@@ -35,4 +35,11 @@ class EntregaController
         require 'view/listaentregas.php';
         return true;
     }
+
+    public function editarEntrega($novaEntrega){
+        $entregaDAO = new EntregaDAO();
+        $result = $entregaDAO->update($novaEntrega);
+        if($result) return true;
+        return false;
+    }
 }

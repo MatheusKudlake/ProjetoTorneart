@@ -16,24 +16,27 @@ const checkPago = document.getElementById("checkPago");
 
 const data = new Date();
 
-function atualizarPreco() {
-  const textoPrecoTotal = document.getElementById("precoTotal");
-  const labelLucro = document.getElementById("labelLucro");
-  const textoLucro = document.getElementById("lucro");
+const textoPrecoTotal = document.getElementById("precoTotal");
+const labelLucro = document.getElementById("labelLucro");
+const textoLucro = document.getElementById("lucro");
 
-  let precoTotal = caixaPreco.value * caixaQuant.value;
-  let lucro = precoTotal - caixaCusto.value;
-
-  if (precoTotal == 0) {
-    textoPrecoTotal.innerHTML = "não definido";
-    textoLucro.innerHTML = "não definido";
-    labelLucro.style.color = "";
-    textoLucro.style.color = "";
-  } else {
-    textoPrecoTotal.innerHTML = "R$" + precoTotal;
-    textoLucro.innerHTML = "R$" + lucro;
-    labelLucro.style.color = "green";
-    textoLucro.style.color = "green";
+if(textoPrecoTotal){
+  function atualizarPreco() {
+  
+    let precoTotal = caixaPreco.value * caixaQuant.value;
+    let lucro = precoTotal - caixaCusto.value;
+  
+    if (precoTotal == 0) {
+      textoPrecoTotal.innerHTML = "não definido";
+      textoLucro.innerHTML = "não definido";
+      labelLucro.style.color = "";
+      textoLucro.style.color = "";
+    } else {
+      textoPrecoTotal.innerHTML = "R$" + precoTotal;
+      textoLucro.innerHTML = "R$" + lucro;
+      labelLucro.style.color = "green";
+      textoLucro.style.color = "green";
+    }
   }
 }
 
@@ -44,15 +47,17 @@ select.addEventListener("change", function () {
   atualizarPreco();
 });
 
-caixaQuant.addEventListener("change", function () {
+if (caixaQuant) {
+  caixaQuant.addEventListener("input", function () {
+    atualizarPreco();
+  });
+}
+
+caixaPreco.addEventListener("input", function () {
   atualizarPreco();
 });
 
-caixaPreco.addEventListener("change", function () {
-  atualizarPreco();
-});
-
-caixaCusto.addEventListener("change", function () {
+caixaCusto.addEventListener("input", function () {
   if (!this.value) {
     this.value = 0;
   }
@@ -61,46 +66,56 @@ caixaCusto.addEventListener("change", function () {
 
 let servicos = [];
 
-formServico.addEventListener("submit", function (event) {
-  event.preventDefault();
+if (formServico) {
+  formServico.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-  const peca = this.peca.value;
-  const nomePeca = this.peca.options[this.peca.selectedIndex].text;
-  const preco = this.preco.value;
-  const custo = this.custo.value;
-  const quant = this.quantidade.value;
+    const peca = this.peca.value;
+    const nomePeca = this.peca.options[this.peca.selectedIndex].text;
+    const preco = this.preco.value;
+    const custo = this.custo.value;
+    const quant = this.quantidade.value;
 
-  if (peca && preco && quant > 0) {
-    servicos.push({
-      peca,
-      quant,
-      preco,
-      custo,
-    });
+    if (peca && preco && quant > 0) {
+      servicos.push({
+        peca,
+        quant,
+        preco,
+        custo,
+      });
 
-    textoNenhumServico.style.display = "none";
-    tabela.style.display = "block";
-    divCheckPago.style.display = "block";
+      textoNenhumServico.style.display = "none";
+      tabela.style.display = "block";
+      divCheckPago.style.display = "block";
 
-    const linha = tabela.insertRow();
-    linha.insertCell().textContent = nomePeca;
-    linha.insertCell().textContent = quant;
-    linha.insertCell().textContent = "R$" + preco * quant;
-    linha.insertCell().textContent = "R$" + custo;
-    linha.insertCell().textContent = "R$" + (preco * quant - custo);
+      const linha = tabela.insertRow();
+      linha.insertCell().textContent = nomePeca;
+      linha.insertCell().textContent = quant;
+      linha.insertCell().textContent = "R$" + preco * quant;
+      linha.insertCell().textContent = "R$" + custo;
+      linha.insertCell().textContent = "R$" + (preco * quant - custo);
 
-    inputServicos.value = JSON.stringify(servicos);
+      inputServicos.value = JSON.stringify(servicos);
 
-    this.reset();
-  }
-});
+      this.reset();
+    }
+  });
+}
 
-formFinal.addEventListener("submit", function () {
-  if (checkPago.checked) {
-    inputDataPagamento.value = data.getFullYear() + "-" + (data.getMonth() + 1) + "-" + data.getDate();
-  }
-});
+if (formFinal) {
+  formFinal.addEventListener("submit", function () {
+    if (checkPago.checked) {
+      inputDataPagamento.value =
+        data.getFullYear() + "-" + (data.getMonth() + 1) + "-" + data.getDate();
+    }
+  });
+}
 
-inputDataEntrega.value = data.getFullYear() + "-" + (data.getMonth() + 1) + "-" + data.getDate();
+if (inputDataEntrega) {
+  inputDataEntrega.value =
+    data.getFullYear() + "-" + (data.getMonth() + 1) + "-" + data.getDate();
+}
 
-atualizarPreco();
+if (textoPrecoTotal) {
+  atualizarPreco();
+}

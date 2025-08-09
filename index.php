@@ -133,6 +133,26 @@ $router->get('/entregas/{id}', function($id){
     $servicoController->listarServicos($id);
 });
 
+$router->put('/entregas/{id}', function($id){
+    $entregaController = new EntregaController();
+    $entrega = new Entrega();
+
+    if(isset($_POST["pago"])){
+        $entrega->setPago(true);
+        $entrega->setDataPagamento($_POST["datapagamento"]);
+    }else{
+        $entrega->setPago(null);
+        $entrega->setDataPagamento(null);
+    }
+    $entrega->setDataEntrega($_POST["dataentrega"]);
+    $entrega->setId($id);
+
+    $entregaController->editarEntrega($entrega);
+
+    header('Location: /ProjetoTorneart/entregas');
+    exit;
+});
+
 $router->post('/servicos/{id}', function($id){
     $servico = new Servico();
     $servicoController = new ServicoController();

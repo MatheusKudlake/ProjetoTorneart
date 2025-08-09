@@ -88,6 +88,24 @@ class EntregaDAO
         }
     }
 
+    public function update($novaEntrega)
+    {
+        try {
+            $sql = "UPDATE entregas SET pago=:pago, datapagamento=:datapagamento, dataentrega=:dataentrega WHERE id=:id;";
+            $conn = ConnectionFactory::getConnection();
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':pago', $novaEntrega->getPago());
+            $stmt->bindValue(':datapagamento', $novaEntrega->getDataPagamento());
+            $stmt->bindValue(':dataentrega', $novaEntrega->getDataEntrega());
+            $stmt->bindValue(':id', $novaEntrega->getId());
+            $result = $stmt->execute();
+            if($result) return true;
+            return false;
+        } catch (PDOException $erro) {
+            echo "Erro ao editar entrega: $erro";
+        }
+    }
+
     private function converterParaObj($row)
     {
         $entrega = new Entrega();

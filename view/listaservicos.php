@@ -192,6 +192,34 @@ error_reporting(E_ALL);
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    <form method="post">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-auto d-flex align-items-center">
+                                <div class="form-check m-0">
+                                    <input type="checkbox" id="pago" name="pago" class="form-check-input" <?php if ($entrega->getPago()) echo 'checked' ?>>
+                                    <label for="pago" class="form-check-label">Pago?</label>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <label for="datapagamento" class="form-label">Data de pagamento:</label>
+                            </div>
+                            <div class="col-3">
+                                <input type="date" id="datapagamento" name="datapagamento" class="form-control"
+                                    <?php if ($entrega->getPago()) echo "value=" . $entrega->getDataPagamento() ?>>
+                            </div>
+                            <div class="col-auto">
+                                <label for="dataentrega" class="form-label">Data de entrega:</label>
+                            </div>
+                            <div class="col-3">
+                                <input type="date" id="dataentrega" name="dataentrega" class="form-control"
+                                    value="<?= $entrega->getDataEntrega() ?>">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <button type="submit" class="btn btn-success col-12">Atualizar</button>
+                        </div>
+                        <input type="hidden" name="method" value="PUT">
+                    </form>
                 </div>
                 <div class="card-footer text-center">
                     <a href="" onclick="history.back()">Voltar para a página inicial</a>
@@ -207,6 +235,24 @@ error_reporting(E_ALL);
     <?php if (isset($_GET["editarServico"])): ?>
         abrirModal("modalEditar");
     <?php endif; ?>
+</script>
+<script>
+    const pago = document.getElementById('pago');
+    const dataPagamento = document.getElementById('datapagamento');
+
+    let hoje = data.getFullYear();
+    hoje += data.getMonth() < 9 ? "-0" + (data.getMonth() + 1) : "-" + (data.getMonth() + 1);
+    hoje += data.getDate() < 10 ? "-0" + data.getDate() : "-" + data.getDate();
+
+    console.log(hoje);
+
+    pago.addEventListener("change", function() {
+        if (this.checked) {
+            dataPagamento.value = hoje;
+        } else {
+            dataPagamento.value = "";
+        }
+    });
 </script>
 
 </html>
