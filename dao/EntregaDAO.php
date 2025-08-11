@@ -99,10 +99,25 @@ class EntregaDAO
             $stmt->bindValue(':dataentrega', $novaEntrega->getDataEntrega());
             $stmt->bindValue(':id', $novaEntrega->getId());
             $result = $stmt->execute();
-            if($result) return true;
+            if ($result) return true;
             return false;
         } catch (PDOException $erro) {
             echo "Erro ao editar entrega: $erro";
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $sql = "DELETE FROM entregas WHERE id=:id;";
+            $conn = ConnectionFactory::getConnection();
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':id', $id);
+            $result = $stmt->execute();
+            if($result) return true;
+            return false;
+        } catch (PDOException $erro) {
+            echo "Erro ao excluir entrega: $erro";
         }
     }
 

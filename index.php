@@ -1,11 +1,11 @@
 <?php
 
-spl_autoload_register(function($class){
+spl_autoload_register(function ($class) {
     $pastas = ['controller', 'dao', 'model'];
 
-    foreach($pastas as $pasta){
+    foreach ($pastas as $pasta) {
         $caminho = __DIR__ . "/$pasta" . "/$class.php";
-        if(file_exists($caminho)){
+        if (file_exists($caminho)) {
             require_once $caminho;
             return;
         }
@@ -17,9 +17,9 @@ $path = parse_url($path_replace, PHP_URL_PATH);
 
 $method;
 
-if(isset($_POST["method"])){
+if (isset($_POST["method"])) {
     $method = $_POST["method"];
-}else{
+} else {
     $method = $_SERVER["REQUEST_METHOD"];
 }
 
@@ -30,12 +30,12 @@ $router->get('/', function () {
     require 'view/home.php';
 });
 
-$router->get('/cliente', function(){
+$router->get('/cliente', function () {
     $clienteController = new ClienteController();
     $clienteController->listarClientes();
 });
 
-$router->post('/cliente', function(){
+$router->post('/cliente', function () {
     $clienteController = new ClienteController();
     $cliente = new Cliente();
     $cliente->setNome($_POST["nome"]);
@@ -44,7 +44,7 @@ $router->post('/cliente', function(){
     exit;
 });
 
-$router->put('/cliente', function(){
+$router->put('/cliente', function () {
     $clienteController = new ClienteController();
     $novoCliente = new Cliente();
     $novoCliente->setId($_POST["id"]);
@@ -54,14 +54,14 @@ $router->put('/cliente', function(){
     exit;
 });
 
-$router->delete('/cliente', function(){
+$router->delete('/cliente', function () {
     $clienteController = new ClienteController();
     $clienteController->excluirCliente($_POST["idcliente"]);
     header('Location: cliente');
     exit;
 });
 
-$router->get('/cliente/{id}/pecas', function($id){
+$router->get('/cliente/{id}/pecas', function ($id) {
     $pecaController = new PecaController();
     $pecaController->listarPecasCliente($id);
 });
@@ -73,44 +73,44 @@ $router->post('/cliente/{id}/pecas', function ($id) {
     $peca->setPreco($_POST["preco"]);
     $peca->setIdCliente($id);
     $pecaController->cadastro($peca);
-    header('Location: /ProjetoTorneart/cliente/'. $id .'/pecas');
+    header('Location: /ProjetoTorneart/cliente/' . $id . '/pecas');
     exit;
 });
 
-$router->put('/cliente/{id}/pecas', function($id){
+$router->put('/cliente/{id}/pecas', function ($id) {
     $pecaController = new PecaController();
     $peca = new Peca();
     $peca->setId($_POST["id"]);
     $peca->setNome($_POST["nome"]);
     $peca->setPreco($_POST["preco"]);
     $pecaController->editarPeca($peca);
-    header('Location: /ProjetoTorneart/cliente/'. $id .'/pecas');
+    header('Location: /ProjetoTorneart/cliente/' . $id . '/pecas');
     exit;
 });
 
-$router->delete('/cliente/{id}/pecas', function($id){
+$router->delete('/cliente/{id}/pecas', function ($id) {
     $pecaController = new PecaController();
     $pecaController->excluirPeca($_POST["idpeca"]);
-    header('Location: /ProjetoTorneart/cliente/'. $id .'/pecas');
+    header('Location: /ProjetoTorneart/cliente/' . $id . '/pecas');
     exit;
 });
 
-$router->get('/cadastrar-entrega', function(){
+$router->get('/cadastrar-entrega', function () {
     $entregaController = new EntregaController();
     $entregaController->formCadastro();
 });
 
-$router->post('/cadastrar-entrega', function(){
+$router->post('/cadastrar-entrega', function () {
     $entregaController = new EntregaController();
 
     $entrega = new Entrega();
     $entrega->setIdCliente($_POST["idcliente"]);
     $entrega->setDataEntrega($_POST["dataentrega"]);
 
-    if(!empty($_POST["datapagamento"])){
+    if (!empty($_POST["datapagamento"])) {
         $entrega->setPago(1);
         $entrega->setDataPagamento($_POST["datapagamento"]);
-    }else{
+    } else {
         $entrega->setPago(0);
         $entrega->setDataPagamento(null);
     }
@@ -123,24 +123,24 @@ $router->post('/cadastrar-entrega', function(){
     exit;
 });
 
-$router->get('/entregas', function(){
+$router->get('/entregas', function () {
     $entregaController = new EntregaController();
     $entregaController->listarEntregas();
 });
 
-$router->get('/entregas/{id}', function($id){
+$router->get('/entregas/{id}', function ($id) {
     $servicoController = new ServicoController();
     $servicoController->listarServicos($id);
 });
 
-$router->put('/entregas/{id}', function($id){
+$router->put('/entregas/{id}', function ($id) {
     $entregaController = new EntregaController();
     $entrega = new Entrega();
 
-    if(isset($_POST["pago"])){
+    if (isset($_POST["pago"])) {
         $entrega->setPago(true);
         $entrega->setDataPagamento($_POST["datapagamento"]);
-    }else{
+    } else {
         $entrega->setPago(null);
         $entrega->setDataPagamento(null);
     }
@@ -153,10 +153,18 @@ $router->put('/entregas/{id}', function($id){
     exit;
 });
 
-$router->post('/servicos/{id}', function($id){
+$router->delete('/entregas/{id}', function ($id) {
+    $entregaController = new EntregaController();
+    $entregaController->excluirEntrega($id);
+
+    header('Location: /ProjetoTorneart/entregas');
+    exit;
+});
+
+$router->post('/servicos/{id}', function ($id) {
     $servico = new Servico();
     $servicoController = new ServicoController();
-    
+
     $servico->setId($_POST["id"]);
     $servico->setIdPeca($_POST["idpeca"]);
     $servico->setIdEntrega($_POST["identrega"]);
@@ -170,7 +178,7 @@ $router->post('/servicos/{id}', function($id){
     exit;
 });
 
-$router->put('/servicos/{id}', function($id){
+$router->put('/servicos/{id}', function ($id) {
     $servicoController = new ServicoController();
     $servico = new Servico();
     $servico->setId($_POST["id"]);
@@ -186,7 +194,7 @@ $router->put('/servicos/{id}', function($id){
     exit;
 });
 
-$router->delete('/servicos/{id}', function($id){
+$router->delete('/servicos/{id}', function ($id) {
     $servicoController = new ServicoController();
     $servicoController->excluirServico($_POST["id"]);
 

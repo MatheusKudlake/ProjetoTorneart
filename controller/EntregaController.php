@@ -42,4 +42,11 @@ class EntregaController
         if($result) return true;
         return false;
     }
+
+    public function excluirEntrega($id){
+        $entregaDAO = new EntregaDAO();
+        $result = $entregaDAO->delete($id);
+        if($result) return true;
+        return false;
+    }
 }
