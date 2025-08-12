@@ -10,6 +10,7 @@ error_reporting(E_ALL);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css" />
     <title>Lista de Serviços</title>
 </head>
@@ -98,7 +99,7 @@ error_reporting(E_ALL);
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title">Adicionar serviço</h3>
+                    <h3 class="modal-title"><i class="bi bi-plus-circle"></i> Adicionar serviço</h3>
                     <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
@@ -140,7 +141,7 @@ error_reporting(E_ALL);
                         </div>
                         <input type="hidden" name="identrega" value="<?= $entrega->getId() ?>">
                         <div class="form-group">
-                            <button type="submit" class="col-12 btn btn-primary">Adicionar</button>
+                            <button type="submit" class="col-12 btn btn-primary"><i class="bi bi-plus-circle"></i> Adicionar</button>
                         </div>
                     </form>
                 </div>
@@ -158,7 +159,7 @@ error_reporting(E_ALL);
                     <h1 class="display-2">Lista de Serviços</h1>
                 </div>
                 <div class="card-body">
-                    <button type="button" class="btn btn-primary col-12" onclick="abrirModal('modalCadastro')">Adicionar Serviço</button>
+                    <button type="button" class="btn btn-primary col-12" onclick="abrirModal('modalCadastro')"><i class="bi bi-plus-circle"></i> Adicionar Serviço</button>
                     <table class="table">
                         <thead>
                             <tr>
@@ -181,11 +182,11 @@ error_reporting(E_ALL);
                                     <td><?= 'R$' . $servico->getCusto() ?></td>
                                     <td><?= 'R$' . ($servico->getPreco() - $servico->getCusto()) * $servico->getQuantidade() ?></td>
                                     <td>
-                                        <a href="?editarServico=<?= $servico->getId() ?>" class="btn btn-primary">Editar</a>
+                                        <a href="?editarServico=<?= $servico->getId() ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
                                         <form action="/ProjetoTorneart/servicos/<?= $entrega->getId() ?>" method="post" class="form-delete">
                                             <input type="hidden" name="id" value="<?= $servico->getId() ?>">
                                             <input type="hidden" name="method" value="DELETE">
-                                            <button type="submit" class="btn btn-danger">Excluir</button>
+                                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -216,13 +217,13 @@ error_reporting(E_ALL);
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <button type="submit" class="btn btn-success col-12">Atualizar</button>
+                            <button type="submit" class="btn btn-success col-12"><i class="bi bi-check-lg"></i> Atualizar</button>
                         </div>
                         <input type="hidden" name="method" value="PUT">
                     </form>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="" onclick="history.back()">Voltar para a página inicial</a>
+                    <a href="/ProjetoTorneart/"><i class="bi bi-house"></i> Voltar para a página inicial</a>
                 </div>
             </div>
         </div>

@@ -13,7 +13,7 @@
         background-color: grey;
     }
 
-    i {
+    .icon {
         font-size: 300%;
     }
 
@@ -36,11 +36,11 @@
                         <h1>Clientes</h1>
                     </div>
                     <div class="card-body text-center">
-                        <h2><i class="bi bi-person"></i></h2>
+                        <h2><i class="bi bi-person icon"></i></h2>
                         <p>Visualizar, editar ou adicionar novos clientes</p>
                     </div>
                     <div class="card-footer">
-                        <a href="cliente" class="col-12 my-1 btn btn-primary">Acessar</a>
+                        <a href="cliente" class="col-12 my-1 btn btn-primary"><i class="bi bi-box-arrow-in-right"></i> Acessar</a>
                     </div>
                 </div>
             </div>
@@ -50,11 +50,11 @@
                         <h1>Entregas</h1>
                     </div>
                     <div class="card-body text-center">
-                        <h2><i class="bi bi-box-seam"></i></h2>
+                        <h2><i class="bi bi-box-seam icon"></i></h2>
                         <p>Visualizar ou adicionar entregas</p>
                     </div>
                     <div class="card-footer">
-                        <a href="entregas" class="col-12 my-1 btn btn-primary">Acessar</a>
+                        <a href="entregas" class="col-12 my-1 btn btn-primary"><i class="bi bi-box-arrow-in-right"></i> Acessar</a>
                     </div>
                 </div>
             </div>
@@ -64,11 +64,11 @@
                         <h1>Renda</h1>
                     </div>
                     <div class="card-body text-center">
-                        <h2><i class="bi bi-cash-coin"></i></h2>
+                        <h2><i class="bi bi-cash-coin icon"></i></h2>
                         <p>Visualizar a renda de cada mês</p>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="col-12 my-1 btn btn-primary">Acessar</a>
+                        <a href="#" class="col-12 my-1 btn btn-primary"><i class="bi bi-box-arrow-in-right"></i> Acessar</a>
                     </div>
                 </div>
             </div>

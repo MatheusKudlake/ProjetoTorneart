@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css">
     <title>Peças</title>
 </head>
@@ -51,7 +52,7 @@
                                 id="preco"
                                 name="preco" />
                         </div>
-                        <button type="submit" class="btn btn-primary col-12">Cadastrar</button>
+                        <button type="submit" class="btn btn-primary col-12"><i class="bi bi-plus-circle"></i> Cadastrar</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -112,7 +113,7 @@
                     <h1 class="display-2">Peças - <?php echo $cliente->getNome() ?></h1>
                 </div>
                 <div class="card-body">
-                    <button class="btn btn-primary col-12" onclick='abrirModal("modalCadastro")'>Adicionar peça</button>
+                    <button class="btn btn-primary col-12" onclick='abrirModal("modalCadastro")'><i class="bi bi-plus-circle"></i> Adicionar peça</button>
                     <?php if (!empty($listaPecas)): ?>
                         <table class="table">
                             <thead>
@@ -130,11 +131,11 @@
                                         <td> <?= $peca->getNome() ?></td>
                                         <td> <?= $peca->getPreco() ?></td>
                                         <td>
-                                            <a href="pecas?editar=<?= $peca->getId() ?>" name="editar" class="btn btn-primary">Editar</a>
+                                            <a href="pecas?editar=<?= $peca->getId() ?>" name="editar" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
                                             <form action="pecas" method="post" class="form-delete">
                                                 <input type="hidden" name="idpeca" value="<?= $peca->getId() ?>">
                                                 <input type="hidden" name="method" value="DELETE">
-                                                <button type="submit" class="btn btn-danger">Excluir</button>
+                                                <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
                                             </form>
                                         </td>
                                     </tr>
@@ -144,9 +145,9 @@
                     <?php endif; ?>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="" onclick="history.back()">Voltar para a lista de clientes</a>
+                    <a href="" onclick="history.back()"><i class="bi bi-arrow-return-left"></i> Voltar para a lista de clientes</a>
                     <br>
-                    <a href="/ProjetoTorneart/">Voltar para a página inicial</a>
+                    <a href="/ProjetoTorneart/"><i class="bi bi-house"></i> Voltar para a página inicial</a>
                 </div>
             </div>
         </div>

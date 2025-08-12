@@ -49,17 +49,21 @@
                                                 <td><?= $entrega->getDataEntrega() ?></td>
                                                 <td><?= $entrega->getPago() ? "Sim" : "Não" ?></td>
                                                 <td><?= $entrega->getPago() ? $entrega->getDataPagamento() : "" ?></td>
-                                                <td><a href="entregas/<?= $entrega->getId() ?>" class="btn btn-primary">Ver ou Editar</a>
+                                                <td><a href="entregas/<?= $entrega->getId() ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
                                                     <form action="entregas/<?= $entrega->getId() ?>" method="post">
                                                         <input type="hidden" name="identrega" value="<?= $entrega->getId() ?>">
                                                         <input type="hidden" name="method" value="DELETE">
-                                                        <button type="submit" class="btn btn-danger">Excluir</button>
+                                                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
                                                     </form>
                                                     <form action="entregas/<?= $entrega->getId() ?>/pago" method="post">
                                                         <input type="hidden" name="identrega" value="<?= $entrega->getId() ?>">
                                                         <input type="hidden" name="pago" value="<?= $entrega->getPago() ?>">
                                                         <input type="hidden" name="method" value="PUT">
-                                                        <button type="submit" class="btn btn-success">Marcar como pago</button>
+                                                        <?php if ($entrega->getPago()): ?>
+                                                            <button type="submit" class="btn btn-success"><i class="bi bi-check-lg"></i> Marcar como pago</button>
+                                                        <?php else: ?>
+                                                            <button type="submit" class="btn btn-success"><i class="bi bi-x-lg"></i> Marcar como não pago</button>
+                                                        <?php endif; ?>
                                                     </form>
                                                 </td>
                                             </tr>

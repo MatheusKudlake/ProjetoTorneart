@@ -38,7 +38,7 @@
                                 </select>
                             </div>
                             <div class="col-auto">
-                                <button type="submit" class="btn btn-primary">Confirmar</button>
+                                <button type="submit" class="btn btn-primary">Confirmar <i class="bi bi-check-lg"></i></button>
                             </div>
                     </form>
                     <?php if (isset($_GET["cliente"])): ?>
@@ -105,7 +105,7 @@
                                             </div>
                                         </div>
                                         <div class="row justify-content-center form-group mt-3">
-                                            <button type="submit" name="cadastrarServico" class="btn btn-primary col-8">Salvar</button>
+                                            <button type="submit" name="cadastrarServico" class="btn btn-primary col-8"><i class="bi bi-plus-circle"></i> Salvar</button>
                                         </div>
                                     </form>
                                 </div>

@@ -38,6 +38,7 @@
                     </div>
                     <div class="form-group">
                         <button type="submit" class="col-12 btn btn-primary">
+                            <i class="bi bi-plus-circle"></i>
                             Cadastrar
                         </button>
                     </div>
@@ -105,13 +106,13 @@
                                         <td scope="row"> <?= $cliente->getId() ?></td>
                                         <td> <?= $cliente->getNome() ?></td>
                                         <td>
-                                            <a href="cliente?editar=<?= $cliente->getId() ?>" class="btn btn-primary">Editar</a>
+                                            <a href="cliente?editar=<?= $cliente->getId() ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
                                             <form action="cliente" method="post" class="form-delete">
                                                 <input type="hidden" name="idcliente" value="<?= $cliente->getId() ?>">
                                                 <input type="hidden" name="method" value="DELETE">
-                                                <button type="submit" class="btn btn-danger">Excluir</button>
+                                                <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
                                             </form>
-                                            <a href="cliente/<?= $cliente->getId() ?>/pecas" class="btn btn-success">Ver peças</a>
+                                            <a href="cliente/<?= $cliente->getId() ?>/pecas" class="btn btn-success"><i class="bi bi-gear"></i> Ver peças</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
