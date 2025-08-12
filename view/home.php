@@ -36,7 +36,7 @@
                         <h1>Clientes</h1>
                     </div>
                     <div class="card-body text-center">
-                        <h2><i class="bi bi-gear"></i></h2>
+                        <h2><i class="bi bi-person"></i></h2>
                         <p>Visualizar, editar ou adicionar novos clientes</p>
                     </div>
                     <div class="card-footer">
@@ -50,7 +50,7 @@
                         <h1>Entregas</h1>
                     </div>
                     <div class="card-body text-center">
-                        <h2><i class="bi bi-gear"></i></h2>
+                        <h2><i class="bi bi-box-seam"></i></h2>
                         <p>Visualizar ou adicionar entregas</p>
                     </div>
                     <div class="card-footer">
@@ -64,7 +64,7 @@
                         <h1>Renda</h1>
                     </div>
                     <div class="card-body text-center">
-                        <h2><i class="bi bi-gear"></i></h2>
+                        <h2><i class="bi bi-cash-coin"></i></h2>
                         <p>Visualizar a renda de cada mês</p>
                     </div>
                     <div class="card-footer">

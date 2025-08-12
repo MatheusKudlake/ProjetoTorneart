@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css">
     <title>Cadastrar serviço</title>
 </head>
@@ -156,9 +157,9 @@
                 <?php endif; ?>
                 </div>
                 <div class="card-footer text-center mt-3">
-                    <a href="" onclick="history.back()">Voltar para a lista de entregas</a>
+                    <a href="/ProjetoTorneart/entregas"><i class="bi bi-arrow-return-left"></i> Voltar para a lista de entregas</a>
                     <br>
-                    <a href="/ProjetoTorneart/">Voltar para a página inicial</a>
+                    <a href="/ProjetoTorneart/"><i class="bi bi-house"></i> Voltar para a página inicial</a>
                 </div>
             </div>
         </div>

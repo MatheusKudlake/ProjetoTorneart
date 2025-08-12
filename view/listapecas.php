@@ -104,7 +104,7 @@
             </div>
         </div>
     <?php endif; ?>
-    
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="card col-10 rounded shadow mt-5">
@@ -112,34 +112,36 @@
                     <h1 class="display-2">Peças - <?php echo $cliente->getNome() ?></h1>
                 </div>
                 <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <td scope="col">ID</td>
-                                <td scope="col">Nome</td>
-                                <td scope="col">Preço</td>
-                                <td scope="col">Ações</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($listaPecas as $peca): ?>
-                                <tr>
-                                    <td scope="row"> <?= $peca->getId() ?> </td>
-                                    <td> <?= $peca->getNome() ?></td>
-                                    <td> <?= $peca->getPreco() ?></td>
-                                    <td>
-                                        <a href="pecas?editar=<?= $peca->getId() ?>" name="editar" class="btn btn-primary">Editar</a>
-                                        <form action="pecas" method="post" class="form-delete">
-                                            <input type="hidden" name="idpeca" value="<?= $peca->getId() ?>">
-                                            <input type="hidden" name="method" value="DELETE">
-                                            <button type="submit" class="btn btn-danger">Excluir</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
                     <button class="btn btn-primary col-12" onclick='abrirModal("modalCadastro")'>Adicionar peça</button>
+                    <?php if (!empty($listaPecas)): ?>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</td>
+                                    <th scope="col">Nome</td>
+                                    <th scope="col">Preço</td>
+                                    <th scope="col">Ações</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($listaPecas as $peca): ?>
+                                    <tr>
+                                        <td scope="row"> <?= $peca->getId() ?> </td>
+                                        <td> <?= $peca->getNome() ?></td>
+                                        <td> <?= $peca->getPreco() ?></td>
+                                        <td>
+                                            <a href="pecas?editar=<?= $peca->getId() ?>" name="editar" class="btn btn-primary">Editar</a>
+                                            <form action="pecas" method="post" class="form-delete">
+                                                <input type="hidden" name="idpeca" value="<?= $peca->getId() ?>">
+                                                <input type="hidden" name="method" value="DELETE">
+                                                <button type="submit" class="btn btn-danger">Excluir</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    <?php endif; ?>
                 </div>
                 <div class="card-footer text-center">
                     <a href="" onclick="history.back()">Voltar para a lista de clientes</a>

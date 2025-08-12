@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-        rel="stylesheet"
-        href="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css" />
+
     <title>Lista de Clientes</title>
 </head>
 <style>
@@ -18,7 +18,7 @@
         margin-bottom: 2%;
     }
 
-    .form-delete{
+    .form-delete {
         display: inline;
     }
 </style>
@@ -89,36 +89,38 @@
                     <h1 class="display-2">Lista de Clientes</h1>
                 </div>
                 <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <td scope="col">ID</td>
-                                <td scope="col">Nome</td>
-                                <td scope="col">Ações</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($listaClientes as $cliente): ?>
+                    <button type="button" class="btn btn-primary col-12" onclick='abrirModal("modalCadastro")'><i class="bi bi-plus-circle"></i> Adicionar cliente</button>
+                    <?php if (!empty($listaClientes)): ?>
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                    <td scope="row"> <?= $cliente->getId() ?></td>
-                                    <td> <?= $cliente->getNome() ?></td>
-                                    <td>
-                                        <a href="cliente?editar=<?= $cliente->getId() ?>" class="btn btn-primary">Editar</a>
-                                        <form action="cliente" method="post" class="form-delete">
-                                            <input type="hidden" name="idcliente" value="<?= $cliente->getId() ?>">
-                                            <input type="hidden" name="method" value="DELETE">
-                                            <button type="submit" class="btn btn-danger">Excluir</button>
-                                        </form>
-                                        <a href="cliente/<?= $cliente->getId() ?>/pecas" class="btn btn-success">Ver peças</a>
-                                    </td>
+                                    <th scope="col">ID</td>
+                                    <th scope="col">Nome</td>
+                                    <th scope="col">Ações</td>
                                 </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($listaClientes as $cliente): ?>
+                                    <tr>
+                                        <td scope="row"> <?= $cliente->getId() ?></td>
+                                        <td> <?= $cliente->getNome() ?></td>
+                                        <td>
+                                            <a href="cliente?editar=<?= $cliente->getId() ?>" class="btn btn-primary">Editar</a>
+                                            <form action="cliente" method="post" class="form-delete">
+                                                <input type="hidden" name="idcliente" value="<?= $cliente->getId() ?>">
+                                                <input type="hidden" name="method" value="DELETE">
+                                                <button type="submit" class="btn btn-danger">Excluir</button>
+                                            </form>
+                                            <a href="cliente/<?= $cliente->getId() ?>/pecas" class="btn btn-success">Ver peças</a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    <?php endif; ?>
                 </div>
-                <button type="button" class="btn btn-primary col-12" onclick='abrirModal("modalCadastro")'>Adicionar cliente</button>
                 <div class="card-footer text-center">
-                    <a href="" onclick="history.back()">Voltar para a página inicial</a>
+                    <a href="" onclick="history.back()"><i class="bi bi-house"></i> Voltar para a página inicial</a>
                 </div>
             </div>
         </div>
