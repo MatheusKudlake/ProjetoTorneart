@@ -119,7 +119,7 @@ $router->post('/cadastrar-entrega', function () {
 
     $entregaController->cadastroComServicos($entrega, $servicos);
 
-    header('Location: cadastrar-entrega?cliente=' . $_POST["idcliente"]);
+    header('Location: entregas');
     exit;
 });
 
@@ -156,6 +156,20 @@ $router->put('/entregas/{id}', function ($id) {
 $router->delete('/entregas/{id}', function ($id) {
     $entregaController = new EntregaController();
     $entregaController->excluirEntrega($id);
+
+    header('Location: /ProjetoTorneart/entregas');
+    exit;
+});
+
+$router->put('/entregas/{id}/pago', function ($id) {
+    $entregaController = new EntregaController();
+    $pago = $_POST["pago"];
+
+    if($pago){
+        $entregaController->alterarPago($id, false);
+    }else{
+        $entregaController->alterarPago($id, true);
+    }
 
     header('Location: /ProjetoTorneart/entregas');
     exit;

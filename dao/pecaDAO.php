@@ -41,19 +41,20 @@ class PecaDAO
         }
     }
 
-    public function getPorId($idPeca){
-        try{
+    public function getPorId($idPeca)
+    {
+        try {
             $sql = "SELECT * FROM peca WHERE id=:id;";
             $conn = ConnectionFactory::getConnection();
             $stmt = $conn->prepare($sql);
             $stmt->bindValue(':id', $idPeca);
             $result = $stmt->execute();
-            if($result){
+            if ($result) {
                 $peca = $this->converterParaObj($stmt->fetch(PDO::FETCH_ASSOC));
                 return $peca;
             }
             return false;
-        }catch(PDOException $erro){
+        } catch (PDOException $erro) {
             echo "Erro ao buscar peça: $erro";
         }
     }

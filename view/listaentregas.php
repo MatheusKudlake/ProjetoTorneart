@@ -11,7 +11,8 @@
     body {
         background-color: grey;
     }
-    form{
+
+    form {
         display: inline;
     }
 </style>
@@ -47,12 +48,18 @@
                                             <td><?= $entrega->getPago() ? "Sim" : "Não" ?></td>
                                             <td><?= $entrega->getPago() ? $entrega->getDataPagamento() : "" ?></td>
                                             <td><a href="entregas/<?= $entrega->getId() ?>" class="btn btn-primary">Ver ou Editar</a>
-                                            <form action="entregas/<?= $entrega->getId() ?>" method="post">
-                                                <input type="hidden" name="identrega" value="<?= $entrega->getId() ?>">
-                                                <input type="hidden" name="method" value="DELETE">
-                                                <button type="submit" class="btn btn-danger">Excluir</button>
-                                            </form>
-                                        </td>
+                                                <form action="entregas/<?= $entrega->getId() ?>" method="post">
+                                                    <input type="hidden" name="identrega" value="<?= $entrega->getId() ?>">
+                                                    <input type="hidden" name="method" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger">Excluir</button>
+                                                </form>
+                                                <form action="entregas/<?= $entrega->getId() ?>/pago" method="post">
+                                                    <input type="hidden" name="identrega" value="<?= $entrega->getId() ?>">
+                                                    <input type="hidden" name="pago" value="<?= $entrega->getPago() ?>">
+                                                    <input type="hidden" name="method" value="PUT">
+                                                    <button type="submit" class="btn btn-success">Marcar como pago</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php endif; ?>

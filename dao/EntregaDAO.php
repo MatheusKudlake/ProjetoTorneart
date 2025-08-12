@@ -105,6 +105,31 @@ class EntregaDAO
             echo "Erro ao editar entrega: $erro";
         }
     }
+    
+    public function alterarPago($id, $pago)
+    {
+        try {
+            $sql = "UPDATE entregas SET pago=:pago, datapagamento=:datapagamento WHERE id=:id;";
+            $conn = ConnectionFactory::getConnection();
+            $entrega = $this->getPorId($id);
+            $stmt = $conn->prepare($sql);
+            if($pago){
+                $pagoValor = 1;
+                $dataPagamento = $entrega->getDataPagamento() ?: date('Y-m-d');
+            }else{
+                $pagoValor = 0;
+                $dataPagamento = $entrega->getDataPagamento();
+            }
+            $stmt->bindValue(':pago', $pagoValor);
+            $stmt->bindValue(':datapagamento', $dataPagamento);
+            $stmt->bindValue(':id', $id);
+            $result = $stmt->execute();
+            if ($result) return true;
+            return false;
+        } catch (PDOException $erro) {
+            "Erro ao alterar o status do pagamento: $erro";
+        }
+    }
 
     public function delete($id)
     {
@@ -114,7 +139,7 @@ class EntregaDAO
             $stmt = $conn->prepare($sql);
             $stmt->bindValue(':id', $id);
             $result = $stmt->execute();
-            if($result) return true;
+            if ($result) return true;
             return false;
         } catch (PDOException $erro) {
             echo "Erro ao excluir entrega: $erro";

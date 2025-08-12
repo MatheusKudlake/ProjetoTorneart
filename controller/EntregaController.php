@@ -43,6 +43,13 @@ class EntregaController
         return false;
     }
 
+    public function alterarPago($id, $pago){
+        $entregaDAO = new EntregaDAO();
+        $result = $entregaDAO->alterarPago($id, $pago);
+        if($result) return true;
+        return false;
+    }
+
     public function excluirEntrega($id){
         $entregaDAO = new EntregaDAO();
         $result = $entregaDAO->delete($id);
