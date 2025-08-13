@@ -106,6 +106,31 @@
         </div>
     <?php endif; ?>
 
+    <?php if (isset($_GET["excluir"])): ?>
+        <div id="modalExcluir" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Confirmar exclusão</h3>
+                        <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Deseja excluir a peça "<?= $pecaExcluir->getNome() ?>"?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <form action="pecas" method="post">
+                            <input type="hidden" name="method" value="DELETE">
+                            <input type="hidden" name="idpeca" value="<?= $pecaExcluir->getId() ?>">
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="card col-10 rounded shadow mt-5">
@@ -132,11 +157,7 @@
                                         <td> <?= $peca->getPreco() ?></td>
                                         <td>
                                             <a href="pecas?editar=<?= $peca->getId() ?>" name="editar" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                                            <form action="pecas" method="post" class="form-delete">
-                                                <input type="hidden" name="idpeca" value="<?= $peca->getId() ?>">
-                                                <input type="hidden" name="method" value="DELETE">
-                                                <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                            </form>
+                                            <a href="?excluir=<?= $peca->getId() ?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -158,6 +179,8 @@
 <script>
     <?php if (isset($_GET["editar"])): ?>
         abrirModal("modalEditar");
+    <?php elseif (isset($_GET["excluir"])): ?>
+        abrirModal("modalExcluir");
     <?php endif; ?>
 </script>
 
