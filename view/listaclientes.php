@@ -82,6 +82,30 @@
     </div>
 <?php endif; ?>
 
+<?php if (isset($_GET["excluir"])): ?>
+    <div id="modalExcluir" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Confirmar exclusão</h3>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Deseja excluir o cliente "<?= $clienteExcluir->getNome() ?>"?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <form action="cliente" method="post">
+                        <input type="hidden" name="method" value="DELETE">
+                        <input type="hidden" name="idcliente" value="<?= $clienteExcluir->getId() ?>">
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
 <body>
     <div class="container">
         <div class="row justify-content-center">
@@ -106,12 +130,8 @@
                                         <td scope="row"> <?= $cliente->getId() ?></td>
                                         <td> <?= $cliente->getNome() ?></td>
                                         <td>
-                                            <a href="cliente?editar=<?= $cliente->getId() ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                                            <form action="cliente" method="post" class="form-delete">
-                                                <input type="hidden" name="idcliente" value="<?= $cliente->getId() ?>">
-                                                <input type="hidden" name="method" value="DELETE">
-                                                <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                            </form>
+                                            <a href="?editar=<?= $cliente->getId() ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                                            <a href="?excluir=<?= $cliente->getId() ?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
                                             <a href="cliente/<?= $cliente->getId() ?>/pecas" class="btn btn-success"><i class="bi bi-gear"></i> Ver peças</a>
                                         </td>
                                     </tr>
@@ -132,6 +152,8 @@
 <script>
     <?php if (isset($_GET["editar"])): ?>
         abrirModal("modalEditar");
+    <?php elseif (isset($_GET["excluir"])): ?>
+        abrirModal("modalExcluir");
     <?php endif; ?>
 </script>
 

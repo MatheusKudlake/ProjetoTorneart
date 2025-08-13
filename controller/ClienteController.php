@@ -16,6 +16,8 @@ class ClienteController
         $clienteEditar = null;
         if (isset($_GET["editar"])) {
             $clienteEditar = $clienteDAO->getPorId($_GET["editar"]);
+        }else if(isset($_GET["excluir"])){
+            $clienteExcluir = $clienteDAO->getPorId($_GET["excluir"]);
         }
         require 'view/listaclientes.php';
     }
