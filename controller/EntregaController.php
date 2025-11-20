@@ -32,6 +32,9 @@ class EntregaController
         $clienteDAO = new ClienteDAO();
 
         $listaEntregas = $entregaDAO->get();
+        if(isset($_GET["excluir"])){
+            $entregaExcluir = $entregaDAO->getPorId($_GET["excluir"]);
+        }
         require 'view/listaentregas.php';
         return true;
     }

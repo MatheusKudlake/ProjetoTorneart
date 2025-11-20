@@ -75,7 +75,7 @@
                     <?php endif; ?>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="/ProjetoTorneart/"><i class="bi bi-house"></i> Voltar para a página inicial</a>
+                    <a href="/ProjetoTorneart/" class="btn btn-outline-secondary"><i class="bi bi-house"></i> Voltar para a página inicial</a>
                 </div>
 
             </div>

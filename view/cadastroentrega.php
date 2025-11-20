@@ -159,7 +159,7 @@
                 <div class="card-footer text-center mt-3">
                     <a href="/ProjetoTorneart/entregas"><i class="bi bi-arrow-return-left"></i> Voltar para a lista de entregas</a>
                     <br>
-                    <a href="/ProjetoTorneart/"><i class="bi bi-house"></i> Voltar para a página inicial</a>
+                    <a href="/ProjetoTorneart/" class="btn btn-outline-secondary"><i class="bi bi-house"></i> Voltar para a página inicial</a>
                 </div>
             </div>
         </div>
