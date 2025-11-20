@@ -44,7 +44,7 @@
                     <?php if (isset($_GET["cliente"])): ?>
                         <div class="row">
                             <?php if (empty($listaPecas)): ?>
-                                <p>Nenhuma peça cadastrada no sistema!</p>
+                                <p >Nenhuma peça cadastrada no sistema! <a href="cliente/<?= $_GET["cliente"] ?>/pecas">Cadastrar peças para o cliente</a></p>
                             <?php else: ?>
                                 <div class="col-6">
                                     <h1 class="display-3 mb-4">Cadastro:</h1>
@@ -157,9 +157,9 @@
                 <?php endif; ?>
                 </div>
                 <div class="card-footer text-center mt-3">
-                    <a href="/ProjetoTorneart/entregas"><i class="bi bi-arrow-return-left"></i> Voltar para a lista de entregas</a>
+                    <a href="/ProjetoTorneart/entregas" class="btn btn-outline-secondary"><i class="bi bi-arrow-return-left"></i> Voltar para a lista de entregas</a>
                     <br>
-                    <a href="/ProjetoTorneart/" class="btn btn-outline-secondary"><i class="bi bi-house"></i> Voltar para a página inicial</a>
+                    <a href="/ProjetoTorneart/" class="btn btn-outline-secondary mt-2"><i class="bi bi-house"></i> Voltar para a página inicial</a>
                 </div>
             </div>
         </div>
