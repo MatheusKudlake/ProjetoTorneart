@@ -59,7 +59,7 @@
                                                         <input type="hidden" name="identrega" value="<?= $entrega->getId() ?>">
                                                         <input type="hidden" name="pago" value="<?= $entrega->getPago() ?>">
                                                         <input type="hidden" name="method" value="PUT">
-                                                        <?php if ($entrega->getPago()): ?>
+                                                        <?php if (!$entrega->getPago()): ?>
                                                             <button type="submit" class="btn btn-success"><i class="bi bi-check-lg"></i> Marcar como pago</button>
                                                         <?php else: ?>
                                                             <button type="submit" class="btn btn-success"><i class="bi bi-x-lg"></i> Marcar como não pago</button>
