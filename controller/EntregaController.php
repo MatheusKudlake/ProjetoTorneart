@@ -39,6 +39,12 @@ class EntregaController
         return true;
     }
 
+    public function getServicos($idEntrega){
+        $servicoDAO = new ServicoDAO();
+        $servicos = $servicoDAO->getPorEntrega($idEntrega);
+        return $servicos;
+    }
+
     public function editarEntrega($novaEntrega){
         $entregaDAO = new EntregaDAO();
         $result = $entregaDAO->update($novaEntrega);

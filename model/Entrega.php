@@ -5,6 +5,7 @@ class Entrega{
     private $dataEntrega;
     private $pago;
     private $dataPagamento;
+	private $lucroTotal;
 
 	public function getId() {
 		return $this->id;
@@ -44,5 +45,13 @@ class Entrega{
 
 	public function setDataPagamento($value) {
 		$this->dataPagamento = $value;
+	}
+
+	public function getLucroTotal() {
+		return $this->lucroTotal;
+	}
+
+	public function setLucroTotal($value) {
+		$this->lucroTotal = $value;
 	}
 }

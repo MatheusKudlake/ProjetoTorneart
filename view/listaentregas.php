@@ -38,6 +38,7 @@
                                     <th scope="col">Data</th>
                                     <th scope="col">Pago?</th>
                                     <th scope="col">Data de pagamento</th>
+                                    <th scope="col">Lucro</th>
                                     <th scope="col">Ações</th>
                                 </thead>
                                 <tbody>
@@ -50,6 +51,8 @@
                                                 <td><?= $entrega->getDataEntrega() ?></td>
                                                 <td style="color: <?= $pago ? "green" : "red" ?>; font-weight: bold"><?= $pago ? "Sim" : "Não" ?></td>
                                                 <td><?= $pago ? $entrega->getDataPagamento() : "" ?></td>
+                                                <td style="color: green"><?php $lucroTotal = $entrega->getLucroTotal();
+                                                    if($lucroTotal) echo "R$ " . $lucroTotal ?></td>
                                                 <td><a href="entregas/<?= $entrega->getId() ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
                                                     <form action="entregas/<?= $entrega->getId() ?>" method="post">
                                                         <input type="hidden" name="identrega" value="<?= $entrega->getId() ?>">

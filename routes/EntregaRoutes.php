@@ -23,6 +23,13 @@ return function (Router $router) {
 
         $servicos = json_decode($_POST["servicosJson"], true);
 
+        $lucroTotal = 0;
+        foreach($servicos as $servico){
+            $lucroTotal += ($servico["preco"] * $servico["quant"]) - $servico["custo"];
+        }
+
+        $entrega->setLucroTotal($lucroTotal);
+
         $entregaController->cadastroComServicos($entrega, $servicos);
 
         header('Location: entregas');
@@ -52,6 +59,15 @@ return function (Router $router) {
         }
         $entrega->setDataEntrega($_POST["dataentrega"]);
         $entrega->setId($id);
+
+        $servicos = $entregaController->getServicos($id);
+
+        $lucroTotal = 0;
+        foreach($servicos as $servico){
+            $lucroTotal += ($servico->getPreco() * $servico->getQuantidade()) - $servico->getCusto();
+        }
+
+        $entrega->setLucroTotal($lucroTotal);   
 
         $entregaController->editarEntrega($entrega);
 

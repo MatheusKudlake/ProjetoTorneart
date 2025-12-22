@@ -180,7 +180,7 @@ error_reporting(E_ALL);
                                     <td><?= $servico->getQuantidade() ?></td>
                                     <td><?= 'R$' . $servico->getPreco() ?></td>
                                     <td><?= 'R$' . $servico->getCusto() ?></td>
-                                    <td><?= 'R$' . ($servico->getPreco() - $servico->getCusto()) * $servico->getQuantidade() ?></td>
+                                    <td><?= 'R$' . ($servico->getPreco() * $servico->getQuantidade()) - $servico->getCusto() ?></td>
                                     <td>
                                         <a href="?editarServico=<?= $servico->getId() ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
                                         <form action="/ProjetoTorneart/servicos/<?= $entrega->getId() ?>" method="post" class="form-delete">
