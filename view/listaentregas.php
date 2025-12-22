@@ -44,11 +44,12 @@
                                     <?php if (isset($listaEntregas)): ?>
                                         <?php foreach ($listaEntregas as $entrega): ?>
                                             <tr>
+                                                <?php $pago = $entrega->getPago(); ?>
                                                 <td scope="row"><?= $entrega->getId() ?></td>
                                                 <td><?= $clienteDAO->getPorId($entrega->getIdCliente())->getNome() ?></td>
                                                 <td><?= $entrega->getDataEntrega() ?></td>
-                                                <td><?= $entrega->getPago() ? "Sim" : "Não" ?></td>
-                                                <td><?= $entrega->getPago() ? $entrega->getDataPagamento() : "" ?></td>
+                                                <td style="color: <?= $pago ? "green" : "red" ?>; font-weight: bold"><?= $pago ? "Sim" : "Não" ?></td>
+                                                <td><?= $pago ? $entrega->getDataPagamento() : "" ?></td>
                                                 <td><a href="entregas/<?= $entrega->getId() ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
                                                     <form action="entregas/<?= $entrega->getId() ?>" method="post">
                                                         <input type="hidden" name="identrega" value="<?= $entrega->getId() ?>">
@@ -62,7 +63,7 @@
                                                         <?php if (!$entrega->getPago()): ?>
                                                             <button type="submit" class="btn btn-success"><i class="bi bi-check-lg"></i> Marcar como pago</button>
                                                         <?php else: ?>
-                                                            <button type="submit" class="btn btn-success"><i class="bi bi-x-lg"></i> Marcar como não pago</button>
+                                                            <button type="submit" class="btn btn-danger"><i class="bi bi-x-lg"></i> Marcar como não pago</button>
                                                         <?php endif; ?>
                                                     </form>
                                                 </td>
