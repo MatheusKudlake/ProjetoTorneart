@@ -51,8 +51,19 @@
                                                 <td><?= $entrega->getDataEntrega() ?></td>
                                                 <td style="color: <?= $pago ? "green" : "red" ?>; font-weight: bold"><?= $pago ? "Sim" : "Não" ?></td>
                                                 <td><?= $pago ? $entrega->getDataPagamento() : "" ?></td>
-                                                <td style="color: green"><?php $lucroTotal = $entrega->getLucroTotal();
-                                                    if($lucroTotal) echo "R$ " . $lucroTotal ?></td>
+                                                <?php $lucroTotal = $entrega->getLucroTotal(); ?>
+                                                <td style="color: <?php 
+                                                    if($lucroTotal > 0){
+                                                        echo "green";
+                                                    }else if($lucroTotal < 0){
+                                                        echo "red";
+                                                    }else{
+                                                        echo "black";
+                                                    }
+                                                ?>">
+                                                    <?php
+                                                    if ($lucroTotal) echo "R$ " . $lucroTotal ?>
+                                                </td>
                                                 <td><a href="entregas/<?= $entrega->getId() ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
                                                     <form action="entregas/<?= $entrega->getId() ?>" method="post">
                                                         <input type="hidden" name="identrega" value="<?= $entrega->getId() ?>">
