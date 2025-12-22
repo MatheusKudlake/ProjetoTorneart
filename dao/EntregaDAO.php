@@ -54,7 +54,7 @@ class EntregaDAO
     public function get()
     {
         try {
-            $sql = "SELECT * FROM entregas;";
+            $sql = "SELECT * FROM entregas ORDER BY dataentrega DESC;";
             $conn = ConnectionFactory::getConnection();
             $result = $conn->query($sql);
             $listaEntregas = [];
@@ -85,6 +85,14 @@ class EntregaDAO
             return false;
         } catch (PDOException $erro) {
             echo "Eror ao buscar entrega: $erro";
+        }
+    }
+
+    public function getbyMonth($month){
+        try{
+            
+        }catch(PDOException $erro){
+            echo "Erro ao buscar entrega por mês: $erro";
         }
     }
 
