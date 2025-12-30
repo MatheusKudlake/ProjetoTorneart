@@ -29,6 +29,77 @@
                     <div class="row justify-content-center">
                         <a href="/ProjetoTorneart/cadastrar-entrega" class="btn btn-primary col-11"><i class="bi bi-plus-circle"></i> Adicionar nova entrega</a>
                     </div>
+                    <div class="row mt-3">
+                        <form action="" action="get" id="formMeses">
+                            <div class="row align-items-center justify-content-center">
+                                <div class="col-auto">
+                                    <select name="startMonth" id="startMonth" class="form-select" style="display: inline">
+                                        <?php
+                                        $meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+                                        ?>
+                                        <?php
+                                        $i = 1;
+                                        foreach ($meses as $mes) {
+                                            echo "<option value='$i'>$mes</option>";
+                                            $i++;
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <span>de</span>
+                                </div>
+                                <div class="col-auto">
+                                    <select name="startYear" id="startYear" class="form-select">
+                                        <option value="2025">2025</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2023">2023</option>
+                                    </select>
+                                </div>
+                                <div id="divIntervalo" style="display: none">
+                                    <div class="col-auto">
+                                        <span>até</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <select name="endMonth" id="endMonth" class="form-select" style="display: inline">
+                                            <option value="0">Mês...</option>
+                                            <?php
+                                            $i = 1;
+                                            foreach ($meses as $mes) {
+                                                echo "<option value='$i'>$mes</option>";
+                                                $i++;
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-auto">
+                                        <span>de</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <select name="endYear" id="endYear" class="form-select">
+                                            <option value="0">Ano...</option>
+                                            <option value="2025">2025</option>
+                                            <option value="2024">2024</option>
+                                            <option value="2023">2023</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-check d-flex justify-content-center mt-2">
+                                    <input type="checkbox" id="checkIntervalo" class="form-check-input me-2">
+                                    <label for="intervalo" class="form-check-label">Selecionar intervalo de meses</label>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center mt-2">
+                                <button type="submit" class="btn btn-primary col-2"><i class="bi bi-search"></i> Pesquisar</button>
+                            </div>
+                            <div class="row text-center mt-2" id="divErro" style="display: none">
+                                <p style="color: red">Erro: a data de início deve ser antes da final!</p>
+                            </div>
+                        </form>
+                    </div>
+
                     <?php if (!empty($listaEntregas)): ?>
                         <div class="row justify-content-center">
                             <table class="table mt-3">
@@ -52,15 +123,15 @@
                                                 <td style="color: <?= $pago ? "green" : "red" ?>; font-weight: bold"><?= $pago ? "Sim" : "Não" ?></td>
                                                 <td><?= $pago ? $entrega->getDataPagamento() : "" ?></td>
                                                 <?php $lucroTotal = $entrega->getLucroTotal(); ?>
-                                                <td style="color: <?php 
-                                                    if($lucroTotal > 0){
-                                                        echo "green";
-                                                    }else if($lucroTotal < 0){
-                                                        echo "red";
-                                                    }else{
-                                                        echo "black";
-                                                    }
-                                                ?>">
+                                                <td style="color: <?php
+                                                                    if ($lucroTotal > 0) {
+                                                                        echo "green";
+                                                                    } else if ($lucroTotal < 0) {
+                                                                        echo "red";
+                                                                    } else {
+                                                                        echo "black";
+                                                                    }
+                                                                    ?>">
                                                     <?php
                                                     if ($lucroTotal) echo "R$ " . $lucroTotal ?>
                                                 </td>
@@ -92,10 +163,41 @@
                 <div class="card-footer text-center">
                     <a href="/ProjetoTorneart/" class="btn btn-outline-secondary"><i class="bi bi-house"></i> Voltar para a página inicial</a>
                 </div>
-
             </div>
         </div>
     </div>
 </body>
+
+<script>
+    const checkIntervalo = document.getElementById("checkIntervalo");
+    const divIntervalo = document.getElementById("divIntervalo");
+
+
+    checkIntervalo.addEventListener("change", () => {
+        if (checkIntervalo.checked) {
+            divIntervalo.style.display = "inline";
+        } else {
+            divIntervalo.style.display = "none";
+            document.getElementById('endYear').value = 0;
+            document.getElementById('endMonth').value = 0;
+        }
+    });
+
+    const formMeses = document.getElementById("formMeses");
+    formMeses.addEventListener("submit", function(e) {
+        const startMonth = document.getElementById('startMonth').value;
+        const endMonth = document.getElementById('endMonth').value;
+        const startYear = document.getElementById('startYear').value;
+        const endYear = document.getElementById('endYear').value;
+
+        const divErro = document.getElementById('divErro');
+        if ((endYear != 0 || endMonth != 0) && (endYear < startYear || (endYear == startYear && endMonth < startMonth))) {
+            e.preventDefault();
+            divErro.style.display = "block";
+        } else {
+            divErro.style.display = "none";
+        }
+    })
+</script>
 
 </html>
