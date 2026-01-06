@@ -41,7 +41,7 @@
                         <h1 class="display-5">Pesquisar</h1>
                     </div>
                     <div class="row mt-3">
-                        <form action="" action="get" id="formMeses">
+                        <form action="" method="get" id="formMeses">
                             <div class="row align-items-center justify-content-center">
                                 <div class="col-auto">
                                     <span>Cliente:</span>
@@ -63,18 +63,19 @@
                                 <div class="col-auto mes">
                                     <select name="mes" id="mes" class="form-select" style="display: inline">
                                         <?php
-                                        $meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-                                        $anos = [];
-                                        for ($i = 2025; $i <= date('Y'); $i++) {
-                                            $anos[] += $i;
-                                        }
                                         $mesAtual = date('m');
                                         $anoAtual = date('Y');
 
+                                        $meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+                                        $anos = [];
+                                        for ($i = 2025; $i <= $anoAtual; $i++) {
+                                            $anos[] += $i;
+                                        }
+                                        
                                         $i = 1;
                                         foreach ($meses as $mes):
                                         ?>
-                                            <option value='<?= $i ?>'><?= $mes ?></option>
+                                            <option value='<?= $i ?>' <?php if(isset($_GET["mes"]) && $_GET["mes"] == $i) echo 'selected' ?>><?= $mes?></option>
                                             <?php $i++; ?>
                                         <?php endforeach; ?>
                                     </select>
@@ -85,7 +86,7 @@
                                 <div class="col-auto mes">
                                     <select name="ano" id="ano" class="form-select">
                                         <?php foreach ($anos as $ano): ?>
-                                            <option value="<?= $ano ?>"><?= $ano ?></option>
+                                            <option value="<?= $ano ?>" <?php if(isset($_GET["ano"]) && $_GET["ano"] == $ano) echo 'selected' ?>><?= $ano ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -234,9 +235,7 @@
             elementosMes.forEach(item => item.style.display = "inline");
             elementosData.forEach(item => item.style.display = "none");
 
-            inputMes.value = mes;
             inputMes.disabled = false;
-            inputAno.value = ano;
             inputAno.disabled = false;
 
             inputDataInicio.value = "";
