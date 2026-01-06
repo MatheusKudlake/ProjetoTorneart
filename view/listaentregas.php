@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css">
+    <script src="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/ProjetoTorneart/assets/js/dselect.js"></script>
+    <link rel="stylesheet" href="/ProjetoTorneart/assets/css/dselect.scss">
+
     <title>Serviços</title>
 </head>
 <style>
@@ -34,11 +38,28 @@
                         <a href="/ProjetoTorneart/cadastrar-entrega" class="btn btn-primary col-11"><i class="bi bi-plus-circle"></i> Adicionar nova entrega</a>
                     </div>
                     <div class="row text-center">
-                        <h1 class="display-5">Pesquisar por mês</h1>
+                        <h1 class="display-5">Pesquisar</h1>
                     </div>
                     <div class="row mt-3">
                         <form action="" action="get" id="formMeses">
                             <div class="row align-items-center justify-content-center">
+                                <div class="col-auto">
+                                    <span>Cliente:</span>
+                                </div>
+                                <div class="col-3">
+                                    <select name="cliente" id="cliente" class="form-select">
+                                        <option value="0">Todos</option>
+                                        <?php foreach ($listaClientes as $cliente): ?>
+                                            <?php $idCliente = $cliente->getId() ?>
+                                            <option value="<?= $idCliente ?>" <?php if (isset($_GET["cliente"]) && $idCliente == $_GET["cliente"]) echo 'selected' ?>><?= $cliente->getNome() ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row align-items-center justify-content-center mt-3">
+                                <div class="col-auto">
+                                    <span>Data:</span>
+                                </div>
                                 <div class="col-auto mes">
                                     <select name="mes" id="mes" class="form-select" style="display: inline">
                                         <?php
@@ -240,7 +261,12 @@
         } else {
             divErro.style.display = "none";
         }
-    })
+    });
+
+    const selectClientes = document.getElementById("cliente");
+    dselect(selectClientes, {
+        search: true
+    });
 </script>
 
 </html>

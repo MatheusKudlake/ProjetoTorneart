@@ -34,12 +34,14 @@ class EntregaController
         $entregaDAO = new EntregaDAO();
         $clienteDAO = new ClienteDAO();
 
+        $listaClientes = $clienteDAO->get();
+
         if (empty($_GET)) {
             $listaEntregas = $entregaDAO->getPorMes(date('m'), date('Y'));
         } else if (isset($_GET["dataInicio"]) && isset($_GET["dataFinal"])) {
-            $listaEntregas = $entregaDAO->getPorIntervaloDatas($_GET["dataInicio"], $_GET["dataFinal"]);
+            $listaEntregas = $entregaDAO->getPorIntervaloDatas($_GET["dataInicio"], $_GET["dataFinal"], $_GET["cliente"] ?? 0);
         } else if (isset($_GET["mes"]) && isset($_GET["ano"])) {
-            $listaEntregas = $entregaDAO->getPorMes($_GET["mes"], $_GET["ano"]);
+            $listaEntregas = $entregaDAO->getPorMes($_GET["mes"], $_GET["ano"], $_GET["cliente"] ?? 0);
         } else {
             $listaEntregas = [];
         }

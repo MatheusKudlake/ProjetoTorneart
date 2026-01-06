@@ -71,9 +71,12 @@ class EntregaDAO
         }
     }
 
-    public function getPorMes($mes, $ano)
+    public function getPorMes($mes, $ano, $idCliente = 0)
     {
-        $sql = "SELECT * FROM entregas WHERE dataentrega >= :dataInicio AND dataentrega < :dataFinal;";
+        $sql = "SELECT * FROM entregas WHERE dataentrega >= :dataInicio AND dataentrega < :dataFinal";
+        if ($idCliente != 0) $sql .= " AND idcliente=:idcliente";
+        $sql .= ';';
+
         $dataInicio = (new DateTime("$ano-$mes-01"))->format('Y-m-d');
 
         if ($mes == 12) {
@@ -90,6 +93,7 @@ class EntregaDAO
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(':dataInicio', $dataInicio);
         $stmt->bindValue(':dataFinal', $dataFinal);
+        if ($idCliente != 0) $stmt->bindValue(':idcliente', $idCliente);
 
         $success = $stmt->execute();
 
@@ -105,9 +109,12 @@ class EntregaDAO
         }
     }
 
-    public function getPorIntervaloDatas($dataInicio, $dataFinal)
+    public function getPorIntervaloDatas($dataInicio, $dataFinal, $idCliente = 0)
     {
-        $sql = "SELECT * FROM entregas WHERE dataentrega >= :dataInicio AND dataentrega < :dataFinal;";
+        $sql = "SELECT * FROM entregas WHERE dataentrega >= :dataInicio AND dataentrega < :dataFinal";
+        if ($idCliente != 0) $sql .= " AND idcliente=:idcliente";
+        $sql .= ';';
+
         $dataFinal = new DateTime($dataFinal);
 
         $dataFinal->modify('tomorrow');
@@ -116,6 +123,8 @@ class EntregaDAO
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(':dataInicio', $dataInicio);
         $stmt->bindValue(':dataFinal', $dataFinal->format('Y-m-d'));
+        if ($idCliente != 0) $stmt->bindValue(':idcliente', $idCliente);
+
 
         $success = $stmt->execute();
 
