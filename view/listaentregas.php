@@ -16,6 +16,10 @@
     form {
         display: inline;
     }
+
+    .data {
+        display: none;
+    }
 </style>
 
 <body>
@@ -29,66 +33,55 @@
                     <div class="row justify-content-center">
                         <a href="/ProjetoTorneart/cadastrar-entrega" class="btn btn-primary col-11"><i class="bi bi-plus-circle"></i> Adicionar nova entrega</a>
                     </div>
+                    <div class="row text-center">
+                        <h1 class="display-5">Pesquisar por mês</h1>
+                    </div>
                     <div class="row mt-3">
                         <form action="" action="get" id="formMeses">
                             <div class="row align-items-center justify-content-center">
-                                <div class="col-auto">
-                                    <select name="startMonth" id="startMonth" class="form-select" style="display: inline">
+                                <div class="col-auto mes">
+                                    <select name="mes" id="mes" class="form-select" style="display: inline">
                                         <?php
                                         $meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-                                        ?>
-                                        <?php
-                                        $i = 1;
-                                        foreach ($meses as $mes) {
-                                            echo "<option value='$i'>$mes</option>";
-                                            $i++;
+                                        $anos = [];
+                                        for ($i = 2025; $i <= date('Y'); $i++) {
+                                            $anos[] += $i;
                                         }
+                                        $mesAtual = date('m');
+                                        $anoAtual = date('Y');
+
+                                        $i = 1;
+                                        foreach ($meses as $mes):
                                         ?>
+                                            <option value='<?= $i ?>'><?= $mes ?></option>
+                                            <?php $i++; ?>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <div class="col-auto">
+                                <div class="col-auto mes">
                                     <span>de</span>
                                 </div>
-                                <div class="col-auto">
-                                    <select name="startYear" id="startYear" class="form-select">
-                                        <option value="2025">2025</option>
-                                        <option value="2024">2024</option>
-                                        <option value="2023">2023</option>
+                                <div class="col-auto mes">
+                                    <select name="ano" id="ano" class="form-select">
+                                        <?php foreach ($anos as $ano): ?>
+                                            <option value="<?= $ano ?>"><?= $ano ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <div id="divIntervalo" style="display: none">
-                                    <div class="col-auto">
-                                        <span>até</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <select name="endMonth" id="endMonth" class="form-select" style="display: inline">
-                                            <option value="0">Mês...</option>
-                                            <?php
-                                            $i = 1;
-                                            foreach ($meses as $mes) {
-                                                echo "<option value='$i'>$mes</option>";
-                                                $i++;
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-auto">
-                                        <span>de</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <select name="endYear" id="endYear" class="form-select">
-                                            <option value="0">Ano...</option>
-                                            <option value="2025">2025</option>
-                                            <option value="2024">2024</option>
-                                            <option value="2023">2023</option>
-                                        </select>
-                                    </div>
+                                <div class="col-auto data">
+                                    <input type="date" id="dataInicio" name="dataInicio" class="form-control" disabled>
+                                </div>
+                                <div class="col-auto data">
+                                    <span><i class="bi bi-arrow-right"></i></span>
+                                </div>
+                                <div class="col-auto data">
+                                    <input type="date" id="dataFinal" name="dataFinal" class="form-control" disabled>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-check d-flex justify-content-center mt-2">
                                     <input type="checkbox" id="checkIntervalo" class="form-check-input me-2">
-                                    <label for="intervalo" class="form-check-label">Selecionar intervalo de meses</label>
+                                    <label for="checkIntervalo" class="form-check-label">Selecionar intervalo de datas</label>
                                 </div>
                             </div>
                             <div class="row justify-content-center mt-2">
@@ -101,6 +94,7 @@
                     </div>
 
                     <?php if (!empty($listaEntregas)): ?>
+                        <h1 class="display-5">Teste</h1>
                         <div class="row justify-content-center">
                             <table class="table mt-3">
                                 <thead>
@@ -170,28 +164,77 @@
 
 <script>
     const checkIntervalo = document.getElementById("checkIntervalo");
-    const divIntervalo = document.getElementById("divIntervalo");
+    const elementosData = Array.from(document.getElementsByClassName("data"));
+    const elementosMes = Array.from(document.getElementsByClassName("mes"));
+    const inputMes = document.getElementById("mes");
+    const inputAno = document.getElementById("ano");
+    const inputDataInicio = document.getElementById("dataInicio");
+    const inputDataFinal = document.getElementById("dataFinal");
 
+    const data = new Date();
+    const mes = data.getMonth() + 1;
+    const ano = data.getFullYear();
 
-    checkIntervalo.addEventListener("change", () => {
-        if (checkIntervalo.checked) {
-            divIntervalo.style.display = "inline";
-        } else {
-            divIntervalo.style.display = "none";
-            document.getElementById('endYear').value = 0;
-            document.getElementById('endMonth').value = 0;
+    <?php $modoData = isset($_GET["dataInicio"]) && isset($_GET["dataFinal"]) ?>
+    document.addEventListener("DOMContentLoaded", function() {
+        alternarModoData(<?= json_encode($modoData) ?>);
+        if (<?= json_encode($modoData) ?>) {
+            inputDataInicio.value = <?= json_encode($_GET["dataInicio"] ?? null)  ?>;
+            inputDataFinal.value = <?= json_encode($_GET["dataFinal"] ?? null) ?>;
+            checkIntervalo.checked = true;
+
+            const url = new URL(window.location);
+            url.searchParams.delete('mes');
+            url.searchParams.delete('ano');
+            window.history.replaceState({}, '', url);
+
         }
     });
 
+    checkIntervalo.addEventListener("change", function() {
+        alternarModoData(checkIntervalo.checked);
+    });
+
+    function alternarModoData(valor) {
+        if (valor) {
+            elementosMes.forEach(item => item.style.display = "none");
+            elementosData.forEach(item => item.style.display = "inline");
+
+            inputMes.value = "";
+            inputMes.disabled = true;
+            inputAno.value = "";
+            inputAno.disabled = true;
+
+            inputDataInicio.value = "";
+            inputDataInicio.disabled = false;
+            inputDataFinal.value = "";
+            inputDataFinal.disabled = false;
+        } else {
+            elementosMes.forEach(item => item.style.display = "inline");
+            elementosData.forEach(item => item.style.display = "none");
+
+            inputMes.value = mes;
+            inputMes.disabled = false;
+            inputAno.value = ano;
+            inputAno.disabled = false;
+
+            inputDataInicio.value = "";
+            inputDataInicio.disabled = true;
+            inputDataFinal.value = "";
+            inputDataFinal.disabled = true;
+
+        }
+    }
+
+    inputDataInicio.addEventListener('change', function() {
+        inputDataFinal.min = inputDataInicio.value;
+    })
+
     const formMeses = document.getElementById("formMeses");
     formMeses.addEventListener("submit", function(e) {
-        const startMonth = document.getElementById('startMonth').value;
-        const endMonth = document.getElementById('endMonth').value;
-        const startYear = document.getElementById('startYear').value;
-        const endYear = document.getElementById('endYear').value;
-
         const divErro = document.getElementById('divErro');
-        if ((endYear != 0 || endMonth != 0) && (endYear < startYear || (endYear == startYear && endMonth < startMonth))) {
+
+        if (inputDataInicio.value > inputDataFinal.value) {
             e.preventDefault();
             divErro.style.display = "block";
         } else {

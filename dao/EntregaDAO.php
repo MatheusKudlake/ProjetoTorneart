@@ -71,6 +71,66 @@ class EntregaDAO
         }
     }
 
+    public function getPorMes($mes, $ano)
+    {
+        $sql = "SELECT * FROM entregas WHERE dataentrega >= :dataInicio AND dataentrega < :dataFinal;";
+        $dataInicio = (new DateTime("$ano-$mes-01"))->format('Y-m-d');
+
+        if ($mes == 12) {
+            $mesFinal = 1;
+            $anoFinal = $ano + 1;
+        } else {
+            $mesFinal = $mes + 1;
+            $anoFinal = $ano;
+        }
+
+        $dataFinal = (new DateTime("$anoFinal-$mesFinal-01"))->format('Y-m-d');
+
+        $conn = ConnectionFactory::getConnection();
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':dataInicio', $dataInicio);
+        $stmt->bindValue(':dataFinal', $dataFinal);
+
+        $success = $stmt->execute();
+
+        if ($success) {
+            $lista = [];
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($result as $row) {
+                $lista[] = $this->converterParaObj($row);
+            }
+            return $lista;
+        } else {
+            return false;
+        }
+    }
+
+    public function getPorIntervaloDatas($dataInicio, $dataFinal)
+    {
+        $sql = "SELECT * FROM entregas WHERE dataentrega >= :dataInicio AND dataentrega < :dataFinal;";
+        $dataFinal = new DateTime($dataFinal);
+
+        $dataFinal->modify('tomorrow');
+
+        $conn = ConnectionFactory::getConnection();
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':dataInicio', $dataInicio);
+        $stmt->bindValue(':dataFinal', $dataFinal->format('Y-m-d'));
+
+        $success = $stmt->execute();
+
+        if ($success) {
+            $lista = [];
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($result as $row) {
+                $lista[] = $this->converterParaObj($row);
+            }
+            return $lista;
+        } else {
+            return false;
+        }
+    }
+
     public function getPorId($id)
     {
         try {
