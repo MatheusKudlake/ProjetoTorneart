@@ -4,7 +4,7 @@ const caixaCusto = document.getElementById("custo");
 const caixaQuant = document.getElementById("quant");
 
 const formServico = document.getElementById("formServico");
-const textoNenhumServico = document.getElementById("textoNenhumServico");
+const msgErro = document.getElementById("msgErro");
 
 const formFinal = document.getElementById("formFinal");
 const inputServicos = document.getElementById("servicosJson");
@@ -19,6 +19,8 @@ const data = new Date();
 const textoPrecoTotal = document.getElementById("precoTotal");
 const labelLucro = document.getElementById("labelLucro");
 const textoLucro = document.getElementById("lucro");
+
+const tabela = document.getElementById("tabela");
 
 if (textoPrecoTotal) {
   function atualizarPreco() {
@@ -70,12 +72,15 @@ if (formServico) {
     event.preventDefault();
 
     const peca = this.peca.value;
-    const nomePeca = this.peca.options[this.peca.selectedIndex].text;
     const preco = this.preco.value;
     const custo = this.custo.value;
     const quant = this.quantidade.value;
 
-    if (peca && preco && quant > 0) {
+    if(servicos.find(servico => servico.peca == peca) !== undefined){
+      msgErro.innerHTML = "Peça já registrada!";
+      msgErro.style.color = 'red';
+      msgErro.style.display = 'block';
+    }else if (peca && preco && quant > 0) {
       servicos.push({
         peca,
         quant,
@@ -83,21 +88,49 @@ if (formServico) {
         custo,
       });
 
-      textoNenhumServico.style.display = "none";
+      atualizarTabela();
+
+      msgErro.style.display = "none";
       tabela.style.display = "block";
       divCheckPago.style.display = "block";
-
-      const linha = tabela.insertRow();
-      linha.insertCell().textContent = nomePeca;
-      linha.insertCell().textContent = quant;
-      linha.insertCell().textContent = "R$" + preco * quant;
-      linha.insertCell().textContent = "R$" + custo;
-      linha.insertCell().textContent = "R$" + (preco * quant - custo);
 
       inputServicos.value = JSON.stringify(servicos);
 
       this.reset();
     }
+  });
+}
+
+function atualizarTabela() {
+  const tbody = tabela.querySelector("tbody");
+  tbody.innerHTML = '';
+
+  console.log(servicos);
+  servicos.forEach((servico) => {
+    const linha = tbody.insertRow();
+    linha.insertCell().textContent = formServico.peca.options[formServico.peca.selectedIndex].text;
+    linha.insertCell().textContent = servico.quant;
+    linha.insertCell().textContent = "R$" + servico.preco * servico.quant;
+    linha.insertCell().textContent = "R$" + servico.custo;
+    linha.insertCell().textContent =
+      "R$" + (servico.preco * servico.quant - servico.custo);
+
+    const botaoExcluir = document.createElement("button");
+    botaoExcluir.type = "button";
+    botaoExcluir.classList.add("btn", "btn-sm", "btn-danger");
+    botaoExcluir.dataset.idPeca = servico.peca;
+    botaoExcluir.onclick = () => {
+    servicos = servicos.filter(
+        servico => servico.peca != botaoExcluir.dataset.idPeca
+      );
+      atualizarTabela();
+    };
+
+    const icone = document.createElement("i");
+    icone.classList.add("bi", "bi-trash");
+    botaoExcluir.appendChild(icone);
+
+    linha.insertCell().appendChild(botaoExcluir);
   });
 }
 

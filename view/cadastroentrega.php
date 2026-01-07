@@ -21,11 +21,6 @@
         margin-bottom: 3%;
     }
 
-    table {
-        table-layout: fixed;
-        width: 100%;
-    }
-
     .td-texto {
         max-width: 200px;
         white-space: normal;
@@ -129,8 +124,6 @@
                                 </div>
                                 <div class="col-6">
                                     <h1 class="display-3">Serviços:</h1>
-                                    <p id="textoNenhumServico">Nenhum serviço cadastrado!</p>
-
                                     <table class="table table-striped" id="tabela" style="display:none">
                                         <thead>
                                             <tr>
@@ -142,18 +135,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php if (isset($listaServicos)): ?>
-                                                <?php foreach ($listaServicos as $servico): ?>
-                                                    <tr>
-                                                        <td class="td-texto" scope="row"><?= $servico->getPeca()->getNome() ?></td>
-                                                        <td><?= $servico->getQuantidade() ?></td>
-                                                        <td><?= $servico->getPeca()->getPreco() * $servico->getQuantidade() ?></td>
-                                                        <td><?= $servico->getCusto() ?></td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            <?php endif; ?>
                                         </tbody>
                                     </table>
+                                    <p id="msgErro">Nenhum serviço cadastrado!</p>
                                     <div class="col-auto form-check" style="display: none" id="divCheckPago">
                                         <input type="checkbox" name="pago" class="form-check-input" id="checkPago">
                                         <label for="pago" class="form-check-label">Pago</label>

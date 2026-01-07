@@ -25,10 +25,6 @@
         display: none;
     }
 
-    table {
-        table-layout: fixed;
-        width: 100%;
-    }
 
     .td-texto {
         max-width: 200px;
