@@ -20,6 +20,17 @@
     .form-group {
         margin-bottom: 3%;
     }
+
+    table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    .td-texto {
+        max-width: 200px;
+        white-space: normal;
+        word-break: break-word;
+    }
 </style>
 
 <body>
@@ -123,10 +134,10 @@
                                     <table class="table table-striped" id="tabela" style="display:none">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Peça</td>
-                                                <th scope="col">Quant.</td>
-                                                <th scope="col">Preço (total)</td>
-                                                <th scope="col">Custo</td>
+                                                <th scope="col">Peça</th>
+                                                <th scope="col">Quant.</th>
+                                                <th scope="col">Preço (total)</th>
+                                                <th scope="col">Custo</th>
                                                 <th scope="col">Lucro</th>
                                             </tr>
                                         </thead>
@@ -134,7 +145,7 @@
                                             <?php if (isset($listaServicos)): ?>
                                                 <?php foreach ($listaServicos as $servico): ?>
                                                     <tr>
-                                                        <th scope="row"><?= $servico->getPeca()->getNome() ?></th>
+                                                        <td class="td-texto" scope="row"><?= $servico->getPeca()->getNome() ?></td>
                                                         <td><?= $servico->getQuantidade() ?></td>
                                                         <td><?= $servico->getPeca()->getPreco() * $servico->getQuantidade() ?></td>
                                                         <td><?= $servico->getCusto() ?></td>

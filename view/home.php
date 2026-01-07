@@ -29,8 +29,8 @@
                 <h1 class="display-1">TORNEART</h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col-4">
+        <div class="row justify-content-center">
+            <div class="col-5">
                 <div class="card">
                     <div class="card-header text-center">
                         <h1>Clientes</h1>
@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-5">
                 <div class="card">
                     <div class="card-header text-center">
                         <h1>Entregas</h1>
@@ -55,20 +55,6 @@
                     </div>
                     <div class="card-footer">
                         <a href="entregas" class="col-12 my-1 btn btn-primary"><i class="bi bi-box-arrow-in-right"></i> Acessar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-header text-center">
-                        <h1>Renda</h1>
-                    </div>
-                    <div class="card-body text-center">
-                        <h2><i class="bi bi-cash-coin icon"></i></h2>
-                        <p>Visualizar a renda de cada mês</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="col-12 my-1 btn btn-primary"><i class="bi bi-box-arrow-in-right"></i> Acessar</a>
                     </div>
                 </div>
             </div>

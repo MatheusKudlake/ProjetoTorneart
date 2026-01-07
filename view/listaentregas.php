@@ -25,18 +25,15 @@
         display: none;
     }
 
-    .td-texto {
-        /* Cortando texto */
-        /*max-width: 200px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;*/
+    table {
+        table-layout: fixed;
+        width: 100%;
+    }
 
-        /* Quebrando entre palavras */
+    .td-texto {
         max-width: 200px;
         white-space: normal;
         word-break: break-word;
-
     }
 </style>
 
@@ -148,7 +145,7 @@
                                                 <td class="td-texto"><?= $entrega->getDescricao() ?></td>
                                                 <?php $pago = $entrega->getPago(); ?>
                                                 <td class="td-texto"><?= $clienteDAO->getPorId($entrega->getIdCliente())->getNome() ?></td>
-                                                <td><?= $pago ? DateTime::createFromFormat('Y-m-d' ,$entrega->getDataEntrega())->format('d/m/Y') : "" ?></td>
+                                                <td><?= $pago ? DateTime::createFromFormat('Y-m-d', $entrega->getDataEntrega())->format('d/m/Y') : "" ?></td>
                                                 <td style="color: <?= $pago ? "green" : "red" ?>; font-weight: bold"><?= $pago ? "Sim" : "Não" ?></td>
                                                 <?php $lucroTotal = $entrega->getLucroTotal(); ?>
                                                 <td style="color: <?php
