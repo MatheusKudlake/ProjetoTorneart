@@ -44,7 +44,7 @@
                     <?php if (isset($_GET["cliente"])): ?>
                         <div class="row">
                             <?php if (empty($listaPecas)): ?>
-                                <p >Nenhuma peça cadastrada no sistema! <a href="cliente/<?= $_GET["cliente"] ?>/pecas">Cadastrar peças para o cliente</a></p>
+                                <p>Nenhuma peça cadastrada no sistema! <a href="cliente/<?= $_GET["cliente"] ?>/pecas">Cadastrar peças para o cliente</a></p>
                             <?php else: ?>
                                 <div class="col-6">
                                     <h1 class="display-3 mb-4">Cadastro:</h1>
@@ -148,6 +148,14 @@
                                 <input type="hidden" name="idcliente" value="<?= $_GET["cliente"] ?>">
                                 <input type="hidden" name="dataentrega" id="dataEntrega">
                                 <input type="hidden" name="datapagamento" id="dataPagamento" value="">
+                                <div class="row align-items-center justify-content-between form-group mb-0">
+                                    <div class="col-auto">
+                                        <label for="descricao" class="form-label">Descrição:</label>
+                                    </div>
+                                    <div class="col-10">
+                                        <input type="text" id="descricao" name="descricao" class="form-control">
+                                    </div>
+                                </div>
                                 <div class="row mt-3">
                                     <button type="submit" class="btn btn-success">Enviar</button>
                                 </div>

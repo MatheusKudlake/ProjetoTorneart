@@ -24,6 +24,20 @@
     .data {
         display: none;
     }
+
+    .td-texto {
+        /* Cortando texto */
+        /*max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;*/
+
+        /* Quebrando entre palavras */
+        max-width: 200px;
+        white-space: normal;
+        word-break: break-word;
+
+    }
 </style>
 
 <body>
@@ -71,11 +85,11 @@
                                         for ($i = 2025; $i <= $anoAtual; $i++) {
                                             $anos[] += $i;
                                         }
-                                        
+
                                         $i = 1;
                                         foreach ($meses as $mes):
                                         ?>
-                                            <option value='<?= $i ?>' <?php if(isset($_GET["mes"]) && $_GET["mes"] == $i) echo 'selected' ?>><?= $mes?></option>
+                                            <option value='<?= $i ?>' <?php if (isset($_GET["mes"]) && $_GET["mes"] == $i) echo 'selected' ?>><?= $mes ?></option>
                                             <?php $i++; ?>
                                         <?php endforeach; ?>
                                     </select>
@@ -86,7 +100,7 @@
                                 <div class="col-auto mes">
                                     <select name="ano" id="ano" class="form-select">
                                         <?php foreach ($anos as $ano): ?>
-                                            <option value="<?= $ano ?>" <?php if(isset($_GET["ano"]) && $_GET["ano"] == $ano) echo 'selected' ?>><?= $ano ?></option>
+                                            <option value="<?= $ano ?>" <?php if (isset($_GET["ano"]) && $_GET["ano"] == $ano) echo 'selected' ?>><?= $ano ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -120,11 +134,10 @@
                         <div class="row justify-content-center">
                             <table class="table mt-3">
                                 <thead>
-                                    <th scope="col">ID</th>
+                                    <th scope="col">Desc.</th>
                                     <th scope="col">Cliente</th>
                                     <th scope="col">Data</th>
                                     <th scope="col">Pago?</th>
-                                    <th scope="col">Data de pagamento</th>
                                     <th scope="col">Lucro</th>
                                     <th scope="col">Ações</th>
                                 </thead>
@@ -132,12 +145,11 @@
                                     <?php if (isset($listaEntregas)): ?>
                                         <?php foreach ($listaEntregas as $entrega): ?>
                                             <tr>
+                                                <td class="td-texto"><?= $entrega->getDescricao() ?></td>
                                                 <?php $pago = $entrega->getPago(); ?>
-                                                <td scope="row"><?= $entrega->getId() ?></td>
-                                                <td><?= $clienteDAO->getPorId($entrega->getIdCliente())->getNome() ?></td>
-                                                <td><?= $entrega->getDataEntrega() ?></td>
+                                                <td class="td-texto"><?= $clienteDAO->getPorId($entrega->getIdCliente())->getNome() ?></td>
+                                                <td><?= $pago ? DateTime::createFromFormat('Y-m-d' ,$entrega->getDataEntrega())->format('d/m/Y') : "" ?></td>
                                                 <td style="color: <?= $pago ? "green" : "red" ?>; font-weight: bold"><?= $pago ? "Sim" : "Não" ?></td>
-                                                <td><?= $pago ? $entrega->getDataPagamento() : "" ?></td>
                                                 <?php $lucroTotal = $entrega->getLucroTotal(); ?>
                                                 <td style="color: <?php
                                                                     if ($lucroTotal > 0) {
@@ -151,7 +163,8 @@
                                                     <?php
                                                     if ($lucroTotal) echo "R$ " . $lucroTotal ?>
                                                 </td>
-                                                <td><a href="entregas/<?= $entrega->getId() ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                                                <td>
+                                                    <a href="entregas/<?= $entrega->getId() ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
                                                     <form action="entregas/<?= $entrega->getId() ?>" method="post">
                                                         <input type="hidden" name="identrega" value="<?= $entrega->getId() ?>">
                                                         <input type="hidden" name="method" value="DELETE">
@@ -162,9 +175,9 @@
                                                         <input type="hidden" name="pago" value="<?= $entrega->getPago() ?>">
                                                         <input type="hidden" name="method" value="PUT">
                                                         <?php if (!$entrega->getPago()): ?>
-                                                            <button type="submit" class="btn btn-success"><i class="bi bi-check-lg"></i> Marcar como pago</button>
+                                                            <button type="submit" class="btn btn-success"><i class="bi bi-check-lg"></i> Marcar pago</button>
                                                         <?php else: ?>
-                                                            <button type="submit" class="btn btn-danger"><i class="bi bi-x-lg"></i> Marcar como não pago</button>
+                                                            <button type="submit" class="btn btn-danger"><i class="bi bi-x-lg"></i> Marcar não pago</button>
                                                         <?php endif; ?>
                                                     </form>
                                                 </td>

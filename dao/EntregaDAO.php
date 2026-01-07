@@ -4,10 +4,11 @@ class EntregaDAO
     public function inserir(Entrega $entrega)
     {
         try {
-            $sql = "INSERT INTO entregas (idcliente, dataentrega, pago, datapagamento, lucrototal) VALUES (:idcliente, :dataentrega, :pago, :datapagamento, :lucrototal);";
+            $sql = "INSERT INTO entregas (idcliente, descricao, dataentrega, pago, datapagamento, lucrototal) VALUES (:idcliente, :descricao, :dataentrega, :pago, :datapagamento, :lucrototal);";
             $conn = ConnectionFactory::getConnection();
             $stmt = $conn->prepare($sql);
             $stmt->bindValue(':idcliente', $entrega->getIdCliente());
+            $stmt->bindValue(':descricao', $entrega->getDescricao());
             $stmt->bindValue(':dataentrega', $entrega->getDataEntrega());
             $stmt->bindValue(':pago', $entrega->getPago());
             $stmt->bindValue(':datapagamento', $entrega->getDataPagamento());
@@ -24,9 +25,10 @@ class EntregaDAO
             $conn = ConnectionFactory::getConnection();
             $conn->beginTransaction();
 
-            $sqlEntrega = "INSERT INTO entregas (idcliente, dataentrega, pago, datapagamento, lucrototal) VALUES (:idcliente, :dataentrega, :pago, :datapagamento, :lucrototal);";
+            $sqlEntrega = "INSERT INTO entregas (idcliente, descricao, dataentrega, pago, datapagamento, lucrototal) VALUES (:idcliente, :descricao, :dataentrega, :pago, :datapagamento, :lucrototal);";
             $stmt = $conn->prepare($sqlEntrega);
             $stmt->bindValue(':idcliente', $entrega->getIdCliente());
+            $stmt->bindValue(':descricao', $entrega->getDescricao());
             $stmt->bindValue(':dataentrega', $entrega->getDataEntrega());
             $stmt->bindValue(':pago', $entrega->getPago());
             $stmt->bindValue(':datapagamento', $entrega->getDataPagamento());
@@ -170,11 +172,12 @@ class EntregaDAO
     public function update(Entrega $novaEntrega)
     {
         try {
-            $sql = "UPDATE entregas SET pago=:pago, datapagamento=:datapagamento, dataentrega=:dataentrega, lucrototal=:lucrototal WHERE id=:id;";
+            $sql = "UPDATE entregas SET pago=:pago, datapagamento=:datapagamento, dataentrega=:dataentrega, descricao=:descricao, lucrototal=:lucrototal WHERE id=:id;";
             $conn = ConnectionFactory::getConnection();
             $stmt = $conn->prepare($sql);
             $stmt->bindValue(':pago', $novaEntrega->getPago());
             $stmt->bindValue(':datapagamento', $novaEntrega->getDataPagamento());
+            $stmt->bindValue(':descricao', $novaEntrega->getDescricao());
             $stmt->bindValue(':dataentrega', $novaEntrega->getDataEntrega());
             $stmt->bindValue(':lucrototal', $novaEntrega->getLucroTotal());
             $stmt->bindValue(':id', $novaEntrega->getId());
@@ -231,6 +234,7 @@ class EntregaDAO
         $entrega = new Entrega();
         $entrega->setId($row["id"]);
         $entrega->setIdCliente($row["idcliente"]);
+        $entrega->setDescricao($row["descricao"]);
         $entrega->setDataEntrega($row["dataentrega"]);
         $entrega->setPago($row["pago"]);
         $entrega->setDataPagamento($row["datapagamento"]);

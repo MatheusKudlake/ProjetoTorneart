@@ -1,57 +1,81 @@
 <?php
-class Entrega{
-    private $id;
-    private $idCliente;
-    private $dataEntrega;
-    private $pago;
-    private $dataPagamento;
+class Entrega
+{
+	private $id;
+	private $idCliente;
+	private $descricao;
+	private $dataEntrega;
+	private $pago;
+	private $dataPagamento;
 	private $lucroTotal;
 
-	public function getId() {
+	public function getId()
+	{
 		return $this->id;
 	}
 
-	public function setId($value) {
+	public function setId($value)
+	{
 		$this->id = $value;
 	}
 
-	public function getIdCliente() {
+	public function getIdCliente()
+	{
 		return $this->idCliente;
 	}
 
-	public function setIdCliente($value) {
+	public function setIdCliente($value)
+	{
 		$this->idCliente = $value;
 	}
 
-	public function getDataEntrega() {
+	public function getDescricao()
+	{
+		return $this->descricao;
+	}
+
+	public function setDescricao($value)
+	{
+		$this->descricao = $value;
+	}
+
+	public function getDataEntrega()
+	{
 		return $this->dataEntrega;
 	}
 
-	public function setDataEntrega($value) {
+	public function setDataEntrega($value)
+	{
 		$this->dataEntrega = $value;
 	}
 
-	public function getPago() {
+	public function getPago()
+	{
 		return $this->pago;
 	}
 
-	public function setPago($value) {
+	public function setPago($value)
+	{
 		$this->pago = $value;
 	}
 
-	public function getDataPagamento() {
+	public function getDataPagamento()
+	{
 		return $this->dataPagamento;
 	}
 
-	public function setDataPagamento($value) {
+	public function setDataPagamento($value)
+	{
 		$this->dataPagamento = $value;
 	}
 
-	public function getLucroTotal() {
+	public function getLucroTotal()
+	{
 		return $this->lucroTotal;
 	}
 
-	public function setLucroTotal($value) {
+	public function setLucroTotal($value)
+	{
 		$this->lucroTotal = $value;
 	}
 }

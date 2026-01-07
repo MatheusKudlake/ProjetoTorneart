@@ -216,6 +216,15 @@ error_reporting(E_ALL);
                                     value="<?= $entrega->getDataEntrega() ?>">
                             </div>
                         </div>
+                        <div class="row align-items-center justify-content-between form-group mb-0 mt-3">
+                            <div class="col-auto">
+                                <label for="descricao" class="form-label">Descrição:</label>
+                            </div>
+                            <div class="col-10">
+                                <input type="text" id="descricao" name="descricao" class="form-control" value="<?= $entrega->getDescricao() ?>">
+                            </div>
+                        </div>
+
                         <div class="row mt-3">
                             <button type="submit" class="btn btn-success col-12"><i class="bi bi-check-lg"></i> Atualizar</button>
                         </div>
