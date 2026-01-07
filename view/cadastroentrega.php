@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css">
+    <script src="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/ProjetoTorneart/assets/js/dselect.js"></script>
+    <link rel="stylesheet" href="/ProjetoTorneart/assets/css/dselect.scss">
+
     <title>Cadastrar serviço</title>
 </head>
 <style>
@@ -51,21 +55,22 @@
                                 <div class="col-6">
                                     <h1 class="display-3 mb-4">Cadastro:</h1>
                                     <form id="formServico">
+                                        <div class="row form-group">
+                                            <div class="col-3">
+                                                <label for="peca" class="form-label">Peça:</label>
+                                            </div>
+                                            <div class="col-6">
+                                                <select name="peca" id="selectPeca" class="form-select">
+                                                    <option value="">Selecionar...</option>
+                                                    <?php foreach ($listaPecas as $peca): ?>
+                                                        <option value="<?= $peca->getId() ?>" data-preco="<?= $peca->getPreco() ?>"><?= $peca->getNome() ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+
+                                        </div>
                                         <div class="row">
                                             <div class="col-6">
-                                                <div class="row align-items-center justify-content-between form-group">
-                                                    <div class="col-auto">
-                                                        <label for="peca" class="form-label">Peça:</label>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <select name="peca" id="selectPeca" class="form-select">
-                                                            <option value="">Selecionar...</option>
-                                                            <?php foreach ($listaPecas as $peca): ?>
-                                                                <option value="<?= $peca->getId() ?>" data-preco="<?= $peca->getPreco() ?>"><?= $peca->getNome() ?></option>
-                                                            <?php endforeach; ?>
-                                                        </select>
-                                                    </div>
-                                                </div>
                                                 <div class="row align-items-center justify-content-between form-group">
                                                     <div class="col-auto">
                                                         <label for="preco" class="form-label">Preço (unit.):</label>

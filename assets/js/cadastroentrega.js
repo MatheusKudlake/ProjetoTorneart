@@ -20,12 +20,11 @@ const textoPrecoTotal = document.getElementById("precoTotal");
 const labelLucro = document.getElementById("labelLucro");
 const textoLucro = document.getElementById("lucro");
 
-if(textoPrecoTotal){
+if (textoPrecoTotal) {
   function atualizarPreco() {
-  
     let precoTotal = caixaPreco.value * caixaQuant.value;
     let lucro = precoTotal - caixaCusto.value;
-  
+
     if (precoTotal == 0) {
       textoPrecoTotal.innerHTML = "não definido";
       textoLucro.innerHTML = "não definido";
@@ -119,3 +118,7 @@ if (inputDataEntrega) {
 if (textoPrecoTotal) {
   atualizarPreco();
 }
+
+dselect(select, {
+  search: true,
+});
