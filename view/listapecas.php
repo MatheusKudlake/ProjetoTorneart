@@ -163,6 +163,10 @@
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
+                    <?php else: ?>
+                        <div class="row text-center mt-3">
+                            <p>Nenhuma peça cadastrada ainda!</p>
+                        </div>
                     <?php endif; ?>
                 </div>
                 <div class="card-footer text-center">

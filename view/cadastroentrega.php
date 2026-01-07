@@ -44,7 +44,9 @@
                     <?php if (isset($_GET["cliente"])): ?>
                         <div class="row">
                             <?php if (empty($listaPecas)): ?>
-                                <p>Nenhuma peça cadastrada no sistema! <a href="cliente/<?= $_GET["cliente"] ?>/pecas">Cadastrar peças para o cliente</a></p>
+                                <div class="row text-center mt-3">
+                                    <p>Nenhuma peça cadastrada no sistema! <a href="cliente/<?= $_GET["cliente"] ?>/pecas">Cadastrar peças para o cliente</a></p>
+                                </div>
                             <?php else: ?>
                                 <div class="col-6">
                                     <h1 class="display-3 mb-4">Cadastro:</h1>
