@@ -154,7 +154,7 @@
                                     <tr>
                                         <td scope="row"> <?= $peca->getId() ?> </td>
                                         <td> <?= $peca->getNome() ?></td>
-                                        <td> <?= $peca->getPreco() ?></td>
+                                        <td> <?='R$ ' . $peca->getPreco() ?></td>
                                         <td>
                                             <a href="pecas?editar=<?= $peca->getId() ?>" name="editar" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
                                             <a href="?excluir=<?= $peca->getId() ?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
