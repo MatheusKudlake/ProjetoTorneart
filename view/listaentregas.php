@@ -75,7 +75,7 @@
 
                                         $meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
                                         $anos = [];
-                                        for ($i = 2025; $i <= $anoAtual; $i++) {
+                                        for ($i = $anoAtual; $i >= 2025; $i--) {
                                             $anos[] += $i;
                                         }
 
