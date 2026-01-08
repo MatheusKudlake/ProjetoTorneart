@@ -12,6 +12,10 @@ error_reporting(E_ALL);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css" />
+    <script src="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/ProjetoTorneart/assets/js/dselect.js"></script>
+    <link rel="stylesheet" href="/ProjetoTorneart/assets/css/dselect.scss">
+
     <title>Lista de Serviços</title>
 </head>
 <style>
@@ -44,7 +48,7 @@ error_reporting(E_ALL);
                                     <label for="peca" class="form-label">Peça:</label>
                                 </div>
                                 <div class="col-4">
-                                    <select name="idpeca" class="form-select">
+                                    <select name="idpeca" id="selectPecaEdicao" class="form-select">
                                         <?php foreach ($listaPecas as $peca): ?>
                                             <option value="<?= $peca->getId() ?>" <?php if ($peca->getId() == $_GET["editarServico"]) {
                                                                                         echo 'selected';
@@ -57,7 +61,7 @@ error_reporting(E_ALL);
                                     <label for="quant" class="form-label">Quant.:</label>
                                 </div>
                                 <div class="col-2">
-                                    <input type="text" class="form-control" name="quantidade" id="quant"
+                                    <input type="text" class="form-control" name="quantidade" id="quantEditar"
                                         value="<?= $servicoEditar->getQuantidade() ?>">
                                 </div>
                             </div>
@@ -66,8 +70,8 @@ error_reporting(E_ALL);
                                 <div class="col-auto">
                                     <label for="preco" class="form-label">Preço:</label>
                                 </div>
-                                <div class="col-2">
-                                    <input type="text" class="form-control" name="preco" id="preco"
+                                <div class="col-3">
+                                    <input type="text" class="form-control" name="preco" id="precoEditar"
                                         value="<?= $servicoEditar->getPreco() ?>">
                                 </div>
 
@@ -75,7 +79,7 @@ error_reporting(E_ALL);
                                     <label for="custo" class="form-label">Custo:</label>
                                 </div>
                                 <div class="col-2">
-                                    <input type="text" class="form-control" name="custo" id="custo"
+                                    <input type="text" class="form-control" name="custo" id="custoEditar"
                                         value="<?= $servicoEditar->getCusto() ?>">
                                 </div>
                             </div>
@@ -109,7 +113,7 @@ error_reporting(E_ALL);
                                 <label for="peca" class="form-label">Peça:</label>
                             </div>
                             <div class="col-4">
-                                <select name="idpeca" id="selectPeca" class="form-select">
+                                <select name="idpeca" id="selectPecaCadastro" class="form-select">
                                     <option value="">Selecionar...</option>
                                     <?php foreach ($listaPecas as $peca): ?>
                                         <option value="<?= $peca->getId() ?>" data-preco=<?= $peca->getPreco() ?>><?= $peca->getNome() ?></option>
@@ -128,15 +132,15 @@ error_reporting(E_ALL);
                             <div class="col-auto">
                                 <label for="preco" class="form-label">Preço:</label>
                             </div>
-                            <div class="col-2">
-                                <input type="text" class="form-control" name="preco" id="preco">
+                            <div class="col-3">
+                                <input type="text" class="form-control" name="preco" id="precoCadastro">
                             </div>
 
                             <div class="col-auto">
                                 <label for="custo" class="form-label">Custo:</label>
                             </div>
                             <div class="col-2">
-                                <input type="text" class="form-control" name="custo" id="custo">
+                                <input type="text" class="form-control" name="custo" id="custoCadastro">
                             </div>
                         </div>
                         <input type="hidden" name="identrega" value="<?= $entrega->getId() ?>">
@@ -238,23 +242,20 @@ error_reporting(E_ALL);
         </div>
     </div>
 </body>
-<script src="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/js/bootstrap.min.js"></script>
 <script src="/ProjetoTorneart/assets/js/modal.js"></script>
-<script src="/ProjetoTorneart/assets/js/cadastroentrega.js"></script>
-<script>
-    <?php if (isset($_GET["editarServico"])): ?>
+<?php if (isset($_GET["editarServico"])): ?>
+    <script>
         abrirModal("modalEditar");
-    <?php endif; ?>
-</script>
+    </script>
+<?php endif; ?>
 <script>
     const pago = document.getElementById('pago');
     const dataPagamento = document.getElementById('datapagamento');
+    const data = new Date();
 
     let hoje = data.getFullYear();
     hoje += data.getMonth() < 9 ? "-0" + (data.getMonth() + 1) : "-" + (data.getMonth() + 1);
     hoje += data.getDate() < 10 ? "-0" + data.getDate() : "-" + data.getDate();
-
-    console.log(hoje);
 
     pago.addEventListener("change", function() {
         if (this.checked) {
@@ -263,6 +264,21 @@ error_reporting(E_ALL);
             dataPagamento.value = "";
         }
     });
+
+    document.getElementById('selectPecaCadastro').addEventListener('change', function() {
+        document.getElementById('precoCadastro').value = this.options[this.selectedIndex].dataset.preco || "";
+    });
+
+    dselect(document.getElementById('selectPecaCadastro'), {
+        search: true
+    });
+
+    const selectPecaEdicao = document.getElementById('selectPecaEdicao');
+    if (selectPecaEdicao) {
+        dselect(selectPecaEdicao, {
+            search: true
+        });
+    }
 </script>
 
 </html>

@@ -163,4 +163,4 @@ dselect(select, {
 
 dselect(document.getElementById('cliente'), {
   search: true
-})
+});
