@@ -160,3 +160,7 @@ if (textoPrecoTotal) {
 dselect(select, {
   search: true,
 });
+
+dselect(document.getElementById('cliente'), {
+  search: true
+})

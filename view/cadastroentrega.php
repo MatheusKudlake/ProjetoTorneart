@@ -39,11 +39,12 @@
                     <form action="cadastrar-entrega" method="get">
                         <div class="row align-items-center justify-content-center">
                             <label for="cliente" class="form-label col-auto">Cliente:</label>
-                            <div class="col-auto">
+                            <div class="col-3">
                                 <select name="cliente" id="cliente" class="form-select">
                                     <option value="">Selecionar...</option>
                                     <?php foreach ($listaClientes as $cliente): ?>
-                                        <option value="<?= $cliente->getId() ?>"><?= $cliente->getNome() ?></option>
+                                        <?php $idCliente = $cliente->getId() ?>
+                                        <option value="<?= $idCliente ?>" <?php if(isset($_GET["cliente"]) && $idCliente == $_GET["cliente"]) echo 'selected' ?>><?= $cliente->getNome() ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
