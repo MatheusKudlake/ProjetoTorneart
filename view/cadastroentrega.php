@@ -67,7 +67,7 @@
                                             </div>
                                             <div class="col-6">
                                                 <select name="peca" id="selectPeca" class="form-select">
-                                                    <option value="">Selecionar...</option>
+                                                    <option value="">Selecionar...</option> 
                                                     <?php foreach ($listaPecas as $peca): ?>
                                                         <option value="<?= $peca->getId() ?>" data-preco="<?= $peca->getPreco() ?>"><?= $peca->getNome() ?></option>
                                                     <?php endforeach; ?>

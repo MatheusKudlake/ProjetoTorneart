@@ -97,6 +97,12 @@ if (formServico) {
       inputServicos.value = JSON.stringify(servicos);
 
       this.reset();
+
+      //Tira a seleção dos elementos do select
+      Array.from(this.getElementsByClassName('dselect-items')[0].children).forEach((element, index) => {element.classList.remove('active')});
+
+      //Troca o texto do dselect pelo valor do primeiro valor do select original
+      this.getElementsByClassName('dselect-wrapper')[0].children[0].innerHTML = select.children[0].innerHTML;
     }
   });
 }
@@ -105,7 +111,6 @@ function atualizarTabela() {
   const tbody = tabela.querySelector("tbody");
   tbody.innerHTML = '';
 
-  console.log(servicos);
   servicos.forEach((servico) => {
     const linha = tbody.insertRow();
     linha.insertCell().textContent = formServico.peca.options[formServico.peca.selectedIndex].text;
