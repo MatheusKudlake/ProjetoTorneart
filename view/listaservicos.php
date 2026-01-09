@@ -30,6 +30,11 @@ error_reporting(E_ALL);
     form {
         display: inline;
     }
+
+    .label-valores{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
 </style>
 
 <body>
@@ -164,6 +169,10 @@ error_reporting(E_ALL);
                 </div>
                 <div class="card-body">
                     <button type="button" class="btn btn-primary col-12" onclick="abrirModal('modalCadastro')"><i class="bi bi-plus-circle"></i> Adicionar Serviço</button>
+                    <div class="text-center mt-3 mb-3">
+                        <span class="fw-bold label-valores">Preço total: <span style="color: green"><?= 'R$ ' . $precoTotal ?></span></span> 
+                        <span class="fw-bold label-valores">Lucro total: <span style="color: <?= $lucroTotal > 0 ? 'green' : 'red' ?>"><?= 'R$ ' . $lucroTotal ?></span></span> 
+                    </div>
                     <table class="table">
                         <thead>
                             <tr>

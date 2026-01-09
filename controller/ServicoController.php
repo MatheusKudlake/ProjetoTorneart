@@ -24,6 +24,12 @@ class ServicoController
             $servicoEditar = $servicoDAO->getPorId($_GET["editarServico"]);
         }
 
+        $precoTotal = $lucroTotal = 0;
+        foreach($listaServicos as $servico){
+            $precoTotal += $servico->getPreco() * $servico->getQuantidade();
+            $lucroTotal += $servico->getPreco() * $servico->getQuantidade() - $servico->getCusto();
+        }
+
         require 'view/listaservicos.php';
         return true;
     }
