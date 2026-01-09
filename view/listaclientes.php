@@ -127,8 +127,8 @@
                                         <td scope="row"> <?= $cliente->getId() ?></td>
                                         <td> <?= $cliente->getNome() ?></td>
                                         <td>
-                                            <button type="button" class="btn btn-primary" onclick="abrirModalEdicao('modalEditar', '<?= $cliente->getId() ?>', '<?= $cliente->getNome() ?>')"><i class="bi bi-pencil-square"></i></button>
-                                            <button type="button" class="btn btn-danger" onclick="abrirModalExcluir('modalExcluir', '<?= $cliente->getId() ?>', '<?= $cliente->getNome() ?>')"><i class="bi bi-trash"></i></button>
+                                            <button type="button" class="btn btn-primary" onclick="abrirModalEdicao({id:'<?= $cliente->getId() ?>', nome:'<?= $cliente->getNome() ?>'})"><i class="bi bi-pencil-square"></i></button>
+                                            <button type="button" class="btn btn-danger" onclick="abrirModalExcluir({id:'<?= $cliente->getId() ?>', nome:'<?= $cliente->getNome() ?>'})"><i class="bi bi-trash"></i></button>
                                             <a href="cliente/<?= $cliente->getId() ?>/pecas" class="btn btn-success"><i class="bi bi-gear"></i> Ver peças</a>
                                         </td>
                                     </tr>
@@ -145,16 +145,16 @@
     </div>
 </body>
 <script>
-    function abrirModalEdicao(idModal, idCliente, nomeCliente) {
-        document.getElementById("inputIdEdicao").value = idCliente;
-        document.getElementById("nomeEdicao").value = nomeCliente;
-        abrirModal(idModal);
+    function abrirModalEdicao(dadosCliente) {
+        document.getElementById("inputIdEdicao").value = dadosCliente.id;
+        document.getElementById("nomeEdicao").value = dadosCliente.nome;
+        abrirModal('modalEditar');
     }
 
-    function abrirModalExcluir(idModal, idCliente, nomeCliente) {
-        document.getElementById("inputIdExcluir").value = idCliente;
-        document.getElementById("msgExcluir").innerHTML = `Deseja excluir o cliente "${nomeCliente}"?`;
-        abrirModal(idModal);
+    function abrirModalExcluir(dadosCliente) {
+        document.getElementById("inputIdExcluir").value = dadosCliente.id;
+        document.getElementById("msgExcluir").innerHTML = `Deseja excluir o cliente "${dadosCliente.nome}"?`;
+        abrirModal('modalExcluir');
     }
 </script>
 
