@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css" />
+    <script src="/assets/bootstrap-5.3.6-dist/js/bootstrap.min.js"></script>
+    <script src="/assets/js/modal.js"></script>
 
     <title>Lista de Clientes</title>
 </head>
@@ -23,35 +25,35 @@
     }
 </style>
 
-<div id="modalCadastro" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Cadastrar nova peça</h3>
-                <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <form action="cliente" method="post">
-                    <div class="form-group">
-                        <label for="nome" class="form-label">Nome:</label>
-                        <input type="text" id="nome" name="nome" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="col-12 btn btn-primary">
-                            <i class="bi bi-plus-circle"></i>
-                            Cadastrar
-                        </button>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+<body>
+    <div id="modalCadastro" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Cadastrar nova peça</h3>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="cliente" method="post">
+                        <div class="form-group">
+                            <label for="nome" class="form-label">Nome:</label>
+                            <input type="text" id="nomeCadastro" name="nome" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="col-12 btn btn-primary">
+                                <i class="bi bi-plus-circle"></i>
+                                Cadastrar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<?php if (isset($_GET["editar"])): ?>
     <div id="modalEditar" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -63,9 +65,9 @@
                     <form action="cliente" method="post">
                         <div class="form-group">
                             <label for="nome" class="form-label">Nome:</label>
-                            <input type="text" id="nome" name="nome" class="form-control" value="<?= $clienteEditar->getNome() ?>" />
+                            <input type="text" id="nomeEdicao" name="nome" class="form-control" />
                         </div>
-                        <input type="hidden" name="id" value="<?= $clienteEditar->getId() ?>">
+                        <input type="hidden" name="id" id="inputIdEdicao">
                         <input type="hidden" name="method" value="PUT">
                         <div class="form-group">
                             <button type="submit" class="col-12 btn btn-primary">
@@ -80,9 +82,6 @@
             </div>
         </div>
     </div>
-<?php endif; ?>
-
-<?php if (isset($_GET["excluir"])): ?>
     <div id="modalExcluir" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -91,22 +90,20 @@
                     <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Deseja excluir o cliente "<?= $clienteExcluir->getNome() ?>"?</p>
+                    <p id="msgExcluir"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <form action="cliente" method="post">
                         <input type="hidden" name="method" value="DELETE">
-                        <input type="hidden" name="idcliente" value="<?= $clienteExcluir->getId() ?>">
+                        <input type="hidden" name="idcliente" id="inputIdExcluir">
                         <button type="submit" class="btn btn-danger">Excluir</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-<?php endif; ?>
 
-<body>
     <div class="container">
         <div class="row justify-content-center">
             <div class="card col-10 rounded shadow mt-5">
@@ -130,8 +127,8 @@
                                         <td scope="row"> <?= $cliente->getId() ?></td>
                                         <td> <?= $cliente->getNome() ?></td>
                                         <td>
-                                            <a href="?editar=<?= $cliente->getId() ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                                            <a href="?excluir=<?= $cliente->getId() ?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                                            <button type="button" class="btn btn-primary" onclick="abrirModalEdicao('modalEditar', '<?= $cliente->getId() ?>', '<?= $cliente->getNome() ?>')"><i class="bi bi-pencil-square"></i></button>
+                                            <button type="button" class="btn btn-danger" onclick="abrirModalExcluir('modalExcluir', '<?= $cliente->getId() ?>', '<?= $cliente->getNome() ?>')"><i class="bi bi-trash"></i></button>
                                             <a href="cliente/<?= $cliente->getId() ?>/pecas" class="btn btn-success"><i class="bi bi-gear"></i> Ver peças</a>
                                         </td>
                                     </tr>
@@ -147,14 +144,18 @@
         </div>
     </div>
 </body>
-<script src="/assets/bootstrap-5.3.6-dist/js/bootstrap.min.js"></script>
-<script src="/assets/js/modal.js"></script>
 <script>
-    <?php if (isset($_GET["editar"])): ?>
-        abrirModal("modalEditar");
-    <?php elseif (isset($_GET["excluir"])): ?>
-        abrirModal("modalExcluir");
-    <?php endif; ?>
+    function abrirModalEdicao(idModal, idCliente, nomeCliente) {
+        document.getElementById("inputIdEdicao").value = idCliente;
+        document.getElementById("nomeEdicao").value = nomeCliente;
+        abrirModal(idModal);
+    }
+
+    function abrirModalExcluir(idModal, idCliente, nomeCliente) {
+        document.getElementById("inputIdExcluir").value = idCliente;
+        document.getElementById("msgExcluir").innerHTML = `Deseja excluir o cliente "${nomeCliente}"?`;
+        abrirModal(idModal);
+    }
 </script>
 
 </html>
