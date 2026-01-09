@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css">
     <title>Peças</title>
 </head>
 <style>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="modal-body">
                     <form
-                        action="/ProjetoTorneart/cliente/<?= $cliente->getId() ?>/pecas"
+                        action="/cliente/<?= $cliente->getId() ?>/pecas"
                         method="post"
                         class="card-body">
                         <div class="form-group">
@@ -72,7 +72,7 @@
                     </div>
                     <div class="modal-body">
                         <form
-                            action="/ProjetoTorneart/cliente/<?= $cliente->getId() ?>/pecas"
+                            action="/cliente/<?= $cliente->getId() ?>/pecas"
                             method="post"
                             class="card-body">
                             <div class="form-group">
@@ -170,16 +170,16 @@
                     <?php endif; ?>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="/ProjetoTorneart/cliente" class="btn btn-outline-secondary"><i class="bi bi-arrow-return-left"></i> Voltar para a lista de clientes</a>
+                    <a href="/cliente" class="btn btn-outline-secondary"><i class="bi bi-arrow-return-left"></i> Voltar para a lista de clientes</a>
                     <br>
-                    <a href="/ProjetoTorneart/" class="btn btn-outline-secondary mt-2"><i class="bi bi-house"></i> Voltar para a página inicial</a>
+                    <a href="/" class="btn btn-outline-secondary mt-2"><i class="bi bi-house"></i> Voltar para a página inicial</a>
                 </div>
             </div>
         </div>
     </div>
 </body>
-<script src="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/js/bootstrap.min.js"></script>
-<script src="/ProjetoTorneart/assets/js/modal.js"></script>
+<script src="/assets/bootstrap-5.3.6-dist/js/bootstrap.min.js"></script>
+<script src="/assets/js/modal.js"></script>
 <script>
     <?php if (isset($_GET["editar"])): ?>
         abrirModal("modalEditar");

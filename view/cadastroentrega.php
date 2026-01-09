@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css">
-    <script src="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/ProjetoTorneart/assets/js/dselect.js"></script>
-    <link rel="stylesheet" href="/ProjetoTorneart/assets/css/dselect.scss">
+    <link rel="stylesheet" href="/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css">
+    <script src="/assets/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/dselect.js"></script>
+    <link rel="stylesheet" href="/assets/css/dselect.scss">
 
     <title>Cadastrar serviço</title>
 </head>
@@ -168,13 +168,13 @@
                 <?php endif; ?>
                 </div>
                 <div class="card-footer text-center mt-3">
-                    <a href="/ProjetoTorneart/entregas" class="btn btn-outline-secondary"><i class="bi bi-arrow-return-left"></i> Voltar para a lista de entregas</a>
+                    <a href="/entregas" class="btn btn-outline-secondary"><i class="bi bi-arrow-return-left"></i> Voltar para a lista de entregas</a>
                     <br>
-                    <a href="/ProjetoTorneart/" class="btn btn-outline-secondary mt-2"><i class="bi bi-house"></i> Voltar para a página inicial</a>
+                    <a href="/" class="btn btn-outline-secondary mt-2"><i class="bi bi-house"></i> Voltar para a página inicial</a>
                 </div>
             </div>
         </div>
     </div>
 </body>
 
-<script src="/ProjetoTorneart/assets/js/cadastroentrega.js"></script>
+<script src="/assets/js/cadastroentrega.js"></script>

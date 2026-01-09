@@ -14,7 +14,7 @@ return function (Router $router) {
 
         $servicoController->cadastro($servico);
 
-        header('Location: /ProjetoTorneart/entregas/' . $id);
+        header('Location: /entregas/' . $id);
         exit;
     });
 
@@ -30,7 +30,7 @@ return function (Router $router) {
 
         $servicoController->editarServico($servico);
 
-        header('Location: /ProjetoTorneart/entregas/' . $id);
+        header('Location: /entregas/' . $id);
         exit;
     });
 
@@ -38,7 +38,7 @@ return function (Router $router) {
         $servicoController = new ServicoController();
         $servicoController->excluirServico($_POST["id"]);
 
-        header('Location: /ProjetoTorneart/entregas/' . $id);
+        header('Location: /entregas/' . $id);
         exit;
     });
 };

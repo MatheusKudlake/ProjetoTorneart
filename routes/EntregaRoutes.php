@@ -85,7 +85,7 @@ return function (Router $router) {
 
         $entregaController->editarEntrega($entrega);
 
-        header('Location: /ProjetoTorneart/entregas');
+        header('Location: /entregas');
         exit;
     });
 
@@ -93,7 +93,7 @@ return function (Router $router) {
         $entregaController = new EntregaController();
         $entregaController->excluirEntrega($id);
 
-        header('Location: /ProjetoTorneart/entregas');
+        header('Location: /entregas');
         exit;
     });
 
@@ -107,7 +107,7 @@ return function (Router $router) {
             $entregaController->alterarPago($id, true);
         }
 
-        header('Location: /ProjetoTorneart/entregas');
+        header('Location: /entregas');
         exit;
     });
 };

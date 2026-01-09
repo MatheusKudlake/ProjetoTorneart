@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css">
-    <script src="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/ProjetoTorneart/assets/js/dselect.js"></script>
-    <link rel="stylesheet" href="/ProjetoTorneart/assets/css/dselect.scss">
+    <link rel="stylesheet" href="/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css">
+    <script src="/assets/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/dselect.js"></script>
+    <link rel="stylesheet" href="/assets/css/dselect.scss">
 
     <title>Serviços</title>
 </head>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row justify-content-center">
-                        <a href="/ProjetoTorneart/cadastrar-entrega" class="btn btn-primary col-11"><i class="bi bi-plus-circle"></i> Adicionar nova entrega</a>
+                        <a href="/cadastrar-entrega" class="btn btn-primary col-11"><i class="bi bi-plus-circle"></i> Adicionar nova entrega</a>
                     </div>
                     <div class="row text-center">
                         <h1 class="display-5">Pesquisar</h1>
@@ -198,7 +198,7 @@
                     <?php endif; ?>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="/ProjetoTorneart/" class="btn btn-outline-secondary"><i class="bi bi-house"></i> Voltar para a página inicial</a>
+                    <a href="/" class="btn btn-outline-secondary"><i class="bi bi-house"></i> Voltar para a página inicial</a>
                 </div>
             </div>
         </div>

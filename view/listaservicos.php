@@ -11,10 +11,10 @@ error_reporting(E_ALL);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css" />
-    <script src="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/ProjetoTorneart/assets/js/dselect.js"></script>
-    <link rel="stylesheet" href="/ProjetoTorneart/assets/css/dselect.scss">
+    <link rel="stylesheet" href="/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css" />
+    <script src="/assets/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/dselect.js"></script>
+    <link rel="stylesheet" href="/assets/css/dselect.scss">
 
     <title>Lista de Serviços</title>
 </head>
@@ -47,7 +47,7 @@ error_reporting(E_ALL);
                         <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="/ProjetoTorneart/servicos/<?= $entrega->getId() ?>" method="post">
+                        <form action="/servicos/<?= $entrega->getId() ?>" method="post">
                             <div class="row justify-content-between align-items-center form-group">
                                 <div class="col-auto">
                                     <label for="peca" class="form-label">Peça:</label>
@@ -112,7 +112,7 @@ error_reporting(E_ALL);
                     <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/ProjetoTorneart/servicos/<?= $entrega->getId() ?>" method="post">
+                    <form action="/servicos/<?= $entrega->getId() ?>" method="post">
                         <div class="row justify-content-between align-items-center form-group">
                             <div class="col-auto">
                                 <label for="peca" class="form-label">Peça:</label>
@@ -196,7 +196,7 @@ error_reporting(E_ALL);
                                     <td><?= 'R$' . ($servico->getPreco() * $servico->getQuantidade()) - $servico->getCusto() ?></td>
                                     <td>
                                         <a href="?editarServico=<?= $servico->getId() ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                                        <form action="/ProjetoTorneart/servicos/<?= $entrega->getId() ?>" method="post" class="form-delete">
+                                        <form action="/servicos/<?= $entrega->getId() ?>" method="post" class="form-delete">
                                             <input type="hidden" name="id" value="<?= $servico->getId() ?>">
                                             <input type="hidden" name="method" value="DELETE">
                                             <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
@@ -245,13 +245,13 @@ error_reporting(E_ALL);
                     </form>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="/ProjetoTorneart/entregas" class="btn btn-outline-secondary"><i class="bi bi-arrow-return-left"></i> Voltar para lista de entregas</a>
+                    <a href="/entregas" class="btn btn-outline-secondary"><i class="bi bi-arrow-return-left"></i> Voltar para lista de entregas</a>
                 </div>
             </div>
         </div>
     </div>
 </body>
-<script src="/ProjetoTorneart/assets/js/modal.js"></script>
+<script src="/assets/js/modal.js"></script>
 <?php if (isset($_GET["editarServico"])): ?>
     <script>
         abrirModal("modalEditar");

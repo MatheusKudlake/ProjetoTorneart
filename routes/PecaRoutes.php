@@ -13,7 +13,7 @@ return function (Router $router) {
         $peca->setPreco($_POST["preco"]);
         $peca->setIdCliente($id);
         $pecaController->cadastro($peca);
-        header('Location: /ProjetoTorneart/cliente/' . $id . '/pecas');
+        header('Location: /cliente/' . $id . '/pecas');
         exit;
     });
 
@@ -24,14 +24,14 @@ return function (Router $router) {
         $peca->setNome($_POST["nome"]);
         $peca->setPreco($_POST["preco"]);
         $pecaController->editarPeca($peca);
-        header('Location: /ProjetoTorneart/cliente/' . $id . '/pecas');
+        header('Location: /cliente/' . $id . '/pecas');
         exit;
     });
 
     $router->delete('/cliente/{id}/pecas', function ($id) {
         $pecaController = new PecaController();
         $pecaController->excluirPeca($_POST["idpeca"]);
-        header('Location: /ProjetoTorneart/cliente/' . $id . '/pecas');
+        header('Location: /cliente/' . $id . '/pecas');
         exit;
     });
 };

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/bootstrap-5.3.6-dist/css/bootstrap.min.css" />
 
     <title>Lista de Clientes</title>
 </head>
@@ -141,14 +141,14 @@
                     <?php endif; ?>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="/ProjetoTorneart/" class="btn btn-outline-secondary"><i class="bi bi-house"></i> Voltar para a página inicial</a>
+                    <a href="/" class="btn btn-outline-secondary"><i class="bi bi-house"></i> Voltar para a página inicial</a>
                 </div>
             </div>
         </div>
     </div>
 </body>
-<script src="/ProjetoTorneart/assets/bootstrap-5.3.6-dist/js/bootstrap.min.js"></script>
-<script src="/ProjetoTorneart/assets/js/modal.js"></script>
+<script src="/assets/bootstrap-5.3.6-dist/js/bootstrap.min.js"></script>
+<script src="/assets/js/modal.js"></script>
 <script>
     <?php if (isset($_GET["editar"])): ?>
         abrirModal("modalEditar");
