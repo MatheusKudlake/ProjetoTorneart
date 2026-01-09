@@ -134,7 +134,7 @@
                         <?php endif; ?>
                         <div class="d-flex justify-content-center">
                             <span class="fw-bold label-valores">Valor já recebido: <span style="color: green"><?= 'R$ ' . $valorRecebido ?></span></span>
-                            <span class="fw-bold label-valores">Lucro atual: <span style="color: green"><?= 'R$ ' . $lucroTotal ?></span></span>
+                            <span class="fw-bold label-valores">Lucro atual: <span style="color: <?= $lucroTotal > 0 ? 'green' : 'red' ?>"><?= 'R$ ' . $lucroTotal ?></span></span>
                             <span class="fw-bold label-valores">Valor a receber: <span style="color: red"><?= 'R$ ' . $valorAReceber ?></span></span>
                         </div>
                         <div class="row justify-content-center">
