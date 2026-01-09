@@ -7,6 +7,7 @@ class Entrega
 	private $dataEntrega;
 	private $pago;
 	private $dataPagamento;
+	private $precoTotal;
 	private $lucroTotal;
 
 	public function getId()
@@ -67,6 +68,16 @@ class Entrega
 	public function setDataPagamento($value)
 	{
 		$this->dataPagamento = $value;
+	}
+
+	public function getPrecoTotal()
+	{
+		return $this->precoTotal;
+	}
+
+	public function setPrecoTotal($value)
+	{
+		$this->precoTotal = $value;
 	}
 
 	public function getLucroTotal()

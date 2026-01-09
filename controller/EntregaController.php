@@ -46,6 +46,16 @@ class EntregaController
             $listaEntregas = [];
         }
 
+        $lucroTotal = $valorRecebido = $valorAReceber = 0;
+        foreach ($listaEntregas as $entrega) {
+            if ($entrega->getPago()) {
+                $valorRecebido += $entrega->getPrecoTotal();
+                $lucroTotal += $entrega->getLucroTotal();
+            } else {
+                $valorAReceber += $entrega->getPrecoTotal();
+            }
+        }
+
         if (isset($_GET["excluir"])) {                                     //remover?
             $entregaExcluir = $entregaDAO->getPorId($_GET["excluir"]);
         }

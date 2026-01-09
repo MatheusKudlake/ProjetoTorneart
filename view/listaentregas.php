@@ -25,6 +25,10 @@
         display: none;
     }
 
+    .label-valores{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
 
     .td-texto {
         max-width: 200px;
@@ -123,7 +127,16 @@
                     </div>
 
                     <?php if (!empty($listaEntregas)): ?>
-                        <h1 class="display-5">Teste</h1>
+                        <?php if ((isset($_GET["mes"]) && isset($_GET["ano"]) || (isset($_GET["dataInicio"]) && isset($_GET["dataFinal"])))): ?>
+                            <h1 class="display-5">Resultado da pesquisa:</h1>
+                        <?php else: ?>
+                            <h1 class="display-5">Mês atual:</h1>
+                        <?php endif; ?>
+                        <div class="d-flex justify-content-center">
+                            <span class="fw-bold label-valores">Valor já recebido: <span style="color: green"><?= 'R$ ' . $valorRecebido ?></span></span>
+                            <span class="fw-bold label-valores">Lucro atual: <span style="color: green"><?= 'R$ ' . $lucroTotal ?></span></span>
+                            <span class="fw-bold label-valores">Valor a receber: <span style="color: red"><?= 'R$ ' . $valorAReceber ?></span></span>
+                        </div>
                         <div class="row justify-content-center">
                             <table class="table mt-3">
                                 <thead>
@@ -131,6 +144,7 @@
                                     <th scope="col">Cliente</th>
                                     <th scope="col">Data</th>
                                     <th scope="col">Pago?</th>
+                                    <th scole="col">Preço</th>
                                     <th scope="col">Lucro</th>
                                     <th scope="col">Ações</th>
                                 </thead>
@@ -143,6 +157,7 @@
                                                 <td class="td-texto"><?= $clienteDAO->getPorId($entrega->getIdCliente())->getNome() ?></td>
                                                 <td><?= DateTime::createFromFormat('Y-m-d', $entrega->getDataEntrega())->format('d/m/Y') ?></td>
                                                 <td style="color: <?= $pago ? "green" : "red" ?>; font-weight: bold"><?= $pago ? "Sim" : "Não" ?></td>
+                                                <td><?= 'R$ ' . $entrega->getPrecoTotal() ?></td>
                                                 <?php $lucroTotal = $entrega->getLucroTotal(); ?>
                                                 <td style="color: <?php
                                                                     if ($lucroTotal > 0) {
