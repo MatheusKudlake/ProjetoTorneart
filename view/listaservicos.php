@@ -245,8 +245,7 @@ error_reporting(E_ALL);
                     </form>
                 </div>
                 <div class="card-footer text-center">
-                    <button type="button" onclick="history.back()" class="btn btn-outline-secondary"><i class="bi bi-arrow-return-left"></i> Voltar para lista de entregas</button>
-                </div>
+<a href="/ProjetoTorneart/entregas" class="btn btn-outline-secondary"><i class="bi bi-arrow-return-left"></i> Voltar para lista de entregas</a>                </div>
             </div>
         </div>
     </div>
