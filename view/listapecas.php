@@ -62,73 +62,68 @@
         </div>
     </div>
 
-    <?php if (isset($_GET["editar"])): ?>
-        <div id="modalEditar" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title">Editar Peça</h3>
-                        <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form
-                            action="/cliente/<?= $cliente->getId() ?>/pecas"
-                            method="post"
-                            class="card-body">
-                            <div class="form-group">
-                                <label for="desc" class="form-label">Descrição:</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="desc"
-                                    name="nome"
-                                    value="<?= $pecaEditar->getNome() ?>" />
-                            </div>
-                            <div class="form-group">
-                                <label for="preco" class="form-label">Preço:</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="preco"
-                                    name="preco"
-                                    value="<?= $pecaEditar->getPreco() ?>" />
-                            </div>
-                            <input type="hidden" name="id" value="<?= $pecaEditar->getId() ?>">
-                            <input type="hidden" name="method" value="PUT">
-                            <button type="submit" class="btn btn-primary col-12">Editar</button>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    </div>
+    <div id="modalEditar" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Editar Peça</h3>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form
+                        action=""
+                        method="post"
+                        class="card-body"
+                        id="formEdicao">
+                        <div class="form-group">
+                            <label for="desc" class="form-label">Descrição:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="descEdicao"
+                                name="nome" />
+                        </div>
+                        <div class="form-group">
+                            <label for="preco" class="form-label">Preço:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="precoEdicao"
+                                name="preco" />
+                        </div>
+                        <input type="hidden" name="id" id="inputIdEdicao">
+                        <input type="hidden" name="method" value="PUT">
+                        <button type="submit" class="btn btn-primary col-12">Editar</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
-    <?php endif; ?>
+    </div>
 
-    <?php if (isset($_GET["excluir"])): ?>
-        <div id="modalExcluir" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title">Confirmar exclusão</h3>
-                        <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Deseja excluir a peça "<?= $pecaExcluir->getNome() ?>"?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <form action="pecas" method="post">
-                            <input type="hidden" name="method" value="DELETE">
-                            <input type="hidden" name="idpeca" value="<?= $pecaExcluir->getId() ?>">
-                            <button type="submit" class="btn btn-danger">Excluir</button>
-                        </form>
-                    </div>
+    <div id="modalExcluir" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Confirmar exclusão</h3>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="msgExcluir"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <form action="pecas" method="post">
+                        <input type="hidden" name="method" value="DELETE">
+                        <input type="hidden" name="idpeca" id="inputIdExcluir">
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                    </form>
                 </div>
             </div>
         </div>
-    <?php endif; ?>
+    </div>
 
 
     <div class="container">
@@ -154,10 +149,16 @@
                                     <tr>
                                         <td scope="row"> <?= $peca->getId() ?> </td>
                                         <td> <?= $peca->getNome() ?></td>
-                                        <td> <?='R$ ' . $peca->getPreco() ?></td>
+                                        <td> <?= 'R$ ' . $peca->getPreco() ?></td>
                                         <td>
-                                            <a href="pecas?editar=<?= $peca->getId() ?>" name="editar" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                                            <a href="?excluir=<?= $peca->getId() ?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                                            <button type="button" class="btn btn-primary" onclick="
+                                            abrirModalEdicao({id:<?= $peca->getId() ?>, idCliente: <?= $peca->getIdCliente() ?>, desc:'<?= $peca->getNome() ?>', preco:<?= $peca->getPreco() ?>})">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-danger" onclick="
+                                            abrirModalExcluir({id:<?= $peca->getId() ?>, desc:'<?= $peca->getNome() ?>'})">
+                                               <i class="bi bi-trash"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -181,11 +182,19 @@
 <script src="/assets/bootstrap-5.3.6-dist/js/bootstrap.min.js"></script>
 <script src="/assets/js/modal.js"></script>
 <script>
-    <?php if (isset($_GET["editar"])): ?>
-        abrirModal("modalEditar");
-    <?php elseif (isset($_GET["excluir"])): ?>
-        abrirModal("modalExcluir");
-    <?php endif; ?>
+    function abrirModalEdicao(dadosPeca) {
+        document.getElementById('formEdicao').action = `/cliente/${dadosPeca.idCliente}/pecas`;
+        document.getElementById('inputIdEdicao').value = dadosPeca.id;
+        document.getElementById('descEdicao').value = dadosPeca.desc;
+        document.getElementById('precoEdicao').value = dadosPeca.preco;
+        abrirModal('modalEditar');
+    }
+
+    function abrirModalExcluir(dadosPeca) {
+        document.getElementById('msgExcluir').innerHTML = `Deseja excluir a peça ${dadosPeca.desc}?`;
+        document.getElementById('inputIdExcluir').value = dadosPeca.id;
+        abrirModal('modalExcluir');
+    }
 </script>
 
 </html>
