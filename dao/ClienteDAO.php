@@ -20,7 +20,7 @@ class ClienteDAO
     public function get()
     {
         try {
-            $sql = "SELECT * FROM clientes";
+            $sql = "SELECT * FROM clientes ORDER BY nome";
             $conn = ConnectionFactory::getConnection();
             $result = $conn->query($sql);
             if ($result) {

@@ -116,7 +116,6 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</td>
                                     <th scope="col">Nome</td>
                                     <th scope="col">Ações</td>
                                 </tr>
@@ -124,7 +123,6 @@
                             <tbody>
                                 <?php foreach ($listaClientes as $cliente): ?>
                                     <tr>
-                                        <td scope="row"> <?= $cliente->getId() ?></td>
                                         <td> <?= $cliente->getNome() ?></td>
                                         <td>
                                             <button type="button" class="btn btn-primary" onclick="abrirModalEdicao({id:'<?= $cliente->getId() ?>', nome:'<?= $cliente->getNome() ?>'})"><i class="bi bi-pencil-square"></i></button>
