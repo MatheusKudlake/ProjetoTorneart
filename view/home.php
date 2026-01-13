@@ -37,7 +37,7 @@
                     </div>
                     <div class="card-body text-center">
                         <h2><i class="bi bi-person icon"></i></h2>
-                        <p>Visualizar, editar ou adicionar novos clientes</p>
+                        <p>Visualizar e editar clientes</p>
                     </div>
                     <div class="card-footer">
                         <a href="cliente" class="col-12 my-1 btn btn-primary"><i class="bi bi-box-arrow-in-right"></i> Acessar</a>
