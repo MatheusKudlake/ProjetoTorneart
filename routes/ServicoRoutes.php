@@ -36,9 +36,9 @@ return function (Router $router) {
 
     $router->delete('/servicos/{id}', function ($id) {
         $servicoController = new ServicoController();
-        $servicoController->excluirServico($_POST["id"]);
+        $servicoController->excluirServico($id);
 
-        header('Location: /entregas/' . $id);
+        header('Location: /entregas/' . $_POST["identrega"]);
         exit;
     });
 };

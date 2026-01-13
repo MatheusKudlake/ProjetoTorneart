@@ -153,6 +153,30 @@ error_reporting(E_ALL);
         </div>
     </div>
 
+    <div id="modalExcluir" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Confirmar exclusão</h3>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Deseja excluir esse serviço?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <form id="formExcluir" method="post">
+                        <input type="hidden" name="method" value="DELETE">
+                        <input type="hidden" name="idcliente" id="inputIdExcluir">
+                        <input type="hidden" name="identrega" id="inputIdEntregaExcluir">
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="card col-10 rounded shadow mt-5">
@@ -195,12 +219,10 @@ error_reporting(E_ALL);
                                         custo: <?= $servico->getCusto() ?>
                                         })
                                         "><i class="bi bi-pencil-square"></i></button>
-                                        <form action="/servicos/<?= $entrega->getId() ?>" method="post" class="form-delete">
-                                            <input type="hidden" name="id" value="<?= $servico->getId() ?>">
-                                            <input type="hidden" name="method" value="DELETE">
-                                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                        </form>
-
+                                        <button type="button" class="btn btn-danger" onclick="
+                                        abrirModalExcluir({id:'<?= $servico->getId() ?>',
+                                                            idEntrega: '<?= $servico->getIdEntrega() ?>'})">
+                                        <i class="bi bi-trash"></i></button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -299,6 +321,13 @@ error_reporting(E_ALL);
         document.getElementById('precoEdicao').value = dadosServico.preco;
         document.getElementById('custoEdicao').value = dadosServico.custo;
         abrirModal('modalEdicao');
+    }
+
+    function abrirModalExcluir(dadosServico){
+        document.getElementById("formExcluir").action = `/servicos/${dadosServico.id}`;
+        document.getElementById("inputIdExcluir").value = dadosServico.id;
+        document.getElementById("inputIdEntregaExcluir").value = dadosServico.idEntrega;
+        abrirModal('modalExcluir');
     }
 </script>
 
