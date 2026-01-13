@@ -138,7 +138,6 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</td>
                                     <th scope="col">Nome</td>
                                     <th scope="col">Preço</td>
                                     <th scope="col">Ações</td>
@@ -147,7 +146,6 @@
                             <tbody>
                                 <?php foreach ($listaPecas as $peca): ?>
                                     <tr>
-                                        <td scope="row"> <?= $peca->getId() ?> </td>
                                         <td> <?= $peca->getNome() ?></td>
                                         <td> <?= 'R$ ' . $peca->getPreco() ?></td>
                                         <td>

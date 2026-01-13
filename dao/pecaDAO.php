@@ -21,7 +21,7 @@ class PecaDAO
     public function listarPorCliente($idCliente)
     {
         try {
-            $sql = "SELECT * FROM peca WHERE idcliente = :idcliente;";
+            $sql = "SELECT * FROM peca WHERE idcliente = :idcliente ORDER BY nome;";
             $conn = ConnectionFactory::getConnection();
             $stmt = $conn->prepare($sql);
             $stmt->bindValue(':idcliente', $idCliente);
