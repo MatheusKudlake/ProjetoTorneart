@@ -192,19 +192,17 @@ error_reporting(E_ALL);
                     <table class="table">
                         <thead>
                             <tr>
-                                <td scope="col">ID</td>
-                                <td scope="col">Peça</td>
-                                <td scope="col">Quant.</td>
-                                <td scope="col">Preço</td>
-                                <td scope="col">Custo</td>
-                                <td scope="col">Lucro (total)</td>
-                                <td scope="col">Ações</td>
+                                <th scope="col">Peça</th>
+                                <th scope="col">Quant.</th>
+                                <th scope="col">Preço</th>
+                                <th scope="col">Custo</th>
+                                <th scope="col">Lucro (total)</th>
+                                <th scope="col">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($listaServicos as $servico): ?>
                                 <tr>
-                                    <td scope="row"> <?= $servico->getId() ?></td>
                                     <td><?= $pecaDAO->getPorId($servico->getIdPeca())->getNome() ?></td>
                                     <td><?= $servico->getQuantidade() ?></td>
                                     <td><?= 'R$' . $servico->getPreco() ?></td>
