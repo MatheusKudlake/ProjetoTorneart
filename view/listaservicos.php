@@ -38,71 +38,63 @@ error_reporting(E_ALL);
 </style>
 
 <body>
-    <?php if (isset($_GET["editarServico"])): ?>
-        <div id="modalEditar" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title">Editar serviço</h3>
-                        <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="/servicos/<?= $entrega->getId() ?>" method="post">
-                            <div class="row justify-content-between align-items-center form-group">
-                                <div class="col-auto">
-                                    <label for="peca" class="form-label">Peça:</label>
-                                </div>
-                                <div class="col-4">
-                                    <select name="idpeca" id="selectPecaEdicao" class="form-select">
-                                        <?php foreach ($listaPecas as $peca): ?>
-                                            <option value="<?= $peca->getId() ?>" <?php if ($peca->getId() == $_GET["editarServico"]) {
-                                                                                        echo 'selected';
-                                                                                    } ?>><?= $peca->getNome() ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="col-auto">
-                                    <label for="quant" class="form-label">Quant.:</label>
-                                </div>
-                                <div class="col-2">
-                                    <input type="text" class="form-control" name="quantidade" id="quantEditar"
-                                        value="<?= $servicoEditar->getQuantidade() ?>">
-                                </div>
+    <div id="modalEdicao" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Editar serviço</h3>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="formEdicao">
+                        <div class="row justify-content-between align-items-center form-group">
+                            <div class="col-auto">
+                                <label for="peca" class="form-label">Peça:</label>
+                            </div>
+                            <div class="col-4">
+                                <select name="idpeca" id="selectPecaEdicao" class="form-select">
+                                    <?php foreach ($listaPecas as $peca): ?>
+                                        <option value="<?= $peca->getId() ?>" data-preco=<?= $peca->getPreco() ?>><?= $peca->getNome() ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <label for="quant" class="form-label">Quant.:</label>
+                            </div>
+                            <div class="col-2">
+                                <input type="text" class="form-control" name="quantidade" id="quantEdicao">
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center justify-content-between form-group">
+                            <div class="col-auto">
+                                <label for="preco" class="form-label">Preço:</label>
+                            </div>
+                            <div class="col-3">
+                                <input type="text" class="form-control" name="preco" id="precoEdicao">
                             </div>
 
-                            <div class="row align-items-center justify-content-between form-group">
-                                <div class="col-auto">
-                                    <label for="preco" class="form-label">Preço:</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="text" class="form-control" name="preco" id="precoEditar"
-                                        value="<?= $servicoEditar->getPreco() ?>">
-                                </div>
-
-                                <div class="col-auto">
-                                    <label for="custo" class="form-label">Custo:</label>
-                                </div>
-                                <div class="col-2">
-                                    <input type="text" class="form-control" name="custo" id="custoEditar"
-                                        value="<?= $servicoEditar->getCusto() ?>">
-                                </div>
+                            <div class="col-auto">
+                                <label for="custo" class="form-label">Custo:</label>
                             </div>
-                            <input type="hidden" name="id" value="<?= $servicoEditar->getId() ?>">
-                            <input type="hidden" name="identrega" value="<?= $entrega->getId() ?>">
-                            <input type="hidden" name="method" value="PUT">
-                            <div class="form-group">
-                                <button type="submit" class="col-12 btn btn-primary">Editar</button>
+                            <div class="col-2">
+                                <input type="text" class="form-control" name="custo" id="custoEdicao">
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    </div>
+                        </div>
+                        <input type="hidden" name="identrega" id="inputIdEntregaEdicao">
+                        <input type="hidden" name="method" value="PUT">
+                        <div class="form-group">
+                            <button type="submit" class="col-12 btn btn-primary">Editar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
-    <?php endif; ?>
+    </div>
 
     <div id="modalCadastro" class="modal fade">
         <div class="modal-dialog">
@@ -195,12 +187,20 @@ error_reporting(E_ALL);
                                     <td><?= 'R$' . $servico->getCusto() ?></td>
                                     <td><?= 'R$' . ($servico->getPreco() * $servico->getQuantidade()) - $servico->getCusto() ?></td>
                                     <td>
-                                        <a href="?editarServico=<?= $servico->getId() ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                                        <button type="button" class="btn btn-primary" onclick="
+                                        abrirModalEdicao({id:<?= $servico->getId() ?>,
+                                        idEntrega: <?= $servico->getIdEntrega() ?>,
+                                        quant: <?= $servico->getQuantidade() ?>,
+                                        preco: <?= $servico->getPreco() ?>,
+                                        custo: <?= $servico->getCusto() ?>
+                                        })
+                                        "><i class="bi bi-pencil-square"></i></button>
                                         <form action="/servicos/<?= $entrega->getId() ?>" method="post" class="form-delete">
                                             <input type="hidden" name="id" value="<?= $servico->getId() ?>">
                                             <input type="hidden" name="method" value="DELETE">
                                             <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
                                         </form>
+
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -283,10 +283,22 @@ error_reporting(E_ALL);
     });
 
     const selectPecaEdicao = document.getElementById('selectPecaEdicao');
-    if (selectPecaEdicao) {
-        dselect(selectPecaEdicao, {
-            search: true
-        });
+
+    selectPecaEdicao.addEventListener('change', function() {
+        document.getElementById('precoEdicao').value = this.options[this.selectedIndex].dataset.preco || "";
+    })
+
+    dselect(selectPecaEdicao, {
+        search: true
+    });
+
+    function abrirModalEdicao(dadosServico) {
+        document.getElementById('formEdicao').action = `/servicos/${dadosServico.id}`;
+        document.getElementById('inputIdEntregaEdicao').value = dadosServico.idEntrega;
+        document.getElementById('quantEdicao').value = dadosServico.quant;
+        document.getElementById('precoEdicao').value = dadosServico.preco;
+        document.getElementById('custoEdicao').value = dadosServico.custo;
+        abrirModal('modalEdicao');
     }
 </script>
 

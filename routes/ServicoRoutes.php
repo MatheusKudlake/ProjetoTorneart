@@ -21,7 +21,7 @@ return function (Router $router) {
     $router->put('/servicos/{id}', function ($id) {
         $servicoController = new ServicoController();
         $servico = new Servico();
-        $servico->setId($_POST["id"]);
+        $servico->setId($id);
         $servico->setIdPeca($_POST["idpeca"]);
         $servico->setIdEntrega($_POST["identrega"]);
         $servico->setQuantidade($_POST["quantidade"]);
@@ -30,7 +30,7 @@ return function (Router $router) {
 
         $servicoController->editarServico($servico);
 
-        header('Location: /entregas/' . $id);
+        header('Location: /entregas/' . $_POST["identrega"]);
         exit;
     });
 
