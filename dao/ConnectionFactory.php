@@ -6,10 +6,10 @@ class ConnectionFactory
     public static function getConnection()
     {
         if (!isset(self::$connection)) {
-            $host = "localhost";
-            $dbName = "torneart";
-            $user = "root";
-            $pass = "";
+            $host = "db";
+            $dbName = "appdb";
+            $user = "appuser";
+            $pass = "apppass";
             $port = 3306;
 
             try {
