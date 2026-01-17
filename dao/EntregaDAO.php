@@ -159,15 +159,39 @@ class EntregaDAO
             }
             return false;
         } catch (PDOException $erro) {
-            echo "Eror ao buscar entrega: $erro";
+            echo "Erro ao buscar entrega: $erro";
         }
     }
 
-    public function getbyMonth($month)
+    public function getPrecoServicos($idEntrega)
     {
         try {
+            $sql = "SELECT IFNULL(SUM(preco * quantidade), 0) FROM servicos WHERE identrega =:identrega";
+            $conn = ConnectionFactory::getConnection();
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':identrega', $idEntrega);
+            $result = $stmt->execute();
+
+            if ($result) return $stmt->fetchColumn();
+            return false;
         } catch (PDOException $erro) {
-            echo "Erro ao buscar entrega por mês: $erro";
+            echo "Erro ao buscar preço de entrega: $erro";
+        }
+    }
+
+    public function getLucroServicos($idEntrega)
+    {
+        try {
+            $sql = "SELECT IFNULL(SUM(preco * quantidade), 0) - IFNULL(SUM(custo), 0) FROM servicos WHERE identrega =:identrega";
+            $conn = ConnectionFactory::getConnection();
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':identrega', $idEntrega);
+            $result = $stmt->execute();
+
+            if ($result) return $stmt->fetchColumn();
+            return false;
+        } catch (PDOException $erro) {
+            echo "Erro ao buscar lucro de entrega: $erro";
         }
     }
 

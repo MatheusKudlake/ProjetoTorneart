@@ -12,8 +12,6 @@ spl_autoload_register(function ($class) {
     }
 });
 
-/*$path_replace = str_replace('/', '/', $_SERVER["REQUEST_URI"]);
-$path = parse_url($path_replace, PHP_URL_PATH);*/
 $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
 $method;

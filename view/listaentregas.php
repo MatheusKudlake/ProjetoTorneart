@@ -25,7 +25,7 @@
         display: none;
     }
 
-    .label-valores{
+    .label-valores {
         margin-left: 20px;
         margin-right: 20px;
     }
@@ -151,14 +151,17 @@
                                 <tbody>
                                     <?php if (isset($listaEntregas)): ?>
                                         <?php foreach ($listaEntregas as $entrega): ?>
+                                            <?php
+                                            $idEntrega = $entrega->getId();
+                                            $pago = $entrega->getPago();
+                                            $lucroTotal = $entregaDAO->getLucroServicos($idEntrega);
+                                            ?>
                                             <tr>
                                                 <td class="td-texto"><?= $entrega->getDescricao() ?></td>
-                                                <?php $pago = $entrega->getPago(); ?>
                                                 <td class="td-texto"><?= $clienteDAO->getPorId($entrega->getIdCliente())->getNome() ?></td>
                                                 <td><?= DateTime::createFromFormat('Y-m-d', $entrega->getDataEntrega())->format('d/m/Y') ?></td>
                                                 <td style="color: <?= $pago ? "green" : "red" ?>; font-weight: bold"><?= $pago ? "Sim" : "Não" ?></td>
-                                                <td><?= 'R$ ' . $entrega->getPrecoTotal() ?></td>
-                                                <?php $lucroTotal = $entrega->getLucroTotal(); ?>
+                                                <td><?= 'R$ ' . $entregaDAO->getPrecoServicos($idEntrega) ?></td>
                                                 <td style="color: <?php
                                                                     if ($lucroTotal > 0) {
                                                                         echo "green";
@@ -172,17 +175,17 @@
                                                     if ($lucroTotal) echo "R$ " . $lucroTotal ?>
                                                 </td>
                                                 <td>
-                                                    <a href="entregas/<?= $entrega->getId() ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                                                    <form action="entregas/<?= $entrega->getId() ?>" method="post">
-                                                        <input type="hidden" name="identrega" value="<?= $entrega->getId() ?>">
+                                                    <a href="entregas/<?= $idEntrega ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                                                    <form action="entregas/<?= $idEntrega ?>" method="post">
+                                                        <input type="hidden" name="identrega" value="<?= $idEntrega ?>">
                                                         <input type="hidden" name="method" value="DELETE">
                                                         <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
                                                     </form>
-                                                    <form action="entregas/<?= $entrega->getId() ?>/pago" method="post">
-                                                        <input type="hidden" name="identrega" value="<?= $entrega->getId() ?>">
-                                                        <input type="hidden" name="pago" value="<?= $entrega->getPago() ?>">
+                                                    <form action="entregas/<?= $idEntrega ?>/pago" method="post">
+                                                        <input type="hidden" name="identrega" value="<?= $idEntrega ?>">
+                                                        <input type="hidden" name="pago" value="<?= $pago ?>">
                                                         <input type="hidden" name="method" value="PUT">
-                                                        <?php if (!$entrega->getPago()): ?>
+                                                        <?php if (!$pago): ?>
                                                             <button type="submit" class="btn btn-success"><i class="bi bi-check-lg"></i> Marcar pago</button>
                                                         <?php else: ?>
                                                             <button type="submit" class="btn btn-danger"><i class="bi bi-x-lg"></i> Marcar não pago</button>

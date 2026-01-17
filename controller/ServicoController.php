@@ -19,17 +19,8 @@ class ServicoController
         $entrega = $entregaDAO->getPorId($idEntrega);
         $listaPecas = $pecaDAO->listarPorCliente($entrega->getIdCliente());
         
-        $servicoEditar = '';
-        if (isset($_GET["editarServico"])) {
-            $servicoEditar = $servicoDAO->getPorId($_GET["editarServico"]);
-        }
-
-        $precoTotal = $lucroTotal = 0;
-        foreach($listaServicos as $servico){
-            $precoTotal += $servico->getPreco() * $servico->getQuantidade();
-            $lucroTotal += $servico->getPreco() * $servico->getQuantidade() - $servico->getCusto();
-            
-        }
+        $precoTotal = $entregaDAO->getPrecoServicos($idEntrega);
+        $lucroTotal = $entregaDAO->getLucroServicos($idEntrega);
 
         require 'view/listaservicos.php';
         return true;

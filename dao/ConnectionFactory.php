@@ -6,8 +6,8 @@ class ConnectionFactory
     public static function getConnection()
     {
         if (!isset(self::$connection)) {
-            $host = "db";
-            $dbName = "appdb";
+            $host = "localhost";
+            $dbName = "torneart";
             $user = "appuser";
             $pass = "apppass";
             $port = 3306;
