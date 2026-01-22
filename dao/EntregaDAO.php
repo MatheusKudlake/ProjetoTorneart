@@ -265,9 +265,6 @@ class EntregaDAO
         $entrega->setDataEntrega($row["dataentrega"]);
         $entrega->setPago($row["pago"]);
         $entrega->setDataPagamento($row["datapagamento"]);
-        $entrega->setPrecoTotal($row["precototal"]);
-        $entrega->setLucroTotal($row["lucrototal"]);
-
         return $entrega;
     }
 }
