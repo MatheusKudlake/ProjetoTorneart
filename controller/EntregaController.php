@@ -49,10 +49,10 @@ class EntregaController
         $lucroTotal = $valorRecebido = $valorAReceber = 0;
         foreach ($listaEntregas as $entrega) {
             if ($entrega->getPago()) {
-                $valorRecebido += $entrega->getPrecoTotal();
-                $lucroTotal += $entrega->getLucroTotal();
+                $valorRecebido += $entregaDAO->getPrecoServicos($entrega->getId());
+                $lucroTotal += $entregaDAO->getLucroServicos($entrega->getId());
             } else {
-                $valorAReceber += $entrega->getPrecoTotal();
+                $valorAReceber += $entregaDAO->getPrecoServicos($entrega->getId());
             }
         }
 
