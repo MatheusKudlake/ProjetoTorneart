@@ -48,7 +48,7 @@ return function (Router $router) {
             $entrega->setPago(true);
             $entrega->setDataPagamento($_POST["datapagamento"]);
         } else {
-            $entrega->setPago(null);
+            $entrega->setPago(0);
             $entrega->setDataPagamento(null);
         }
         $entrega->setDescricao($_POST["descricao"]);
@@ -62,7 +62,7 @@ return function (Router $router) {
         header('Location: /entregas');
         exit;
     });
-
+    
     $router->delete('/entregas/{id}', function ($id) {
         $entregaController = new EntregaController();
         $entregaController->excluirEntrega($id);
