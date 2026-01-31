@@ -42,7 +42,8 @@
                                 type="text"
                                 class="form-control"
                                 id="desc"
-                                name="nome" />
+                                name="nome" 
+                                placeholder="Nome da peça..."/>
                         </div>
                         <div class="form-group">
                             <label for="preco" class="form-label">Preço:</label>
@@ -50,7 +51,8 @@
                                 type="text"
                                 class="form-control"
                                 id="preco"
-                                name="preco" />
+                                name="preco" 
+                                placeholder="0.00"/>
                         </div>
                         <button type="submit" class="btn btn-primary col-12"><i class="bi bi-plus-circle"></i> Cadastrar</button>
                     </form>
@@ -179,6 +181,7 @@
 </body>
 <script src="/assets/bootstrap-5.3.6-dist/js/bootstrap.min.js"></script>
 <script src="/assets/js/modal.js"></script>
+<script src="/assets/js/mascaraNumeros.js"></script>
 <script>
     function abrirModalEdicao(dadosPeca) {
         document.getElementById('formEdicao').action = `/cliente/${dadosPeca.idCliente}/pecas`;
@@ -193,6 +196,8 @@
         document.getElementById('inputIdExcluir').value = dadosPeca.id;
         abrirModal('modalExcluir');
     }
+
+    mascaraPreco("preco");
 </script>
 
 </html>

@@ -22,6 +22,10 @@ const textoLucro = document.getElementById("lucro");
 
 const tabela = document.getElementById("tabela");
 
+mascaraPreco('preco');
+mascaraPreco('custo');
+mascaraNumeros('quant');
+
 if (textoPrecoTotal) {
   function atualizarPreco() {
     let precoTotal = caixaPreco.value * caixaQuant.value;
@@ -58,7 +62,7 @@ caixaPreco.addEventListener("input", function () {
   atualizarPreco();
 });
 
-caixaCusto.addEventListener("input", function () {
+caixaCusto.addEventListener("change", function () {
   if (!this.value) {
     this.value = 0;
   }

@@ -121,7 +121,7 @@ error_reporting(E_ALL);
                                 <label for="quantidade" class="form-label">Quant.:</label>
                             </div>
                             <div class="col-2">
-                                <input type="text" class="form-control" name="quantidade">
+                                <input type="text" class="form-control" name="quantidade" id="quantCadastro">
                             </div>
                         </div>
 
@@ -137,7 +137,7 @@ error_reporting(E_ALL);
                                 <label for="custo" class="form-label">Custo:</label>
                             </div>
                             <div class="col-2">
-                                <input type="text" class="form-control" name="custo" id="custoCadastro">
+                                <input type="text" class="form-control" name="custo" id="custoCadastro" value="0">
                             </div>
                         </div>
                         <input type="hidden" name="identrega" value="<?= $entrega->getId() ?>">
@@ -272,6 +272,7 @@ error_reporting(E_ALL);
     </div>
 </body>
 <script src="/assets/js/modal.js"></script>
+<script src="/assets/js/mascaraNumeros.js"></script>
 <?php if (isset($_GET["editarServico"])): ?>
     <script>
         abrirModal("modalEditar");
@@ -327,6 +328,27 @@ error_reporting(E_ALL);
         document.getElementById("inputIdEntregaExcluir").value = dadosServico.idEntrega;
         abrirModal('modalExcluir');
     }
+
+    const inputPrecos = ['precoCadastro', 'custoCadastro', 'precoEdicao', 'custoEdicao']
+    inputPrecos.forEach((item) => {
+        mascaraPreco(item);
+    })
+
+    mascaraNumeros('quantCadastro');
+    mascaraNumeros('quantEdicao');
+
+    document.getElementById('custoCadastro').addEventListener('change', function(){
+        if(!this.value){
+            this.value = 0;
+        }
+    });
+
+    document.getElementById('custoEdicao').addEventListener('change', function(){
+        if(!this.value){
+            this.value = 0;
+        }
+    });
+
 </script>
 
 </html>

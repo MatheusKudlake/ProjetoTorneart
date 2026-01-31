@@ -4,7 +4,6 @@ services:
   app:
     build: .
     container_name: php_app
-    restart: always
     ports:
       - "80:80"
     volumes:
@@ -20,7 +19,6 @@ services:
   db:
     image: mysql:8.0
     container_name: mysql_db
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpass
       MYSQL_DATABASE: appdb

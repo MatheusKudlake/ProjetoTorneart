@@ -101,7 +101,7 @@
                                                         <label for="quant" class="form-label">Quantidade:</label>
                                                     </div>
                                                     <div class="col-6">
-                                                        <input type="number" id="quant" class="form-control" name="quantidade">
+                                                        <input type="text" id="quant" class="form-control" name="quantidade">
                                                     </div>
                                                 </div>
                                                 <div class="row align-items-center mt-2 form-group">
@@ -177,4 +177,5 @@
     </div>
 </body>
 
+<script src="/assets/js/mascaraNumeros.js"></script>
 <script src="/assets/js/cadastroentrega.js"></script>
