@@ -5,7 +5,7 @@ return function (Router $router) {
         $servico = new Servico();
         $servicoController = new ServicoController();
 
-        $servico->setId($_POST["id"]);
+        $servico->setId($id);
         $servico->setIdPeca($_POST["idpeca"]);
         $servico->setIdEntrega($_POST["identrega"]);
         $servico->setQuantidade($_POST["quantidade"]);
