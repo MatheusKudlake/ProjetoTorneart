@@ -38,7 +38,7 @@ class EntregaDAO
             $sqlServico = "INSERT INTO servicos (idpeca, identrega, preco, quantidade, custo) VALUES (:idpeca, :identrega, :preco, :quantidade, :custo);";
             foreach ($servicos as $servico) {
                 $stmt = $conn->prepare($sqlServico);
-                $stmt->bindValue(':idpeca', $servico["peca"]);
+                $stmt->bindValue(':idpeca', $servico["idPeca"]);
                 $stmt->bindValue(':identrega', $idEntrega);
                 $stmt->bindValue(':preco', $servico["preco"]);
                 $stmt->bindValue(':quantidade', $servico["quant"]);

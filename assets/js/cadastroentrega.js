@@ -75,18 +75,20 @@ if (formServico) {
   formServico.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const peca = this.peca.value;
+    const idPeca = this.peca.value;
+    const nomePeca = formServico.peca.options[formServico.peca.selectedIndex].text;
     const preco = this.preco.value;
     const custo = this.custo.value;
     const quant = this.quantidade.value;
 
-    if(servicos.find(servico => servico.peca == peca) !== undefined){
+    if(servicos.find(servico => servico.idPeca == idPeca) !== undefined){
       msgErro.innerHTML = "Peça já registrada!";
       msgErro.style.color = 'red';
       msgErro.style.display = 'block';
-    }else if (peca && preco && quant > 0) {
+    }else if (idPeca && preco && quant > 0) {
       servicos.push({
-        peca,
+        idPeca,
+        nomePeca,
         quant,
         preco,
         custo,
@@ -94,6 +96,7 @@ if (formServico) {
 
       atualizarTabela();
 
+      //Tirar mensagem de erro
       msgErro.style.display = "none";
       tabela.style.display = "block";
       divCheckPago.style.display = "block";
@@ -117,20 +120,20 @@ function atualizarTabela() {
 
   servicos.forEach((servico) => {
     const linha = tbody.insertRow();
-    linha.insertCell().textContent = formServico.peca.options[formServico.peca.selectedIndex].text;
+    linha.insertCell().textContent = servico.nomePeca;
     linha.insertCell().textContent = servico.quant;
     linha.insertCell().textContent = "R$" + servico.preco * servico.quant;
     linha.insertCell().textContent = "R$" + servico.custo;
-    linha.insertCell().textContent =
-      "R$" + (servico.preco * servico.quant - servico.custo);
+    linha.insertCell().textContent = "R$" + (servico.preco * servico.quant - servico.custo);
 
+    //Criar botão de excluir
     const botaoExcluir = document.createElement("button");
     botaoExcluir.type = "button";
     botaoExcluir.classList.add("btn", "btn-sm", "btn-danger");
-    botaoExcluir.dataset.idPeca = servico.peca;
+    botaoExcluir.dataset.idPeca = servico.idPeca;
     botaoExcluir.onclick = () => {
     servicos = servicos.filter(
-        servico => servico.peca != botaoExcluir.dataset.idPeca
+        servico => servico.idPeca != botaoExcluir.dataset.idPeca
       );
       atualizarTabela();
     };
@@ -145,6 +148,10 @@ function atualizarTabela() {
 
 if (formFinal) {
   formFinal.addEventListener("submit", function () {
+    //Remover nome das peças dos serviços (inútil pro backend)
+    servicos.forEach(servico => {
+      if(nomePeca in servico) delete servico.nomePeca;
+    })
     if (checkPago.checked) {
       inputDataPagamento.value =
         data.getFullYear() + "-" + (data.getMonth() + 1) + "-" + data.getDate();
