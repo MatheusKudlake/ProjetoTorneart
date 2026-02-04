@@ -37,7 +37,7 @@
                         method="post"
                         class="card-body">
                         <div class="form-group">
-                            <label for="desc" class="form-label">Descrição:</label>
+                            <label for="desc" class="form-label">Nome:</label>
                             <input
                                 type="text"
                                 class="form-control"
@@ -78,12 +78,13 @@
                         class="card-body"
                         id="formEdicao">
                         <div class="form-group">
-                            <label for="desc" class="form-label">Descrição:</label>
+                            <label for="desc" class="form-label">Nome:</label>
                             <input
                                 type="text"
                                 class="form-control"
                                 id="descEdicao"
-                                name="nome" />
+                                name="nome"
+                                placeholder="Nome da peça..." />
                         </div>
                         <div class="form-group">
                             <label for="preco" class="form-label">Preço:</label>
@@ -91,7 +92,8 @@
                                 type="text"
                                 class="form-control"
                                 id="precoEdicao"
-                                name="preco" />
+                                name="preco"
+                                placeholder="0.00" />
                         </div>
                         <input type="hidden" name="id" id="inputIdEdicao">
                         <input type="hidden" name="method" value="PUT">
