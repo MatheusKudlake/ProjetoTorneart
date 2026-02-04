@@ -11,7 +11,7 @@ return function (Router $router) {
 
         $entrega = new Entrega();
         $entrega->setIdCliente($_POST["idcliente"]);
-        $entrega->setDataEntrega($_POST["dataentrega"]);
+        $entrega->setDataEntrega($_POST["data"]);
         $entrega->setDescricao($_POST["descricao"]);
 
         if (!empty($_POST["datapagamento"])) {

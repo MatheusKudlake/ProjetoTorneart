@@ -44,7 +44,7 @@
                                     <option value="">Selecionar...</option>
                                     <?php foreach ($listaClientes as $cliente): ?>
                                         <?php $idCliente = $cliente->getId() ?>
-                                        <option value="<?= $idCliente ?>" <?php if(isset($_GET["cliente"]) && $idCliente == $_GET["cliente"]) echo 'selected' ?>><?= $cliente->getNome() ?></option>
+                                        <option value="<?= $idCliente ?>" <?php if (isset($_GET["cliente"]) && $idCliente == $_GET["cliente"]) echo 'selected' ?>><?= $cliente->getNome() ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -68,7 +68,7 @@
                                             </div>
                                             <div class="col-6">
                                                 <select name="peca" id="selectPeca" class="form-select">
-                                                    <option value="">Selecionar...</option> 
+                                                    <option value="">Selecionar...</option>
                                                     <?php foreach ($listaPecas as $peca): ?>
                                                         <option value="<?= $peca->getId() ?>" data-preco="<?= $peca->getPreco() ?>"><?= $peca->getNome() ?></option>
                                                     <?php endforeach; ?>
@@ -149,14 +149,15 @@
                             <form action="cadastrar-entrega" method="post" id="formFinal">
                                 <input type="hidden" name="servicosJson" id="servicosJson">
                                 <input type="hidden" name="idcliente" value="<?= $_GET["cliente"] ?>">
-                                <input type="hidden" name="dataentrega" id="dataEntrega">
                                 <input type="hidden" name="datapagamento" id="dataPagamento" value="">
                                 <div class="row align-items-center justify-content-between form-group mb-0">
-                                    <div class="col-auto">
-                                        <label for="descricao" class="form-label">Descrição:</label>
+                                    <div class="col-4">
+                                        <label for="data" class="form-label">Data:</label>
+                                        <input type="date" class="form-control" id="data" name="data" value="<?= date('Y-m-d') ?>">
                                     </div>
-                                    <div class="col-10">
-                                        <input type="text" id="descricao" name="descricao" class="form-control">
+                                    <div class="col-8">
+                                        <label for="descricao" class="form-label">Descrição:</label>
+                                        <input type="text" id="descricao" name="descricao" class="form-control" placeholder="Descrição da entrega">
                                     </div>
                                 </div>
                                 <div class="row mt-3">

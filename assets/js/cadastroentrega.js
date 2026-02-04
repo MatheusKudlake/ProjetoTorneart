@@ -159,11 +159,6 @@ if (formFinal) {
   });
 }
 
-if (inputDataEntrega) {
-  inputDataEntrega.value =
-    data.getFullYear() + "-" + (data.getMonth() + 1) + "-" + data.getDate();
-}
-
 if (textoPrecoTotal) {
   atualizarPreco();
 }
