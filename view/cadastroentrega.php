@@ -83,7 +83,7 @@
                                                         <label for="preco" class="form-label">Preço (unit.):</label>
                                                     </div>
                                                     <div class="col-6">
-                                                        <input type="text" id="preco" class="form-control">
+                                                        <input type="text" id="preco" class="form-control" placeholder="0.00">
                                                     </div>
                                                 </div>
                                                 <div class="row align-items-center justify-content-between form-group">
@@ -101,7 +101,7 @@
                                                         <label for="quant" class="form-label">Quantidade:</label>
                                                     </div>
                                                     <div class="col-6">
-                                                        <input type="text" id="quant" class="form-control" name="quantidade">
+                                                        <input type="text" id="quant" class="form-control" name="quantidade" placeholder="Quant...">
                                                     </div>
                                                 </div>
                                                 <div class="row align-items-center mt-2 form-group">
@@ -119,7 +119,7 @@
                                             </div>
                                         </div>
                                         <div class="row justify-content-center form-group mt-3">
-                                            <button type="submit" name="cadastrarServico" class="btn btn-primary col-8"><i class="bi bi-plus-circle"></i> Salvar</button>
+                                            <button type="submit" name="cadastrarServico" class="btn btn-primary col-8"><i class="bi bi-plus-circle"></i> Adicionar</button>
                                         </div>
                                     </form>
                                 </div>
@@ -157,11 +157,11 @@
                                     </div>
                                     <div class="col-8">
                                         <label for="descricao" class="form-label">Descrição:</label>
-                                        <input type="text" id="descricao" name="descricao" class="form-control" placeholder="Descrição da entrega">
+                                        <input type="text" id="descricao" name="descricao" class="form-control" placeholder="Descrição da entrega...">
                                     </div>
                                 </div>
                                 <div class="row mt-3">
-                                    <button type="submit" class="btn btn-success">Enviar</button>
+                                    <button type="submit" class="btn btn-success"><i class="bi bi-floppy"></i> Salvar</button>
                                 </div>
                             </form>
                         </div>

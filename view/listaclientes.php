@@ -37,7 +37,7 @@
                     <form action="cliente" method="post">
                         <div class="form-group">
                             <label for="nome" class="form-label">Nome:</label>
-                            <input type="text" id="nomeCadastro" name="nome" class="form-control" />
+                            <input type="text" id="nomeCadastro" name="nome" class="form-control" placeholder="Nome do cliente..." />
                         </div>
                         <div class="form-group">
                             <button type="submit" class="col-12 btn btn-primary">
@@ -65,7 +65,7 @@
                     <form action="cliente" method="post">
                         <div class="form-group">
                             <label for="nome" class="form-label">Nome:</label>
-                            <input type="text" id="nomeEdicao" name="nome" class="form-control" />
+                            <input type="text" id="nomeEdicao" name="nome" class="form-control" placeholder="Nome do cliente..."/>
                         </div>
                         <input type="hidden" name="id" id="inputIdEdicao">
                         <input type="hidden" name="method" value="PUT">
@@ -127,7 +127,7 @@
                                         <td>
                                             <button type="button" class="btn btn-primary" onclick="abrirModalEdicao({id:'<?= $cliente->getId() ?>', nome:'<?= $cliente->getNome() ?>'})"><i class="bi bi-pencil-square"></i></button>
                                             <button type="button" class="btn btn-danger" onclick="abrirModalExcluir({id:'<?= $cliente->getId() ?>', nome:'<?= $cliente->getNome() ?>'})"><i class="bi bi-trash"></i></button>
-                                            <a href="cliente/<?= $cliente->getId() ?>/pecas" class="btn btn-success"><i class="bi bi-gear"></i> Ver peças</a>
+                                            <a href="cliente/<?= $cliente->getId() ?>/pecas" class="btn btn-success"><i class="bi bi-gear"></i> Peças</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

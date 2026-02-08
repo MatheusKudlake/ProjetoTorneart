@@ -72,7 +72,7 @@ error_reporting(E_ALL);
                                 <label for="preco" class="form-label">Preço:</label>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control" name="preco" id="precoEdicao">
+                                <input type="text" class="form-control" name="preco" id="precoEdicao" placeholder="0.00">
                             </div>
 
                             <div class="col-auto">
@@ -130,7 +130,7 @@ error_reporting(E_ALL);
                                 <label for="preco" class="form-label">Preço:</label>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control" name="preco" id="precoCadastro">
+                                <input type="text" class="form-control" name="preco" id="precoCadastro" placeholder="0.00">
                             </div>
 
                             <div class="col-auto">
@@ -254,7 +254,7 @@ error_reporting(E_ALL);
                                 <label for="descricao" class="form-label">Descrição:</label>
                             </div>
                             <div class="col-10">
-                                <input type="text" id="descricao" name="descricao" class="form-control" value="<?= $entrega->getDescricao() ?>">
+                                <input type="text" id="descricao" name="descricao" class="form-control" value="<?= $entrega->getDescricao() ?>" placeholder="Descrição da entrega...">
                             </div>
                         </div>
 
