@@ -1,3 +1,5 @@
+const selectCliente = document.getElementById('cliente');
+
 const select = document.getElementById("selectPeca");
 const caixaPreco = document.getElementById("preco");
 const caixaCusto = document.getElementById("custo");
@@ -22,10 +24,6 @@ const textoLucro = document.getElementById("lucro");
 
 const tabela = document.getElementById("tabela");
 
-mascaraPreco('preco');
-mascaraPreco('custo');
-mascaraNumeros('quant');
-
 if (textoPrecoTotal) {
   function atualizarPreco() {
     let precoTotal = caixaPreco.value * caixaQuant.value;
@@ -45,29 +43,44 @@ if (textoPrecoTotal) {
   }
 }
 
-select.addEventListener("change", function () {
-  const selectedOption = this.options[this.selectedIndex];
-  const preco = selectedOption.getAttribute("data-preco") || "";
-  caixaPreco.value = preco;
-  atualizarPreco();
-});
+if(select){
+  select.addEventListener("change", function () {
+    const selectedOption = this.options[this.selectedIndex];
+    const preco = selectedOption.getAttribute("data-preco") || "";
+    caixaPreco.value = preco;
+    atualizarPreco();
+  });
+}
 
 if (caixaQuant) {
+    mascaraPreco('quant');
   caixaQuant.addEventListener("input", function () {
     atualizarPreco();
   });
 }
 
-caixaPreco.addEventListener("input", function () {
-  atualizarPreco();
-});
+if(caixaPreco){
+  mascaraPreco('preco');
+  caixaPreco.addEventListener("input", function () {
+    atualizarPreco();
+  });
+}
 
-caixaCusto.addEventListener("change", function () {
-  if (!this.value) {
-    this.value = 0;
-  }
-  atualizarPreco();
-});
+if(caixaCusto){
+  mascaraPreco('custo');
+  caixaCusto.addEventListener("change", function () {
+    if (!this.value) {
+      this.value = 0;
+    }
+    atualizarPreco();
+  });
+}
+
+if(selectCliente){
+  selectCliente.addEventListener('change', function(){
+    document.getElementById('formCliente').requestSubmit();
+  })
+}
 
 let servicos = [];
 
@@ -163,9 +176,11 @@ if (textoPrecoTotal) {
   atualizarPreco();
 }
 
-dselect(select, {
-  search: true,
-});
+if(select){
+  dselect(select, {
+    search: true,
+  });
+}
 
 dselect(document.getElementById('cliente'), {
   search: true

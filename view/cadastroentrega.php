@@ -36,7 +36,7 @@
                     <h1 class="display-2">Cadastrar Entrega</h1>
                 </div>
                 <div class="card-body">
-                    <form action="cadastrar-entrega" method="get">
+                    <form action="cadastrar-entrega" method="get" id="formCliente">
                         <div class="row align-items-center justify-content-center">
                             <label for="cliente" class="form-label col-auto">Cliente:</label>
                             <div class="col-3">
@@ -47,9 +47,6 @@
                                         <option value="<?= $idCliente ?>" <?php if (isset($_GET["cliente"]) && $idCliente == $_GET["cliente"]) echo 'selected' ?>><?= $cliente->getNome() ?></option>
                                     <?php endforeach; ?>
                                 </select>
-                            </div>
-                            <div class="col-auto">
-                                <button type="submit" class="btn btn-primary">Confirmar <i class="bi bi-check-lg"></i></button>
                             </div>
                     </form>
                     <?php if (isset($_GET["cliente"])): ?>
